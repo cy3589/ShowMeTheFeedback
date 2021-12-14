@@ -3,26 +3,53 @@
   margin: 0;
   padding: 0;
 }
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
 .render {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   row-gap: 10px;
   column-gap: 1rem;
   justify-content: center;
-  /* width: 100%; */
   padding: 1rem;
   padding-top: calc(50px + 1rem);
 }
 .card {
-  border: 1px solid red;
+  background-color: rgb(240, 248, 250);
+  border: 1px solid rgb(93, 100, 105);
   border-radius: 10px;
   padding: 1rem;
 }
 .title {
+  display: flex;
+  background-color: #fefff4;
+  border: 0.5px solid #2f2f2f;
+  border-radius: 8px;
   text-align: center;
+  margin-bottom: 1rem;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+}
+.thumbnail {
+  height: 300px;
 }
 .thumbnail > img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 @media screen and (min-width: 769px) {
   .thumbnail {
@@ -30,8 +57,11 @@
     overflow: hidden;
   }
   .thumbnail > img {
-    max-height: fit-content;
-    /* width: fit-content; */
+    object-fit: cover;
+  }
+  .render {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -57,20 +87,12 @@
   color: #fff58c;
 }
 
-/* gets the actual input out of the way; 
-  we're going to style the label instead */
-
 #drawer-toggle {
   position: absolute;
   opacity: 0;
 }
 
 #drawer-toggle-label {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   left: 0px;
   height: 50px;
@@ -80,8 +102,6 @@
   background: rgba(255, 255, 255, 0);
   z-index: 1;
 }
-
-/* adds our "hamburger" menu icon */
 
 #drawer-toggle-label:before {
   content: "";
@@ -106,8 +126,6 @@ header {
   z-index: 0;
 }
 
-/* drawer menu pane - note the 0px width */
-
 #drawer {
   position: fixed;
   top: 0;
@@ -117,11 +135,7 @@ header {
   background: #2f2f2f;
   overflow: hidden;
   padding: 20px;
-  -webkit-overflow-scrolling: touch;
 }
-
-/* actual page content pane */
-
 #page-content {
   margin-left: 0px;
   margin-top: 50px;
@@ -129,12 +143,8 @@ header {
   height: calc(100% - 50px);
   overflow-x: hidden;
   overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
   padding: 20px;
 }
-
-/* checked styles (menu open state) */
-
 #drawer-toggle:checked ~ #drawer-toggle-label {
   height: 100%;
   width: calc(100% - 300px);
@@ -153,13 +163,9 @@ header {
 #drawer-toggle:checked ~ #page-content {
   margin-left: 300px;
 }
-
-/* Menu item styles */
-
 #drawer ul {
   list-style-type: none;
 }
-
 #drawer ul a {
   display: block;
   padding: 10px;
@@ -169,27 +175,4 @@ header {
 
 #drawer ul a:hover {
   color: white;
-}
-
-/* Responsive MQ */
-
-@media all and (max-width: 350px) {
-  #drawer-toggle:checked ~ #drawer-toggle-label {
-    height: 100%;
-    width: 50px;
-  }
-
-  #drawer-toggle:checked ~ #drawer-toggle-label,
-  #drawer-toggle:checked ~ header {
-    left: calc(100% - 50px);
-  }
-
-  #drawer-toggle:checked ~ #drawer {
-    width: calc(100% - 50px);
-    padding: 20px;
-  }
-
-  #drawer-toggle:checked ~ #page-content {
-    margin-left: calc(100% - 50px);
-  }
 }

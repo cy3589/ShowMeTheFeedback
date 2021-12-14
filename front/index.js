@@ -21,13 +21,14 @@ for (let i = 0; i < 10; i++) {
   dummyProjects.push({
     Title: `타이틀${i}`,
     Image: `https://media.discordapp.net/attachments/919476237720772628/920238099198525470/unknown.png?width=722&height=663`,
-    Rating: `${Math.ceil(Math.random() * 5)}`,
+    Rating: `${Math.ceil(Math.random() * 5).toString()}`,
+    ProjectId: `${parseInt(Math.random() * 100000000000000, 10).toString()}`, // project의 고유ID(더미는 단순하게 랜덤값으로 생성)
   });
 }
 /* 
   dummyProject:object Array
   object:
-  Title, Image, Rating  <- string
+  Title, Image, Rating, ProjectId  <- string
 */
 
 const wait = (delay) => new Promise((resolve) => setTimeout(resolve, delay)); // setTimeout을 Promise가 반환되도록 하는 함수
@@ -35,7 +36,21 @@ const getProjectList = async () => {
   isLoading = true;
   let result = "";
   let temp;
-  await wait(400).then(() => (temp = dummyProjects));
+  let fetchedData = await fetch(
+    `https://jsonplaceholder.typicode.com/posts`
+  ).then((res) => res.json());
+  fetchedData = fetchedData
+    .map((v) => ({
+      Title: v.title,
+      Image: `http://placeimg.com/${440 + parseInt(Math.random() * 200, 10)}/${
+        280 + parseInt(Math.random() * 200, 10)
+      }/any`,
+      Rating: Math.ceil(Math.random() * 5).toString(),
+      ProjectId: parseInt(Math.random() * 100000000000000, 10).toString(),
+    }))
+    .slice(0, 10);
+  // console.log(fetchedData);
+  await wait(400).then(() => (temp = fetchedData));
   isLoading = false;
   const projects = temp;
   projects.forEach((v, i) => {
@@ -48,6 +63,7 @@ const getProjectList = async () => {
     }
     if (i >= 9) isEnd = /* html */ `<div class="observeThis"></div>`;
     result += /*html*/ `
+    <a href="./reviewPage?id=${v.ProjectId}">
       <div class="card">
         ${isEnd}
         <div>
@@ -64,6 +80,7 @@ const getProjectList = async () => {
           </div>
         </div>
       </div>
+    </a>
       `;
   });
 

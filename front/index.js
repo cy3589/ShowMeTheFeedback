@@ -24,13 +24,18 @@ for (let i = 0; i < 10; i++) {
     Rating: `${Math.ceil(Math.random() * 5)}`,
   });
 }
+/* 
+  dummyProject:object Array
+  object:
+  Title, Image, Rating  <- string
+*/
 
-const wait = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+const wait = (delay) => new Promise((resolve) => setTimeout(resolve, delay)); // setTimeout을 Promise가 반환되도록 하는 함수
 const getProjectList = async () => {
   isLoading = true;
   let result = "";
   let temp;
-  await wait(1500).then(() => (temp = dummyProjects));
+  await wait(400).then(() => (temp = dummyProjects));
   isLoading = false;
   const projects = temp;
   projects.forEach((v, i) => {
@@ -48,9 +53,11 @@ const getProjectList = async () => {
         <div>
           <div class="title">
             ${v.Title}
+            <!-- 제목 -->
           </div>
           <div class="thumbnail">
-            <img src=${v.Image} />
+            <img src=${v.Image} /> 
+            <!-- 이미지경로 || default이미지경로 -->
           </div>
           <div class="rating">
             ${rate}
@@ -72,4 +79,4 @@ const getMoreProject = async () => {
   io.observe(target);
 };
 
-document.getElementById("임시버튼").addEventListener("click", getMoreProject);
+// document.getElementById("임시버튼").addEventListener("click", getMoreProject);

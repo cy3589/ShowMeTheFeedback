@@ -1,48 +1,22 @@
+let isLoading = false;
+const io = new IntersectionObserver((entries, observer) => {
+  if (entries[0].isIntersecting) getMoreProject();
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const targetEl = document.getElementById("root");
   targetEl.innerHTML = `<div class="render"></div>`;
-  getProjectList()
-    .then((result) => (document.querySelector(".render").innerHTML += result))
-    .then(() => {
-      io.observe(document.querySelector(".observeThis"));
-    });
-});
-
-const io = new IntersectionObserver((entries, observer) => {
-  entries.forEach((entry) => {
-    // console.log(entry.target);
-    console.log(entry.isIntersecting);
+  getProjectList().then((result) => {
+    document.querySelector(".render").innerHTML += result;
+    const targets = document.querySelectorAll(".observeThis");
+    const target = targets[targets.length - 1];
+    io.observe(target);
   });
 });
-// io.observe(document.querySelector(".observeThis"));
-// console.log(document.querySelector(".observeThis"));
 
 const root = document.getElementById("root");
-// import { html } from "https://cdn.skypack.dev/lit";
-// const userDummy1 = {
-//   id: "유저1 고유아이디",
-//   Name: "유저이름1",
-//   Email: "유저이메일1",
-// };
-// const userDummy1 = {
-//   id: "유저2 고유아이디",
-//   Name: "유저2 이름",
-//   Email: "유저2 이메일",
-// };
 const dummyProjects = [];
 
-const dummyProject1 = {
-  Title: "타이틀1",
-  Image:
-    "https://media.discordapp.net/attachments/919476237720772628/920238099198525470/unknown.png?width=722&height=663",
-  Rating: "5",
-};
-const dummyProject2 = {
-  Title: "타이틀2",
-  Image:
-    "https://media.discordapp.net/attachments/919476237720772628/920238099198525470/unknown.png?width=722&height=663",
-  Rating: "3",
-};
 for (let i = 0; i < 10; i++) {
   dummyProjects.push({
     Title: `타이틀${i}`,
@@ -50,12 +24,14 @@ for (let i = 0; i < 10; i++) {
     Rating: `${Math.ceil(Math.random() * 5)}`,
   });
 }
-// const dummyProjects = [dummyProject1, dummyProject2];
+
 const wait = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 const getProjectList = async () => {
+  isLoading = true;
   let result = "";
   let temp;
   await wait(1500).then(() => (temp = dummyProjects));
+  isLoading = false;
   const projects = temp;
   projects.forEach((v, i) => {
     let isEnd = "";
@@ -81,18 +57,19 @@ const getProjectList = async () => {
           </div>
         </div>
       </div>
-  `;
+      `;
   });
 
   return result;
 };
-// getProjectList().then((result) => (root.innerHTML += result));
 const getMoreProject = async () => {
-  await wait(1000);
-  getProjectList()
-    .then((result) => (document.querySelector(".render").innerHTML += result))
-    .then(() => {
-      io.observe(document.querySelector(".observeThis"));
-    });
+  // await wait(1000);
+  const moreProjects = await getProjectList();
+  document.querySelector(".render").innerHTML += moreProjects;
+  io.disconnect();
+  const targets = document.querySelectorAll(".observeThis");
+  const target = targets[targets.length - 1];
+  io.observe(target);
 };
+
 document.getElementById("임시버튼").addEventListener("click", getMoreProject);

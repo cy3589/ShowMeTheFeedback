@@ -1,21 +1,26 @@
-const { Schema } = require("mongoose");
+const { Schema } = require('mongoose');
 
 const UserSchema = new Schema({
-  name: {
+  nickname: {
     type: String,
     required: true,
   },
   email: {
     type: String,
     required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
   },
   projects: {
     type: Schema.Types.ObjectId,
-    ref: "Project",
+    ref: 'Project',
   },
   comments: {
     type: Schema.Types.ObjectId,
-    ref: "Comment",
+    ref: 'Comment',
   },
 });
 

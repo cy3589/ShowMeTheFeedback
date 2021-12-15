@@ -4,7 +4,7 @@
   "description": "Show Me The Feedback Back-end",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app"
   },
   "author": "JSH, CMG",
   "license": "ISC",
@@ -14,6 +14,7 @@
     "mongoose": "^6.1.2"
   },
   "devDependencies": {
-    "eslint": "^8.4.1"
+    "eslint": "^8.4.1",
+    "nodemon": "^2.0.15"
   }
 }

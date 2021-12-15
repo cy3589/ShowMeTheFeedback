@@ -26,30 +26,28 @@ body {
   grid-template-areas:
     "nameInput nameInput"
     "emailInput emailInput"
-    "signUpCodeInput loginButton";
+    "signUpCodeInput getSignUpCodeButton";
 }
 
 .userValueForm > * {
   margin: 0.5rem 0 0.5rem 0;
   padding: 1rem 0 1rem 1rem;
+  border-radius: 10px;
 }
 
 .nameInput {
   grid-area: nameInput;
-  border-radius: 10px;
 }
 .emailInput {
   grid-area: emailInput;
-  border-radius: 10px;
 }
 .signUpCodeInput {
   grid-area: signUpCodeInput;
-  border-radius: 10px;
+  margin: 0.5rem 1rem 0.5rem 0;
 }
-.loginButton {
-  grid-area: loginButton;
+.getSignUpCodeButton {
+  grid-area: getSignUpCodeButton;
   padding: 0.5rem 0 0.5rem 0;
-  border-radius: 10px;
   font-size: 1rem;
   font-weight: 600;
 }
@@ -67,20 +65,18 @@ body {
 .passwordForm > * {
   margin: 0.5rem 0 0.5rem 0;
   padding: 1rem 0 1rem 1rem;
+  border-radius: 10px;
 }
 
 .passwordInput {
   grid-area: passwordInput;
-  border-radius: 10px;
 }
 
 .passwordConfirmInput {
   grid-area: passwordConfirmInput;
-  border-radius: 10px;
 }
 
 .signUpButton {
   grid-area: signUpButton;
   padding: 1rem 0 1rem 0;
-  border-radius: 10px;
 }

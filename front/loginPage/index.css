@@ -19,30 +19,30 @@ body {
   justify-content: center;
 }
 
-.inputUserValue {
+.userValueForm {
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    "inputName "
-    "inputEmail "
+    "emailInput "
+    "passwordInput "
     "none"
-    "buttonLogin ";
+    "loginButton ";
 }
 
-.inputName {
-  grid-area: inputName;
+.emailInput {
+  grid-area: emailInput;
   margin: 1rem 0 1rem 0;
   padding: 1rem 0 1rem 1rem;
   border-radius: 10px;
 }
-.inputEmail {
-  grid-area: inputEmail;
+.passwordInput {
+  grid-area: passwordInput;
   margin: 1rem 0 1rem 0;
   padding: 1rem 0 1rem 1rem;
   border-radius: 10px;
 }
-.buttonLogin {
-  grid-area: buttonLogin;
+.loginButton {
+  grid-area: loginButton;
   margin: 1rem 0 1rem 0;
   padding: 1rem 0 1rem 0;
   border-radius: 10px;

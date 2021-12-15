@@ -2,79 +2,61 @@ body {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  background-color: whitesmoke;
+  background-color: #e5e5e5;
 }
 
 .loginContainer {
   background: rgba(3, 1, 17, 1);
   padding: 1rem 3rem 2rem 3rem;
   min-width: 40rem;
+  min-height: 30rem;
 }
 
 .loginHeader {
-  color: whitesmoke;
+  color: #e5e5e5;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.inputUserForm {
+.inputUserValue {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    "inputName inputName"
-    "inputEmail inputEmail"
-    "none requestLoginCode";
+    "inputName "
+    "inputEmail "
+    "none"
+    "buttonLogin ";
 }
 
 .inputName {
   grid-area: inputName;
   margin: 1rem 0 1rem 0;
-  padding: 1rem 0 1rem 0;
+  padding: 1rem 0 1rem 1rem;
   border-radius: 10px;
 }
 .inputEmail {
   grid-area: inputEmail;
   margin: 1rem 0 1rem 0;
-  padding: 1rem 0 1rem 0;
+  padding: 1rem 0 1rem 1rem;
   border-radius: 10px;
 }
-.requestLoginCode {
-  grid-area: requestLoginCode;
-  margin: 1rem 0 1rem 0;
-  padding: 0.3rem 0 0.3rem 0;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.inputCodeForm {
-  position: relative;
-  top: -5.2rem;
-
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas:
-    "inputCode none"
-    "login login";
-}
-
-.inputCode {
-  grid-area: inputCode;
-  margin: 1rem 0 1rem 0;
-  padding: 1rem 0 1rem 0;
-  border-radius: 10px;
-  width: 23rem;
-}
-.login {
-  position: relative;
-  top: 3rem;
-  grid-area: login;
+.buttonLogin {
+  grid-area: buttonLogin;
   margin: 1rem 0 1rem 0;
   padding: 1rem 0 1rem 0;
   border-radius: 10px;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.optionContainer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.signUp,
+.findPassword {
+  text-decoration: none;
+  color: #e5e5e5;
 }

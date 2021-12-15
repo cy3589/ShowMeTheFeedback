@@ -9,18 +9,20 @@
   </head>
   <body>
     <div class="loginContainer">
-      <h1 class="loginHeader">Show Me The Feedback Login</h1>
+      <h1 class="loginHeader">로그인</h1>
 
-      <form class="inputUserForm">
-        <input type="text" class="inputName" placeholder="   이름" />
-        <input type="email" class="inputEmail" placeholder="   이메일" />
-        <button type="submit" class="requestLoginCode">인증코드 받기</button>
+      <form class="inputUserValue">
+        <input type="text" class="inputName" placeholder="이메일" />
+        <input type="email" class="inputEmail" placeholder="비밀번호" />
+        <button type="submit" class="buttonLogin">Login</button>
       </form>
 
-      <form class="inputCodeForm">
-        <input type="text" class="inputCode" placeholder="   인증코드 입력" />
-        <button type="button" class="login">Login</button>
-      </form>
+      <div class="optionContainer">
+        <a href="./회원가입" class="signUp">회원가입</a>
+        <a href="./비밀번호찾기" class="findPassword">비밀번호 찾기</a>
+      </div>
     </div>
+    <script src="./index.js"></script>
+    <script src="./api.js"></script>
   </body>
 </html>

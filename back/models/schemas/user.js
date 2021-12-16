@@ -22,6 +22,9 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Comment',
   },
+  token: {
+    type: String,
+  },
 });
 
 module.exports = UserSchema;

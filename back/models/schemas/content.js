@@ -1,32 +1,17 @@
 const { Schema } = require("mongoose");
 
-const ProjectSchema = new Schema({
-  author: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref: "User",
-  },
-  title: {
-    type: String,
-    required: true,
-  },
+const ContentSchema = new Schema({
   members: {
     type: Array,
   },
-  content: {
-    type: Schema.Types.ObjectId,
-    ref: "Content",
-  },
-  image: {
+  description: {
     type: String,
+    required: true,
   },
-  comments: {
-    type: Schema.Types.ObjectId,
-    ref: "Comment",
-  },
-  averageRating: {
-    type: Number,
+  stack: {
+    type: Array,
+    required: true,
   },
 });
 
-module.exports = ProjectSchema;
+module.exports = ContentSchema;

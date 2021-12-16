@@ -9,18 +9,28 @@
   </head>
   <body>
     <div class="loginContainer">
-      <h1 class="loginHeader">로그인</h1>
+      <div class="loginHeader">Show Me The Feedback</div>
 
       <form class="userValueForm">
         <input type="email" class="emailInput" placeholder="이메일" />
         <input type="password" class="passwordInput" placeholder="비밀번호" />
-        <button type="submit" class="loginButton">Login</button>
+        <a href="../findPasswordPage/index.html" class="forgotPasswordLink"
+          >비밀번호를 잊어버리셨나요?</a
+        >
+        <button type="submit" class="loginButton">로그인</button>
       </form>
 
-      <div class="optionContainer">
-        <a href="../signUp/index.html" class="signUp">회원가입</a>
-        <a href="./비밀번호찾기" class="findPassword">비밀번호 찾기</a>
-      </div>
+      <fieldset class="selectSection">
+        <legend class="selectSectionLegend">또는</legend>
+        <div class="oauthButtonContainer">
+          <button class="loginByKaKaoButton">카카오로 로그인</button>
+          <button class="loginByGoogleButton">구글로 로그인</button>
+        </div>
+        <div class="suggestSignUpContainer">
+          아직 계정이 없으신가요?
+          <a href="../signUp/index.html" class="signUpLink">회원가입</a>
+        </div>
+      </fieldset>
     </div>
     <script src="./index.js"></script>
     <script src="./api.js"></script>

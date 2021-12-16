@@ -19,20 +19,21 @@ const insertDashBoardData = (dashBoardData) => {
   counters.forEach((counter, i) => {
     counter.innerText = "0";
     const target = targets[i];
-    const increment = target / 200;
+    const increment = target / 1000;
     const updateCounter = () => {
       const c = +counter.innerText;
 
       if (c < target) {
-        console.log(`c: ${c}, increment: ${increment}`);
         counter.innerText = `${Math.ceil(c + increment)}`;
-        setTimeout(updateCounter, 30);
+        // counter.innerText = c + increment;
+        setTimeout(updateCounter, 10);
       } else {
         counter.innerText = target;
       }
     };
     updateCounter();
   });
+  // 1 초 내로 실행 완료 ->
   // document.getElementById("per-project").innerText = dashBoardData.perProject;
   // document.getElementById("total-projects").innerText =
   //   dashBoardData.totalProjects;

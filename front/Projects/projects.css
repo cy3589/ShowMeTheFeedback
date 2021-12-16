@@ -1,8 +1,18 @@
+:root {
+  --link-font: #f38181;
+  --button-bg: #ff6b6b;
+  --page-bg: #e5e5e5;
+  --border: #bbbbbb;
+}
+
 * {
-  transition: 0.25s ease-in-out;
+  /* transition: 0.25s ease-in-out; */
   margin: 0;
   padding: 0;
+  background-color: var(--page-bg);
 }
+
+/* a태그 색상 변경 안되도록 처리 */
 a:link {
   color: black;
   text-decoration: none;
@@ -16,41 +26,6 @@ a:hover {
   text-decoration: none;
 }
 
-.render {
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 10px;
-  column-gap: 1rem;
-  justify-content: center;
-  padding: 1rem;
-  padding-top: calc(50px + 1rem);
-}
-.card {
-  background-color: rgb(240, 248, 250);
-  border: 1px solid rgb(93, 100, 105);
-  border-radius: 10px;
-  padding: 1rem;
-}
-.title {
-  display: flex;
-  background-color: #fefff4;
-  border: 0.5px solid #2f2f2f;
-  border-radius: 8px;
-  text-align: center;
-  margin-bottom: 1rem;
-  min-height: 3rem;
-  align-items: center;
-  justify-content: center;
-}
-.thumbnail {
-  height: 300px;
-}
-.thumbnail > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
 @media screen and (min-width: 769px) {
   /* 데스크탑 화면 */
   .thumbnail {
@@ -62,10 +37,101 @@ a:hover {
   }
   .render {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 10px;
+    column-gap: 1rem;
+    justify-content: center;
+    padding: 1rem;
+    padding-top: calc(50px + 1rem);
+  }
+  .title {
+    min-height: 42.667px;
   }
 }
 
+/* javascript로 렌더하는 element의 className */
+.render {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 10px;
+  column-gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
+  padding-top: calc(50px + 1rem);
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.thumbnail {
+  height: 300px;
+}
+.thumbnail > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* border-radius: 2px; */
+}
+
+/* 전체 card > (썸네일, 컨텐츠) */
+/* 컨텐츠 flex > 아바타, (제목,별점), 날짜 */
+.contents {
+  display: flex;
+  background-color: #fff;
+}
+.avatar {
+  background-color: #fff;
+  padding: 10px;
+}
+.avatar-image {
+  background-color: #ccc;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+.avatar-char {
+  color: #fff;
+  background-color: rgba(173, 200, 82);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+.createdAt {
+  background-color: #fff;
+  text-align: right;
+  display: inline-block;
+  white-space: nowrap;
+  font-size: small;
+  margin: 30px 10px 0 0;
+}
+.title-rating {
+  background-color: #fff;
+}
+.rating {
+  background-color: #fff;
+  margin-bottom: 3px;
+}
+.title {
+  min-width: 211.385px;
+  background-color: #fff;
+  margin-top: 10px;
+  font-size: medium;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 #header {
   width: 100%;
   position: fixed;
@@ -76,108 +142,28 @@ a:hover {
   line-height: 30px;
   z-index: 0;
 }
+
 .star {
+  background-color: #fff;
   text-shadow: 0 #000;
-  font-size: 1.5rem;
+  font-size: 1rem;
   line-height: 2.5rem;
 }
 .fill-star {
+  background-color: #fff;
   text-shadow: 0px 0px 3px #000;
-  font-size: 1.5rem;
+  font-size: 1rem;
   line-height: 2.5rem;
   color: #fff58c;
 }
-
-/* #drawer-toggle {
-  position: absolute;
-  opacity: 0;
-}
-
-#drawer-toggle-label {
-  user-select: none;
-  left: 0px;
-  height: 50px;
-  width: 50px;
-  display: block;
-  position: fixed;
-  background: rgba(255, 255, 255, 0);
-  z-index: 1;
-}
-
-#drawer-toggle-label:before {
-  content: "";
-  display: block;
-  position: absolute;
-  height: 2px;
-  width: 24px;
-  background: #8d8d8d;
-  left: 13px;
-  top: 18px;
-  box-shadow: 0 6px 0 #8d8d8d, 0 12px 0 #8d8d8d;
-} */
-
 header {
   width: 100%;
   position: fixed;
+  display: flex;
   left: 0px;
   background: #efefef;
   padding: 10px 10px 10px 50px;
   font-size: 30px;
   line-height: 30px;
   z-index: 0;
-}
-
-/* #drawer {
-  position: fixed;
-  top: 0;
-  left: -300px;
-  height: 100%;
-  width: 260px;
-  background: #2f2f2f;
-  overflow: hidden;
-  padding: 20px;
-}
-#page-content {
-  margin-left: 0px;
-  margin-top: 50px;
-  width: 100%;
-  height: calc(100% - 50px);
-  overflow-x: hidden;
-  overflow-y: scroll;
-  padding: 20px;
-}
-#drawer-toggle:checked ~ #drawer-toggle-label {
-  height: 100%;
-  width: calc(100% - 300px);
-  background: rgba(255, 255, 255, 0.8);
-}
-
-#drawer-toggle:checked ~ #drawer-toggle-label,
-#drawer-toggle:checked ~ header {
-  left: 300px;
-}
-
-#drawer-toggle:checked ~ #drawer {
-  left: 0px;
-}
-
-#drawer-toggle:checked ~ #page-content {
-  margin-left: 300px;
-}
-#drawer ul {
-  list-style-type: none;
-}
-#drawer ul a {
-  display: block;
-  padding: 10px;
-  color: #c7c7c7;
-  text-decoration: none;
-}
-
-#drawer ul a:hover {
-  color: white;
-} */
-
-#header {
-  display: flex;
 }

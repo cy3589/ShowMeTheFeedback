@@ -35,8 +35,8 @@ a:hover {
 }
 header {
   display: flex;
-  position: absolute;
-  background-color: #efefef;
+  position: fix;
+  background-color: #ffffff;
   padding: 10px;
   width: 100%;
   text-align: center;
@@ -66,4 +66,7 @@ header {
 #total-feedback,
 #per-project {
   padding-top: 2rem;
+}
+#link-box {
+  float: right;
 }

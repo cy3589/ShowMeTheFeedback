@@ -10,7 +10,7 @@ const getMoreProject = async (lastId) => {
   document.querySelector(".render").innerHTML += moreProjects;
   io.disconnect();
   const targets = document.querySelectorAll(".observeThis");
-  const target = targets[targets.length - 1];
+  const target = targets[targets.length - 3];
   io.observe(target);
 };
 
@@ -45,7 +45,10 @@ const getProjectList = async (lastId) => {
           "https://s3-alpha-sig.figma.com/img/b3fd/2d1d/de486d511bc4ffd77c7b74c5fcec860a?Expires=1640563200&Signature=Z51KL7qTLBT1rpd7tmydxvmrHZjzyqq4~gkPw28Pywih7yu~DPu2iJTwD1S1GRUFnTpin3SBEl7b0zxoDIWuZu6s4iB-~sE5aJ4T~lQtWM9tMr2MsL8B-ZFHYMCBl35Tkqr7re2sGr68aK9DsQzhNCP7u5XGVsf~AbghtRgtMyF91ZanxzgOAEtvRcIXBCix9~bsiGdDv2LJ8pmFkMl-rWhE2prGSR61kwx8lx15D2YEPW7el8zjt8Fd7soMKus5WkTO~wCgZ6l-8kDVEzKDrq891Hcy28bNdkxvDDAMx1dR5xzsU3GHn8FSQKj3i0uGG0GOJ48NUvnH~CsN2SzhNA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA",
         Rating: Math.ceil(Math.random() * 5).toString(),
         ProjectId: parseInt(Math.random() * 100000000000000, 10).toString(),
+        Avatar: "",
         createdAt: getDate(new Date()),
+        Avatar: Math.random() > 0.5 ? `https://joeschmoe.io/api/v1/random` : "",
+        Author: Math.random().toString(36).substr(2, 11),
       }))
       .slice(0, 10); // 10개씩 갖고온다고 가정
   }
@@ -58,29 +61,32 @@ const getProjectList = async (lastId) => {
   // projects의 데이터를 순회하며 innerHTML로 넣을 값으로 가공하여 results생성
   projects.forEach((v, i) => {
     let isEnd = "";
-    let rate = "";
+    let rating = "";
     for (let i = 0; i < 5; i++) {
       if (i < parseInt(v.Rating, 10))
-        rate += /*html*/ `<span class="fill-star">★</span>`;
-      else rate += /*html*/ `<span class="star">☆</span>`;
+        rating += /*html*/ `<span class="fill-star">★</span>`;
+      else rating += /*html*/ `<span class="star">☆</span>`;
     }
-    if (i >= 9) isEnd = /* html */ `<div class="observeThis"></div>`;
+    if (i >= 7) isEnd = /* html */ `<div class="observeThis"></div>`;
+    const avatarHTMLstring = v.Avatar
+      ? `<img class="avatar-image" src="${v.Avatar}" alt = ${v.Avatar} />`
+      : `<div class="avatar-char">${v.Author[0]}</div>`;
     result += /*html*/ `
     <a href="/project/${v.ProjectId}">
       <div class="card">
         ${isEnd}
-        <div>
-          <div class="thumbnail">
-            <img src=${v.Image} /> 
-            <!-- 이미지경로 || default이미지경로 -->
+        <div class="thumbnail">
+          <img src=${v.Image} /> 
+        </div>
+        <div class="contents">
+          <div class="avatar">
+            ${avatarHTMLstring}
           </div>
-          <div class="title">
-            ${v.Title}
-            <!-- 제목 -->
+          <div class="title-rating">
+            <div class="title">${v.Title}</div>
+            <div class="rating">${rating}</div>
           </div>
-          <div class="rating">
-            ${rate}
-          </div>
+          <div class="createdAt">${v.createdAt}</div>
         </div>
       </div>
     </a>
@@ -100,23 +106,27 @@ const firstRender = () => {
     io.observe(target);
   });
 };
+const navigateTo = (url) => {
+  history.pushState(null, null, url);
+  firstRender();
+};
 
 window.addEventListener("popstate", firstRender);
 
 document.addEventListener("DOMContentLoaded", firstRender);
-// document.addEventListener("DOMContentLoaded", () => {
-//   document.body.addEventListener("click", (e) => {
-//     if (
-//       e.target.matches("[id='header-home']") ||
-//       e.target.matches("[id='header-my-project']")
-//     ) {
-//       console.log(location.pathname);
-//       // e.preventDefault();
-//       firstRender();
-//       // return;
-//     }
-//   });
-// });
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 홈과 내프로젝트 페이지 전환 시 SPA처럼 동작하도록 구현
+  document.body.addEventListener("click", (e) => {
+    if (
+      e.target.matches("[id='header-home']") ||
+      e.target.matches("[id='header-my-project']")
+    ) {
+      e.preventDefault();
+      navigateTo(e.target.href);
+    }
+  });
+});
 
 // const dummyProjects = [];
 // for (let i = 0; i < 10; i++) {

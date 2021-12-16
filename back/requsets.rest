@@ -1,0 +1,34 @@
+GET http://localhost:3000/
+
+###
+
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "username": "Kyle"
+}
+
+###
+
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "username": "Kyle"
+}
+
+###
+
+GET http://localhost:3000/comments/VHbYyvkOC7pAAOsxl06XT
+
+###
+
+POST http://localhost:3000/comments/VHbYyvkOC7pAAOsxl06XT
+Content-Type: application/json
+
+{
+  "email": "ansrud45@gmail.com",
+  "content": "test",
+  "rating": 5
+}

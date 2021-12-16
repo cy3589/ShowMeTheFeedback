@@ -1,5 +1,6 @@
-const { Schema } = require("mongoose");
-const projectId = require("./type/short-id");
+const { Schema } = require('mongoose');
+const projectId = require('./type/short-id');
+const CommentSchema = require('./comment');
 
 const ProjectSchema = new Schema(
   {
@@ -7,7 +8,7 @@ const ProjectSchema = new Schema(
     author: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: "User",
+      ref: 'User',
     },
     title: {
       type: String,
@@ -15,15 +16,12 @@ const ProjectSchema = new Schema(
     },
     contents: {
       type: Schema.Types.ObjectId,
-      ref: "Content",
+      ref: 'Content',
     },
     image: {
       type: String,
     },
-    comments: {
-      type: [Schema.Types.ObjectId],
-      ref: "Comment",
-    },
+    comments: [CommentSchema],
     averageRating: {
       type: Number,
       default: 0,

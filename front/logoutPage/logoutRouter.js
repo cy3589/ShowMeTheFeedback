@@ -11,8 +11,8 @@ const router = Router();
 //   res.sendFile(path.join(__dirname + "/", "login.js"));
 // });
 router.get("/", (req, res, next) => {
-  res.cookie("token", "token");
-  res.status(200).send("로그인페이지 frontEND서버 응답 입니다");
+  res.cookie("token", "", { maxAge: 0 });
+  res.status(200).send("로그아웃 frontEND서버 응답 입니다, token삭제 확인요망");
 });
 
 module.exports = router;

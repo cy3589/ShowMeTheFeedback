@@ -1,19 +1,24 @@
+::placeholder {
+  color: #000000;
+}
+
 body {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  background-color: #e5e5e5;
+  background-color: #f0f1f3;
 }
 
 .loginContainer {
-  background: rgba(3, 1, 17, 1);
-  padding: 1rem 3rem 2rem 3rem;
-  min-width: 30rem;
-  min-height: 35rem;
+  background: #f0f1f3;
+  min-width: 400px;
+  min-height: 400px;
 }
 
 .loginHeader {
-  color: #e5e5e5;
+  color: #f38181;
+  font-size: 26px;
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +27,7 @@ body {
 .userValueForm {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-template-rows: repeat(0.5fr, 3);
+  grid-template-rows: repeat(60px, 3);
   grid-template-areas:
     "nameInput nameInput"
     "emailInput emailInput"
@@ -30,9 +35,11 @@ body {
 }
 
 .userValueForm > * {
-  margin: 0.5rem 0 0.5rem 0;
-  padding: 1rem 0 1rem 1rem;
-  border-radius: 10px;
+  margin: 8px 0 8px 0;
+  padding: 18px 0 18px 20px;
+  border: none;
+  font-size: 18px;
+  color: #000000;
 }
 
 .nameInput {
@@ -48,13 +55,12 @@ body {
 .getSignUpCodeButton {
   grid-area: getSignUpCodeButton;
   padding: 0.5rem 0 0.5rem 0;
-  font-size: 1rem;
-  font-weight: 600;
+  background-color: white;
 }
 
 .passwordForm {
   display: grid;
-  grid-template-rows: 0.5fr 0.5fr 0.8fr 0.5fr;
+  grid-template-rows: 70px 70px 30px 70px;
   grid-template-areas:
     "passwordInput"
     "passwordConfirmInput"
@@ -63,9 +69,11 @@ body {
 }
 
 .passwordForm > * {
-  margin: 0.5rem 0 0.5rem 0;
-  padding: 1rem 0 1rem 1rem;
-  border-radius: 10px;
+  margin: 8px 0 8px 0;
+  padding: 18px 0 18px 20px;
+  border: none;
+  background: white;
+  font-size: 18px;
 }
 
 .passwordInput {
@@ -78,5 +86,18 @@ body {
 
 .signUpButton {
   grid-area: signUpButton;
-  padding: 1rem 0 1rem 0;
+  padding: 10px 0 10px 0;
+  background: #ff6b6b;
+}
+
+.alreadySignUp {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.goToLogin {
+  margin-left: 10px;
+  text-decoration: none;
+  color: #f38181;
 }

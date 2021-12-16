@@ -24,6 +24,7 @@ getSignUpCodeButton.addEventListener("click", (e) => {
               ? timer % 60
               : "0" + String(timer % 60)
           }`;
+          getSignUpCodeButton.addEventListener("click", (e) => {});
           startTimer(timer);
         } else {
           getSignUpCodeButton.innerText = "인증코드재발송";

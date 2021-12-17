@@ -1,10 +1,15 @@
-const { Router } = require('express');
+const { Router } = require("express");
+const asyncHandler = require("../utils/asyncHandler");
 
 const router = Router();
 
-router.get('/', (req, res) => {
-  // res.render('index');
-  console.log('/');
-});
+router.get(
+  "/",
+  asyncHandler((req, res) => {
+    res.json({
+      message: "테스트~",
+    });
+  })
+);
 
 module.exports = router;

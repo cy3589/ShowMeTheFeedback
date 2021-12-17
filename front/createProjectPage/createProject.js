@@ -3,9 +3,9 @@ const stateObject = {
   projectName: "",
   mainFunc: "",
   skills: "",
-  member: "",
+  member: [{ name: "", job: "", task: "" }],
   teamDiscribe: "",
-  thumbnails: [], // 미리보기 구현을 위한 state
+  thumbnails: [], // 미리보기 구현을 위한 state(post요청 시 포함하지 않음)
   postThumbnailsData: [], // post요청을 위한 state
 };
 const submitFunc = () => {
@@ -59,6 +59,42 @@ const onChangeFunc = (elementId, stateName) => {
   stateObject[stateName] = nowValue;
   return stateObject[stateName];
 };
+
+const setIconTeamDiscribe = () => {
+  const checkElement = document
+    .querySelector(".team-discribe")
+    .querySelector(".check-icon");
+  for (let i = 0; i < stateObject.member.length; i++) {
+    if (
+      !stateObject.member[i].name ||
+      !stateObject.member[i].job ||
+      !stateObject.member[i].task
+    ) {
+      checkElement.innerText = "!";
+      checkElement.classList.remove("check-true");
+      checkElement.classList.add("check-false");
+      return;
+    }
+  }
+  checkElement.innerText = "✓";
+  checkElement.classList.remove("check-false");
+  checkElement.classList.add("check-true");
+  console.log("funcRun");
+  // stateObject.member.forEach((v) => {
+  //   console.log(!v.name);
+  //   if (!v.name || !v.job || !v.task) {
+  //     checkElement.innerText = "!";
+  //     checkElement.classList.remove("check-true");
+  //     checkElement.classList.add("check-false");
+  //     return;
+  //   }
+  // });
+  // console.log("12312321");
+  // checkElement.innerText = "✓";
+  // checkElement.classList.remove("check-false");
+  // checkElement.classList.add("check-true");
+};
+
 const setIcon = (state, className) => {
   if (!state) {
     const checkElement = document
@@ -75,6 +111,67 @@ const setIcon = (state, className) => {
     checkElement.classList.remove("check-false");
     checkElement.classList.add("check-true");
   }
+};
+
+const addMember = () => {
+  stateObject.member.push({ name: "", job: "", task: "" });
+  const memberLastIndex = stateObject.member.length - 1;
+  const targetElement = document.querySelector(".members");
+
+  const checkIconDiv = document.createElement("div");
+  checkIconDiv.className = "check-icon";
+
+  const wrapperDiv = document.createElement("div");
+  wrapperDiv.style = "display:flex";
+  wrapperDiv.className = "member";
+  const inputMemberName = document.createElement("input");
+  inputMemberName.type = "text";
+  inputMemberName.placeholder = "이름";
+  inputMemberName.name = "member-name";
+  inputMemberName.addEventListener("input", (e) => {
+    stateObject.member[memberLastIndex].name = e.target.value;
+    setIconTeamDiscribe();
+  });
+
+  const inputMemberJob = document.createElement("input");
+  inputMemberJob.type = "text";
+  inputMemberJob.placeholder = "담당업무";
+  inputMemberJob.name = "member-job";
+  inputMemberJob.addEventListener("input", (e) => {
+    stateObject.member[memberLastIndex].job = e.target.value;
+    setIconTeamDiscribe();
+  });
+
+  const inputMemberTask = document.createElement("input");
+  inputMemberTask.type = "text";
+  inputMemberTask.placeholder = "업무내용";
+  inputMemberTask.name = "member-task";
+  inputMemberTask.addEventListener("input", (e) => {
+    stateObject.member[memberLastIndex].task = e.target.value;
+    setIconTeamDiscribe();
+  });
+
+  const deleteButton = document.createElement("a");
+  deleteButton.href = "#";
+  deleteButton.className = "delete-member";
+  deleteButton.innerText = "-";
+  deleteButton.addEventListener("click", (e) => {
+    const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
+      e.target.parentNode
+    );
+    e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+    stateObject.member.splice(index, 1);
+    setIconTeamDiscribe();
+  });
+
+  wrapperDiv.appendChild(checkIconDiv);
+  wrapperDiv.appendChild(inputMemberName);
+  wrapperDiv.appendChild(inputMemberJob);
+  wrapperDiv.appendChild(inputMemberTask);
+  wrapperDiv.appendChild(deleteButton);
+
+  targetElement.appendChild(wrapperDiv);
+  setIconTeamDiscribe();
 };
 
 const onChangeTeamName = () => {
@@ -109,12 +206,6 @@ const onChangeSkills = () => {
   const state = onChangeFunc(elementId, stateId);
   setIcon(state, elementId);
 };
-
-// onChangeTeamDiscribe();
-onChangeTeamName();
-onChangeProjectName();
-onChangeMainFunc();
-onChangeSkills();
 
 const btnClick = () => {
   if (stateObject.thumbnails.length > 2) {
@@ -177,7 +268,27 @@ const deleteButton = (e) => {
 };
 
 const onclickBtnTemp = () => {
-  console.log(stateObject.thumbnails.length);
-  console.log(stateObject.postThumbnailsData.length);
-  // console.log(document.querySelectorAll(".thumbnail-delete")[0].classList[1]);
+  console.log(stateObject);
 };
+const initOnChangeMemberName = () => {
+  stateObject.member[0].name =
+    document.getElementsByName("member-name")[0].value;
+  setIconTeamDiscribe();
+};
+const initOnChangeMemberJob = () => {
+  stateObject.member[0].job = document.getElementsByName("member-job")[0].value;
+  setIconTeamDiscribe();
+};
+const initOnChangeMemberTask = () => {
+  stateObject.member[0].task =
+    document.getElementsByName("member-task")[0].value;
+  setIconTeamDiscribe();
+};
+// onChangeTeamDiscribe();
+onChangeTeamName();
+onChangeProjectName();
+onChangeMainFunc();
+onChangeSkills();
+initOnChangeMemberName();
+initOnChangeMemberJob();
+initOnChangeMemberTask();

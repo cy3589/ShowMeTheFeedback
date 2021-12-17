@@ -79,26 +79,29 @@
         <div class="check-icon"></div>
         <label for="team-discribe">팀 소개</label>
         <div class="check-icon"></div>
-        <div style="display: flex">
-          <input
-            type="text"
-            name="member-name"
-            id="member-name"
-            placeholder="이름"
-          />
-          <input
-            type="text"
-            name="member-job"
-            id="member-job"
-            placeholder="담당업무"
-          />
-          <input
-            type="text"
-            name="member-task"
-            id="member-task"
-            placeholder="업무내용"
-          />
+        <div class="members">
+          <div class="member" style="display: flex">
+            <input
+              type="text"
+              name="member-name"
+              placeholder="이름"
+              oninput="initOnChangeMemberName()"
+            />
+            <input
+              type="text"
+              name="member-job"
+              placeholder="담당업무"
+              oninput="initOnChangeMemberJob()"
+            />
+            <input
+              type="text"
+              name="member-task"
+              placeholder="업무내용"
+              oninput="initOnChangeMemberTask()"
+            />
+          </div>
         </div>
+        <a href="#" class="add-member" onclick="addMember()">+</a>
       </div>
 
       <input type="submit" value="서밋" />

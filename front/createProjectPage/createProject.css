@@ -24,3 +24,14 @@
   align-items: center;
   text-align: center;
 }
+.delete-member {
+  width: 16px;
+  height: 16px;
+  background-color: rgba(244, 67, 54);
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

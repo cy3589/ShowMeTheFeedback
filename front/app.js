@@ -7,15 +7,14 @@ const logoutRouter = require("./logoutPage/logoutRouter.js");
 const indexRouter = require("./indexPage/indexRouter.js");
 const createProjectRouter = require("./createProjectPage/createProjectRouter");
 const cookieParser = require("cookie-parser");
-
 // const projectRouter = 11;
 const port = 5000;
 
 const app = express();
-
 app.use(express.static(path.join(__dirname, "/")));
 app.use("/", indexRouter);
 app.use(cookieParser());
+
 // app.use("/reviewPage", reviewPage);
 app.use("/projects", projectsRouter);
 app.use("/login", loginRouter);

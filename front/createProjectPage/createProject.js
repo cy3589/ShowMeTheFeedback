@@ -5,7 +5,8 @@ const stateObject = {
   skills: "",
   member: "",
   teamDiscribe: "",
-  thumbnails: [], // Set데이터형은 중복을 허용하지 않음
+  thumbnails: [], // 미리보기 구현을 위한 state
+  postThumbnailsData: [], // post요청을 위한 state
 };
 const submitFunc = () => {
   const formData = new FormData();
@@ -16,7 +17,7 @@ const submitFunc = () => {
     skills,
     member,
     teamDiscribe,
-    thumbnails,
+    postThumbnailsData,
   } = stateObject;
   formData.append("teamName", teamName);
   formData.append("projectName", projectName);
@@ -24,29 +25,34 @@ const submitFunc = () => {
   formData.append("skills", skills);
   formData.append("member", member);
   formData.append("teamDiscribe", teamDiscribe);
-  thumbnails.forEach((f) => {
-    formData.append("thumnails", f);
-  });
+  for (let i = 0; i < postThumbnailsData.length; i++) {
+    formData.append("thumbnails", postThumbnailsData[i]);
+  }
+  // thumbnails.forEach((f) => {
+  //   formData.append("thumnails", f);
+  // });
+
   console.log(stateObject);
   console.log(formData.entries());
-  fetch("http://localhost:8080/api/post/project", {
-    method: "post",
+  const options = {
+    method: "POST",
     body: formData,
-    // body: JSON.stringify({ aaa: "123123", bbb: "454545" }),
-
-    headers: {
-      // "Content-Type": "application/json",
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-  }).then((result) => {
+  };
+  fetch("http://localhost:8080/api/post/project", options).then((result) => {
     console.log(result);
-    if (result.success === "true") {
-      window.location.href = `/project/${result.projectId}`;
-    } else {
-      alert("게시글 등록에 실패하였습니다. 다시 시도해주세요");
-    }
+    // if (result.success === "true") {
+    //   window.location.href = `/project/${result.projectId}`;
+    // } else {
+    //   alert("게시글 등록에 실패하였습니다. 다시 시도해주세요");
+    // }
   });
+  // const option = {
+  //   method: "post",
+  //   body: JSON.stringify({ a: 123, b: 456 }),
+  // };
+  // fetch("http://localhost:8080/api/post/project", option);
   return false;
+  // return true;
 };
 const onChangeFunc = (elementId, stateName) => {
   const nowValue = document.getElementById(elementId).value;
@@ -125,6 +131,10 @@ const onChangeUpload = async () => {
     alert("사진은 최대 3개까지만 가능합니다");
     filesLength = 3;
   }
+  [].forEach.call(uploadBtn.files, (v) => {
+    stateObject.postThumbnailsData.push(v);
+  });
+
   const targetElement = document.getElementById("temptemp");
   const newPromise = async (file) => {
     return new Promise((resolve, reject) => {
@@ -159,9 +169,8 @@ const onChangeUpload = async () => {
         10
       );
       stateObject.thumbnails.splice(index, 1);
-      console.log(
-        e.target.parentNode.parentNode.removeChild(e.target.parentNode)
-      );
+      e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+      stateObject.postThumbnailsData.splice(index, 1);
     })
   );
 };

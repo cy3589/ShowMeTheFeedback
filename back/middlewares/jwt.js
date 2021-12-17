@@ -1,27 +1,25 @@
-const { User } = require("../models");
+const { User } = require('../models');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 module.exports = async (req, res, next) => {
-  let bearerToken;
-  const bearerHeader = req.headers["authorization"];
-  if (typeof bearerHeader !== "undefined") {
-    const bearer = bearerHeader.split(".");
-    bearerToken = bearer[1]; // payload
+  const bearerHeader = req.headers['authorization'];
+  if (typeof bearerHeader !== 'undefined') {
+    const bearerToken = bearerHeader.split(' ')[1];
     req.token = bearerToken;
-    await User.findOne({ token: req.token }, (err, user) => {
-      if (err) {
-        res.json({
-          status: 400,
-          data: "Error occured: " + err,
-        });
-      } else {
-        res.json({
-          status: 200,
-          data: user,
-        });
-      }
-    });
+    const user = await User.findOne({ token: req.token });
+    if (!user) {
+      res.status(401);
+      throw new Error('토큰이 유효하지 않습니다.');
+    } else {
+      res.json({
+        status: 200,
+      });
+    }
     next();
   } else {
     res.send(403);
   }
 };
+
+// 유효한 토큰인지 확인하는 과정을 추가합니다.

@@ -1,6 +1,7 @@
 const { Schema } = require('mongoose');
 const projectId = require('./type/short-id');
 const CommentSchema = require('./comment');
+const ImageSchema = require('./image');
 
 const ProjectSchema = new Schema(
   {
@@ -18,9 +19,7 @@ const ProjectSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Content',
     },
-    image: {
-      type: String,
-    },
+    image: [ImageSchema],
     comments: [CommentSchema],
     averageRating: {
       type: Number,

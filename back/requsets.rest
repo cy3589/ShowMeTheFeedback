@@ -1,4 +1,5 @@
 GET http://localhost:3000/
+Authorization: Bearer 123213
 
 ###
 
@@ -40,5 +41,15 @@ Content-Type: application/json
 
 {
   "nickname": "닉네임",
-  "email": "ansrud1003@naver.com"
+  "email": "ansrud41232135@gmail.com"
+}
+
+###
+
+POST http://localhost:3000/auth/code-check
+Content-Type: application/json
+
+{
+  "code": 7998,
+  "email": "ansrud41232135@gmail.com"
 }

@@ -1,6 +1,11 @@
-const { Schema } = require("mongoose");
+const { Schema } = require('mongoose');
 
 const ContentSchema = new Schema({
+  project: {
+    type: Schema.Types.ObjectId,
+    ref: 'Project',
+    required: true,
+  },
   members: {
     type: Array,
   },

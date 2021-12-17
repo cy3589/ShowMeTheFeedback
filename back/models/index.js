@@ -5,6 +5,7 @@ const ProjectSchema = require('./schemas/project');
 const UserSchema = require('./schemas/user');
 const ContentSchema = require('./schemas/content');
 const TempUserSchema = require('./schemas/tempUser');
+const ImageSchema = require('./schemas/image');
 
 module.exports = {
   User: mongoose.model('User', UserSchema),
@@ -12,4 +13,5 @@ module.exports = {
   Comment: mongoose.model('Comment', CommentSchema),
   Content: mongoose.model('Content', ContentSchema),
   TempUser: mongoose.model('TempUser', TempUserSchema),
+  Image: mongoose.model('Image', ImageSchema),
 };

@@ -20,7 +20,7 @@
         <input
           type="text"
           name="team-name"
-          id="team-name"
+          class="team-name"
           oninput="onChangeTeamName()"
           placeholder="팀명"
         />
@@ -30,7 +30,7 @@
         <input
           type="text"
           name="project-name"
-          id="project-name"
+          class="project-name"
           oninput="onChangeProjectName()"
           placeholder="프로젝트 명"
         />
@@ -39,7 +39,7 @@
       <div class="thumbnail">
         <input
           type="file"
-          id="uploadBtn"
+          class="uploadBtn"
           name="image"
           hidden
           multiple
@@ -48,7 +48,7 @@
         />
         <input type="button" onclick="btnClick()" value="이미지 업로드 하기" />
         <br />
-        <div id="temptemp" style="display: flex"></div>
+        <div class="image-preview" style="display: flex"></div>
       </div>
       <div class="main-func" style="display: flex">
         <div class="check-icon"></div>
@@ -56,7 +56,7 @@
         <input
           type="text"
           name="main-func"
-          id="main-func"
+          class="main-func"
           oninput="onChangeMainFunc()"
           placeholder="여러분의 작품을 설명해주세요!"
         />
@@ -68,7 +68,7 @@
         <input
           type="text"
           name="skills"
-          id="skills"
+          class="skills"
           oninput="onChangeSkills()"
           placeholder="#을 기준으로 작성해주세요! (ex-#JAVA #REACT #EXPRESS)"
           style="width: 100%"
@@ -106,7 +106,6 @@
 
       <input type="submit" value="서밋" />
     </form>
-    <input type="button" value="asdfasassaf" onclick="onclickBtnTemp()" />
   </body>
   <script src="createProject.js"></script>
 </html>

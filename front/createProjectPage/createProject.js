@@ -28,9 +28,6 @@ const submitFunc = () => {
   for (let i = 0; i < postThumbnailsData.length; i++) {
     formData.append("thumbnails", postThumbnailsData[i]);
   }
-  // thumbnails.forEach((f) => {
-  //   formData.append("thumnails", f);
-  // });
 
   console.log(stateObject);
   console.log(formData.entries());
@@ -55,7 +52,7 @@ const submitFunc = () => {
   // return true;
 };
 const onChangeFunc = (elementId, stateName) => {
-  const nowValue = document.getElementById(elementId).value;
+  const nowValue = document.querySelector("." + elementId).value;
   stateObject[stateName] = nowValue;
   return stateObject[stateName];
 };
@@ -80,19 +77,6 @@ const setIconTeamDiscribe = () => {
   checkElement.classList.remove("check-false");
   checkElement.classList.add("check-true");
   console.log("funcRun");
-  // stateObject.member.forEach((v) => {
-  //   console.log(!v.name);
-  //   if (!v.name || !v.job || !v.task) {
-  //     checkElement.innerText = "!";
-  //     checkElement.classList.remove("check-true");
-  //     checkElement.classList.add("check-false");
-  //     return;
-  //   }
-  // });
-  // console.log("12312321");
-  // checkElement.innerText = "✓";
-  // checkElement.classList.remove("check-false");
-  // checkElement.classList.add("check-true");
 };
 
 const setIcon = (state, className) => {
@@ -169,7 +153,7 @@ const addMember = () => {
   wrapperDiv.appendChild(inputMemberJob);
   wrapperDiv.appendChild(inputMemberTask);
   wrapperDiv.appendChild(deleteButton);
-
+  //innerHTML로 처리하면 form 입력 데이터가 초기화되서 element를 구현
   targetElement.appendChild(wrapperDiv);
   setIconTeamDiscribe();
 };
@@ -212,19 +196,19 @@ const btnClick = () => {
     alert("사진은 최대 3개까지만 가능합니다");
     return;
   }
-  const uploadBtn = document.getElementById("uploadBtn");
+  const uploadBtn = document.querySelector(".uploadBtn");
   uploadBtn.click();
 };
 const onChangeUpload = async () => {
   console.log("onChangeUpload");
-  const uploadBtn = document.getElementById("uploadBtn");
+  const uploadBtn = document.querySelector(".uploadBtn");
   let filesLength = uploadBtn.files.length;
   if (filesLength > 3) {
     alert("사진은 최대 3개까지만 가능합니다");
     filesLength = 3;
   }
 
-  const targetElement = document.getElementById("temptemp");
+  const targetElement = document.querySelector(".image-preview");
   const newPromise = async (file) => {
     return new Promise((resolve, reject) => {
       try {
@@ -246,7 +230,7 @@ const onChangeUpload = async () => {
   stateObject.thumbnails.forEach((v, i) => {
     targetElement.innerHTML += /* html */ `
     <div>
-      <img src=${v} alt="${v}" class="thumbnail-image" style="width:100px;height:100px;" />;
+      <img src=${v} alt="${v}" class="thumbnail-image" style="width:100px;height:100px;" />
       <input type="button" class="thumbnail-delete" value="삭제하기" />
     </div>
     `;
@@ -262,13 +246,6 @@ const onChangeUpload = async () => {
     })
   );
   uploadBtn.value = "";
-};
-const deleteButton = (e) => {
-  console.log(e);
-};
-
-const onclickBtnTemp = () => {
-  console.log(stateObject);
 };
 const initOnChangeMemberName = () => {
   stateObject.member[0].name =

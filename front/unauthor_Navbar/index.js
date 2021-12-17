@@ -1,4 +1,10 @@
 window.addEventListener("load", () => {
+  //topNavibar 배치시 기본 body margin, padding 초기화
+  const body = document.getElementsByTagName("body")[0];
+  body.style.margin = 0;
+  body.style.padding = 0;
+  body.style.boxSizing = "border-box";
+
   let authorizedTopNaviBar = document.getElementsByTagName("header")[0];
 
   let logo = document.createElement("h2");

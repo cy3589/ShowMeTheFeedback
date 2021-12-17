@@ -1,5 +1,5 @@
 GET http://localhost:3000/
-Authorization: Bearer 123213
+Authorization: Bearer 1232d13
 
 ###
 

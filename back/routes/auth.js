@@ -1,44 +1,44 @@
-const { Router } = require('express');
-const asyncHandler = require('../utils/asyncHandler');
-const { TempUser } = require('../models/index');
-const { userLogin, emailVerify, userRegister } = require('../utils/auth');
-const sendMail = require('../utils/sendMail');
-const generateRandomCode = require('../utils/randomCode');
+const { Router } = require("express");
+const asyncHandler = require("../utils/asyncHandler");
+const { TempUser } = require("../models/index");
+const { userLogin, emailVerify, userRegister } = require("../utils/auth");
+const sendMail = require("../utils/sendMail");
+const generateRandomCode = require("../utils/randomCode");
 // const generatePassword = require('../utils/randomPassword');
 
 const router = Router();
 
 router.post(
-  '/login',
+  "/login",
   asyncHandler(async (req, res) => {
     const { email, password } = req.body;
-    const token = await userLogin(email, password, res);
-
+    const { accessToken, refreshToken } = await userLogin(email, password, res);
     res.status(200).json({
-      token,
+      accessToken,
+      refreshToken,
     });
   })
 );
 
 router.post(
-  '/register',
+  "/register",
   asyncHandler(async (req, res) => {
     const { email, password, nickname, authcode } = req.body;
 
     await userRegister(email, password, nickname, authcode, res);
 
-    res.status(201).json({ message: '회원가입이 완료되었습니다!' });
+    res.status(201).json({ message: "회원가입이 완료되었습니다!" });
   })
 );
 
 router.post(
-  '/register/email',
+  "/register/email",
   asyncHandler(async (req, res) => {
     const { nickname, email } = req.body;
     if (await emailVerify(nickname, email)) {
       const randomCode = String(generateRandomCode(1000, 9999));
 
-      await sendMail(email, '인증코드가 도착했습니다', randomCode);
+      await sendMail(email, "인증코드가 도착했습니다", randomCode);
 
       const user = await TempUser.findOne({ email });
 
@@ -53,13 +53,13 @@ router.post(
         await TempUser.updateOne({ email }, { $set: { code: randomCode } });
     }
     res.status(200).json({
-      message: '인증코드가 전송되었습니다.',
+      message: "인증코드가 전송되었습니다.",
     });
   })
 );
 
 router.post(
-  '/code-check',
+  "/code-check",
   asyncHandler(async (req, res) => {
     const { code, email } = req.body;
 
@@ -68,14 +68,14 @@ router.post(
     if (code == tempUser.code) {
       await TempUser.updateOne({ email }, { $set: { email_verified: true } });
       res.status(200).json({
-        message: '인증이 완료되었습니다.',
+        message: "인증이 완료되었습니다.",
       });
 
       // TODO: tempUser 삭제 고려
       return;
     }
     res.status(403).json({
-      message: '인증이 미완료되었습니다.',
+      message: "인증이 미완료되었습니다.",
     });
   })
 );

@@ -1,6 +1,8 @@
 const { User, TempUser } = require("../models/index");
+const { sign, refresh } = require("../utils/jwt");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
+
+require("dotenv").config();
 
 exports.userLogin = async function (email, password, res) {
   const user = await User.findOne({ email });
@@ -14,19 +16,13 @@ exports.userLogin = async function (email, password, res) {
     throw new Error("비밀번호가 일치하지 않습니다.");
   }
 
-  // TODO: jwt 토큰
-  const token = await jwt.sign(
-    {
-      exp: 1000 * 60 * 60 * 24,
-      data: {
-        email,
-        password,
-      },
-    },
-    "secret"
-  );
+  const accessToken = sign(email);
+  const refreshToken = refresh();
 
-  return token;
+  return {
+    accessToken,
+    refreshToken,
+  };
 };
 
 exports.userRegister = async function (

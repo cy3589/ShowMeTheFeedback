@@ -125,15 +125,13 @@ const btnClick = () => {
   uploadBtn.click();
 };
 const onChangeUpload = async () => {
+  console.log("onChangeUpload");
   const uploadBtn = document.getElementById("uploadBtn");
   let filesLength = uploadBtn.files.length;
   if (filesLength > 3) {
     alert("사진은 최대 3개까지만 가능합니다");
     filesLength = 3;
   }
-  [].forEach.call(uploadBtn.files, (v) => {
-    stateObject.postThumbnailsData.push(v);
-  });
 
   const targetElement = document.getElementById("temptemp");
   const newPromise = async (file) => {
@@ -151,28 +149,28 @@ const onChangeUpload = async () => {
   };
   for (let i = 0; i < filesLength; i++) {
     stateObject.thumbnails.push(await newPromise(uploadBtn.files[i]));
+    stateObject.postThumbnailsData.push(uploadBtn.files[i]);
   }
   targetElement.innerHTML = "";
   stateObject.thumbnails.forEach((v, i) => {
     targetElement.innerHTML += /* html */ `
     <div>
       <img src=${v} alt="${v}" class="thumbnail-image" style="width:100px;height:100px;" />;
-      <input type="button" class="thumbnail-delete thumbnail-index-${i}" value="삭제하기" />
+      <input type="button" class="thumbnail-delete" value="삭제하기" />
     </div>
     `;
   });
   document.querySelectorAll(".thumbnail-delete").forEach((v) =>
     v.addEventListener("click", (e) => {
-      const parseLastClassString = e.target.classList[1];
-      const index = parseInt(
-        parseLastClassString[parseLastClassString.length - 1],
-        10
+      const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
+        e.target.parentNode
       );
       stateObject.thumbnails.splice(index, 1);
-      e.target.parentNode.parentNode.removeChild(e.target.parentNode);
       stateObject.postThumbnailsData.splice(index, 1);
+      e.target.parentNode.parentNode.removeChild(e.target.parentNode);
     })
   );
+  uploadBtn.value = "";
 };
 const deleteButton = (e) => {
   console.log(e);
@@ -180,5 +178,6 @@ const deleteButton = (e) => {
 
 const onclickBtnTemp = () => {
   console.log(stateObject.thumbnails.length);
+  console.log(stateObject.postThumbnailsData.length);
   // console.log(document.querySelectorAll(".thumbnail-delete")[0].classList[1]);
 };

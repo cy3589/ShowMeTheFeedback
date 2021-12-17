@@ -1,0 +1,54 @@
+body {
+  background-color: #f0f1f3;
+}
+
+#chooselogin {
+  display: table;
+  margin: 15% auto;
+}
+
+#chooselogin div {
+  margin: 10px auto;
+}
+
+#chooselogin #chooselabel {
+  margin-bottom: 30px;
+  color: #f38181;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+#chooselogin button {
+  width: 343px;
+  height: 48px;
+  margin-bottom: 0.5rem;
+  border: 0px;
+}
+
+#chooselogin #email {
+  color: white;
+  background-color: #ff6b6b;
+}
+
+#chooselogin #kakao {
+  background-color: #fae100;
+}
+
+#chooselogin #google {
+  background-color: white;
+}
+
+#chooselogin #gologin {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 13px;
+}
+
+a:link {
+  color: #f38181;
+}
+
+a:visited {
+  color: #f38181;
+}

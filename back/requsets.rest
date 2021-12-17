@@ -6,7 +6,8 @@ POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-  "username": "Kyle"
+  "email": "Kyle@naver.com",
+  "password": "112123124"
 }
 
 ###
@@ -31,4 +32,13 @@ Content-Type: application/json
   "email": "ansrud45@gmail.com",
   "content": "test",
   "rating": 5
+}
+
+###
+POST http://localhost:3000/auth/register/email
+Content-Type: application/json
+
+{
+  "nickname": "닉네임",
+  "email": "ansrud1003@naver.com"
 }

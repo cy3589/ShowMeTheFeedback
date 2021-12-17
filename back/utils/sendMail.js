@@ -19,6 +19,7 @@ module.exports = (to, subject, text) =>
 
     transport.sendMail(message, (err, info) => {
       if (err) {
+        new Error("메일을 보내지 못했습니다. ");
         reject(err);
         return;
       }
@@ -26,3 +27,13 @@ module.exports = (to, subject, text) =>
       resolve(info);
     });
   });
+
+module.exports = async (to, subject, text) => {
+  const message = {
+    from: "super60447@gamil.com",
+    to,
+    subject,
+    text,
+  };
+  await transport.sendMail(message);
+};

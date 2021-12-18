@@ -31,7 +31,7 @@ export const onChangeUpload = async () => {
   stateObject.thumbnails.forEach((v, i) => {
     targetElement.innerHTML += /* html */ `
       <div>
-        <img src=${v} alt="${v}" class="thumbnail-image" style="width:100px;height:100px;" />
+        <img src=${v} alt="${v}" class="thumbnail-image" />
         <input type="button" class="thumbnail-delete" value="삭제하기" />
       </div>
       `;

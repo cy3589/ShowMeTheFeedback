@@ -9,7 +9,6 @@ export const addMember = () => {
   checkIconDiv.className = "check-icon";
 
   const wrapperDiv = document.createElement("div");
-  wrapperDiv.style = "display:flex";
   wrapperDiv.className = "member";
   const inputMemberName = document.createElement("input");
   inputMemberName.type = "text";

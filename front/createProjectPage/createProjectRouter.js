@@ -8,8 +8,8 @@ router.get("/", (req, res, next) => {
 router.get("/createProject.css", (req, res, next) => {
   res.sendFile(path.join(__dirname + "/", "createProject.css"));
 });
-router.get("/createProject.js", (req, res, next) => {
-  res.sendFile(path.join(__dirname + "/", "createProject.js"));
+router.get("/:jsFileName", (req, res, next) => {
+  res.sendFile(path.join(__dirname + "/", req.params.jsFileName));
 });
 
 module.exports = router;

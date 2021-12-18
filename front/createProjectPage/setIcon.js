@@ -19,7 +19,6 @@ export const setIconTeamDiscribe = () => {
   checkElement.innerText = "✓";
   checkElement.classList.remove("check-false");
   checkElement.classList.add("check-true");
-  console.log("funcRun");
 };
 
 export const setIcon = (state, className) => {

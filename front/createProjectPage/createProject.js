@@ -23,7 +23,7 @@ const submitFunc = () => {
   formData.append("projectName", projectName);
   formData.append("mainFunc", mainFunc);
   formData.append("skills", skills);
-  formData.append("member", member);
+  formData.append("member", JSON.stringify(member));
   formData.append("teamDiscribe", teamDiscribe);
   for (let i = 0; i < postThumbnailsData.length; i++) {
     formData.append("thumbnails", postThumbnailsData[i]);
@@ -52,7 +52,7 @@ const submitFunc = () => {
   // return true;
 };
 const onChangeFunc = (elementId, stateName) => {
-  const nowValue = document.querySelector("." + elementId).value;
+  const nowValue = document.getElementsByName(elementId)[0].value;
   stateObject[stateName] = nowValue;
   return stateObject[stateName];
 };

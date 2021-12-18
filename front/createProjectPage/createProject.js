@@ -23,7 +23,7 @@ const submitFunc = () => {
   formData.append("projectName", projectName);
   formData.append("mainFunc", mainFunc);
   formData.append("skills", skills);
-  formData.append("member", member);
+  formData.append("member", JSON.stringify(member));
   formData.append("teamDiscribe", teamDiscribe);
   for (let i = 0; i < postThumbnailsData.length; i++) {
     formData.append("thumbnails", postThumbnailsData[i]);

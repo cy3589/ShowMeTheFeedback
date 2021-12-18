@@ -52,7 +52,7 @@ const submitFunc = () => {
   // return true;
 };
 const onChangeFunc = (elementId, stateName) => {
-  const nowValue = document.querySelector("." + elementId).value;
+  const nowValue = document.getElementsByName(elementId)[0].value;
   stateObject[stateName] = nowValue;
   return stateObject[stateName];
 };
@@ -106,7 +106,6 @@ const addMember = () => {
   checkIconDiv.className = "check-icon";
 
   const wrapperDiv = document.createElement("div");
-  wrapperDiv.style = "display:flex";
   wrapperDiv.className = "member";
   const inputMemberName = document.createElement("input");
   inputMemberName.type = "text";
@@ -230,8 +229,8 @@ const onChangeUpload = async () => {
   stateObject.thumbnails.forEach((v, i) => {
     targetElement.innerHTML += /* html */ `
     <div>
-      <img src=${v} alt="${v}" class="thumbnail-image" style="width:100px;height:100px;" />
-      <input type="button" class="thumbnail-delete" value="삭제하기" />
+      <img class="thumbnail-image" src=${v} alt="${v}"" />
+      <input class="thumbnail-delete" type="button" value="삭제하기" />
     </div>
     `;
   });

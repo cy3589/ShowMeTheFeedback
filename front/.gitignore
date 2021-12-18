@@ -1,4 +1,6 @@
 .env
 node_modules
-package.json
-package_lock.json
+loginPage
+logoutPage
+project
+app.js

@@ -1,0 +1,64 @@
+body {
+  background-color: #f0f1f3;
+}
+
+#findform {
+  display: table;
+  margin: 15% auto;
+}
+
+#findform div {
+  margin: 10px auto;
+}
+
+#findform div input[type="text"] {
+  width: 311px;
+  height: 32px;
+  border: 0;
+  font-size: 1rem;
+  padding: 16px 16px;
+}
+
+input::placeholder {
+  color: black;
+}
+
+#findform #findlabel {
+  margin-bottom: 30px;
+  color: #f38181;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
+#findform #submitMail {
+  margin-top: 50px;
+}
+
+#findform #submitMail input[type="submit"] {
+  width: 343px;
+  height: 48px;
+  background-color: #ff6b6b;
+  font-size: 14px;
+  color: white;
+  border: 0;
+}
+
+#findform #gologin {
+  margin-top: 40px;
+}
+
+#findform #gologin a {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 15px;
+}
+
+a:link {
+  color: #f38181;
+}
+
+a:visited {
+  color: #f38181;
+}

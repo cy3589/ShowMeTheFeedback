@@ -1,7 +1,6 @@
 .env
-node_modules/
-loginPage/
-logoutPage/
-project/
+node_modules
+/loginPage/
+/logoutPage/
+/project/
 app.js
-

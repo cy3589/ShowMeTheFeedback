@@ -4,15 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "dev": "nodemon app.js"
+=======
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> 8d2f01b72a0fc8b693af4a205763d8441377669f
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+<<<<<<< HEAD
     "express": "^4.17.1",
     "nodemon": "^2.0.15"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6"
+=======
+    "axios": "^0.24.0",
+    "dotenv": "^10.0.0"
+>>>>>>> 8d2f01b72a0fc8b693af4a205763d8441377669f
   }
 }

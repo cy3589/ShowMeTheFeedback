@@ -1,5 +1,5 @@
-const { stateObject } = require("./stateObject");
-
+import { stateObject } from "./stateObject.js";
+import { setIconTeamDiscribe } from "./setIcon.js";
 export const addMember = () => {
   stateObject.member.push({ name: "", job: "", task: "" });
   const memberLastIndex = stateObject.member.length - 1;

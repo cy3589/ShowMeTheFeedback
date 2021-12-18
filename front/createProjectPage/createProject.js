@@ -9,16 +9,8 @@ import {
 } from "./onChangeFunc.js";
 import { submitFunc } from "./submitFunc.js";
 import { stateObject } from "./stateObject.js";
-
-window.onChangeTeamName = onChangeTeamName;
-window.onChangeProjectName = onChangeProjectName;
-window.onChangeMainFunc = onChangeMainFunc;
-window.onChangeSkills = onChangeSkills;
-window.initOnChangeMemberName = initOnChangeMemberName;
-window.initOnChangeMemberJob = initOnChangeMemberJob;
-window.initOnChangeMemberTask = initOnChangeMemberTask;
-window.submitFunc = submitFunc;
-
+import { onChangeUpload } from "./onChangeUpload.js";
+import { addMember } from "./addMember.js";
 export const onChangeFunc = (elementId, stateName) => {
   const nowValue = document.getElementsByName(elementId)[0].value;
   stateObject[stateName] = nowValue;
@@ -39,6 +31,17 @@ const btnClick = () => {
   const uploadBtn = document.querySelector(".uploadBtn");
   uploadBtn.click();
 };
+window.btnClick = btnClick;
+window.addMember = addMember;
+window.onChangeUpload = onChangeUpload;
+window.onChangeTeamName = onChangeTeamName;
+window.onChangeProjectName = onChangeProjectName;
+window.onChangeMainFunc = onChangeMainFunc;
+window.onChangeSkills = onChangeSkills;
+window.initOnChangeMemberName = initOnChangeMemberName;
+window.initOnChangeMemberJob = initOnChangeMemberJob;
+window.initOnChangeMemberTask = initOnChangeMemberTask;
+window.submitFunc = submitFunc;
 
 onChangeTeamName();
 onChangeProjectName();

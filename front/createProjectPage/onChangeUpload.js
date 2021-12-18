@@ -1,4 +1,4 @@
-const { stateObject } = require("./stateObject");
+import { stateObject } from "./stateObject.js";
 
 export const onChangeUpload = async () => {
   console.log("onChangeUpload");

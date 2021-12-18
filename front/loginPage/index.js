@@ -1,0 +1,1 @@
+const inputEmail = document.getElementsByClassName("");

@@ -1,4 +1,4 @@
-const { Schema } = require("mongoose");
+const { Schema } = require('mongoose');
 
 const TempUserSchema = new Schema({
   email: {
@@ -10,7 +10,7 @@ const TempUserSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  code: {
+  authCode: {
     type: Number,
     required: true,
   },

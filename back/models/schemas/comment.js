@@ -1,11 +1,12 @@
 const { Schema } = require('mongoose');
+const commentId = require('./type/short-id');
 
 const CommentSchema = new Schema(
   {
+    commentId,
     projectId: {
-      type: Schema.Types.ObjectId,
+      type: 'String',
       required: true,
-      ref: 'Project',
     },
     author: {
       type: Schema.Types.ObjectId,

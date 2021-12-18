@@ -1,5 +1,4 @@
-const jwt = require("jsonwebtoken");
-require("dotenv").config();
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   sign: (email) => {
@@ -11,7 +10,7 @@ module.exports = {
 
     return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {
       // secret으로 sign하여 발급하고 return
-      expiresIn: "1h", // 유효기간
+      expiresIn: '1h', // 유효기간
     });
   },
   verify: async (token) => {
@@ -32,14 +31,14 @@ module.exports = {
   },
   refresh: () => {
     // refresh token 발급
-    return jwt.sign({}, process.env.FRESH_TOKEN_SECRET, {
+    return jwt.sign({}, process.env.REFRESH_TOKEN_SECRET, {
       // refresh token은 payload 없이 발급
-      expiresIn: "14d",
+      expiresIn: '14d',
     });
   },
   refreshVerify: async (token) => {
     try {
-      jwt.verify(token, process.env.FRESH_TOKEN_SECRET);
+      jwt.verify(token, process.env.REFRESH_TOKEN_SECRET);
       return true;
     } catch (err) {
       return false;

@@ -4,7 +4,7 @@ const asyncHandler = require('../utils/asyncHandler');
 
 const router = Router();
 
-// pagination
+// 댓글 읽기
 router.get(
   '/:projectId',
   asyncHandler(async (req, res) => {
@@ -24,22 +24,22 @@ router.get(
   })
 );
 
+// 댓글 작성
 router.post(
   '/:projectId',
   asyncHandler(async (req, res) => {
     const { projectId } = req.params;
     const { email, content, rating } = req.body;
     const author = await User.findOne({ email });
-    const project = await Project.findOne({ projectId });
 
     const comment = await Comment.create({
-      projectId: project,
+      projectId,
       author,
       content,
       rating,
     });
 
-    await Project.updateOne(
+    const project = await Project.findOneAndUpdate(
       { projectId },
       {
         $push: {
@@ -50,14 +50,46 @@ router.post(
       }
     ).populate('comments');
 
-    // TODO: comment 내용 들어가게하기
-    // await Comment.populate(project.comments, {
-    //   path: 'comments',
-    // });
     res.json(project);
   })
 );
-router.put('/');
-router.delete('/');
+
+// 댓글 수정
+router.put(
+  '/:commentId',
+  asyncHandler(async (req, res) => {
+    const { commentId } = req.params;
+    const { content, rating } = req.body;
+
+    await Comment.updateOne(
+      {
+        commentId,
+      },
+      {
+        $set: {
+          content,
+          rating,
+        },
+      }
+    );
+    const comment = await Comment.findOne({ commentId });
+
+    res.status(201).json({
+      comment,
+    });
+  })
+);
+
+// 댓글 삭제
+router.delete(
+  '/:commentId',
+  asyncHandler(async (req, res) => {
+    const { commentId } = req.params;
+    await Comment.deleteOne({ commentId });
+    res.status(204).json({
+      message: '댓글이 삭제되었습니다.',
+    });
+  })
+);
 
 module.exports = router;

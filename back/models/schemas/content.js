@@ -1,9 +1,8 @@
 const { Schema } = require('mongoose');
 
 const ContentSchema = new Schema({
-  project: {
-    type: Schema.Types.ObjectId,
-    ref: 'Project',
+  projectId: {
+    type: String,
     required: true,
   },
   members: {

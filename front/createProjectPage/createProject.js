@@ -52,7 +52,7 @@ const submitFunc = () => {
   // return true;
 };
 const onChangeFunc = (elementId, stateName) => {
-  const nowValue = document.querySelector("." + elementId).value;
+  const nowValue = document.getElementsByName(elementId)[0].value;
   stateObject[stateName] = nowValue;
   return stateObject[stateName];
 };

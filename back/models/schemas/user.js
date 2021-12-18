@@ -1,4 +1,5 @@
-const { Schema } = require('mongoose');
+const { Schema } = require("mongoose");
+const ProjectSchema = require("./project");
 
 const UserSchema = new Schema({
   nickname: {
@@ -15,12 +16,12 @@ const UserSchema = new Schema({
     required: true,
   },
   projects: {
-    type: Schema.Types.ObjectId,
-    ref: 'Project',
+    type: Array,
+    default: [],
   },
   comments: {
-    type: Schema.Types.ObjectId,
-    ref: 'Comment',
+    type: Array,
+    default: [],
   },
   token: {
     type: String,

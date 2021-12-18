@@ -1,12 +1,12 @@
-const { Router } = require('express');
-const { Project, Content, User, Image } = require('../models');
-const asyncHandler = require('../utils/asyncHandler');
+const { Router } = require("express");
+const { Project, Content, User, Image } = require("../models");
+const asyncHandler = require("../utils/asyncHandler");
 
 const router = Router();
 
 // 프로젝트 목록
 router.get(
-  '/',
+  "/",
   asyncHandler(async (req, res) => {
     const projects = await Project.find({});
 
@@ -26,7 +26,7 @@ router.get(
 
 // 프로젝트 생성
 router.post(
-  '/',
+  "/",
   asyncHandler(async (req, res) => {
     const { email, title, description, stack, members, image } = req.body;
 
@@ -42,7 +42,7 @@ router.post(
       projectId: project.projectId,
       description,
       stack,
-      members: members ?? ' ',
+      members: members ?? " ",
     });
 
     await Project.updateOne(
@@ -54,22 +54,31 @@ router.post(
       }
     );
 
+    await User.updateOne(
+      { email },
+      {
+        $push: {
+          projects: project.projectId,
+        },
+      }
+    );
+
     // TODO: 이미지 저장 imgbb 사용 여부
 
     res.status(201).json({
-      message: '프로젝트를 생성했습니다.',
+      message: "프로젝트를 생성했습니다.",
     });
   })
 );
 
 // 프로젝트 읽기
 router.get(
-  '/:projectId',
+  "/:projectId",
   asyncHandler(async (req, res) => {
     const { projectId } = req.params;
     const project = await Project.findOne({ projectId })
-      .populate('author')
-      .populate('contents');
+      .populate("author")
+      .populate("contents");
 
     const result = {
       author: project.author.nickname,
@@ -88,10 +97,16 @@ router.get(
 
 // 프로젝트 수정
 router.put(
-  '/:projectId',
+  "/:projectId",
   asyncHandler(async (req, res) => {
     const { projectId } = req.params;
-    const { title, description, stack, members, image } = req.body;
+    const { title, description, stack, members, image, email } = req.body;
+
+    const checkUser = await User.findOne({ email });
+    if (!checkUser.projects.includes(projectId)) {
+      res.status(404);
+      throw new Error("수정 권한이 없습니다.");
+    }
 
     const content = await Content.findOneAndUpdate(
       { projectId },
@@ -115,7 +130,7 @@ router.put(
         },
       }
     );
-    const project = await Project.findOne({ projectId }).populate('contents');
+    const project = await Project.findOne({ projectId }).populate("contents");
     const result = {
       author: project.author.nickname,
       title: project.title,
@@ -132,12 +147,24 @@ router.put(
 
 // 프로젝트 삭제
 router.delete(
-  '/:projectId',
+  "/:projectId",
   asyncHandler(async (req, res) => {
     const { projectId } = req.params;
+    const { email } = req.body;
+    const checkUser = await User.findOne({ email });
+
+    if (!checkUser.projects.includes(projectId)) {
+      res.status(404);
+      throw new Error("삭제 권한이 없습니다.");
+    }
+
     await Project.deleteOne({ projectId });
+
+    checkUser.projects = checkUser.projects.filter((v) => v != projectId);
+    checkUser.save();
+
     res.status(200).json({
-      message: '프로젝트를 삭제했습니다.',
+      message: "프로젝트를 삭제했습니다.",
     });
   })
 );

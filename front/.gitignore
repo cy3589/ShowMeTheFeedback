@@ -1,6 +1,6 @@
 .env
 node_modules
-/front/loginPage/
-/front/logoutPage/
-/front/project/
+loginPage
+logoutPage
+project
 app.js

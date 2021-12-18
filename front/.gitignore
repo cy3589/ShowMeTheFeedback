@@ -24,3 +24,12 @@ yarn-error.log*
 
 package.json
 package_lock.json
+
+# 담당 부분 이외에 ignore
+node_modules
+loginPage
+passwordFindPage
+registerMember
+signUp
+.env
+!package.json

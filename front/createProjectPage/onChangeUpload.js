@@ -1,0 +1,50 @@
+const { stateObject } = require("./stateObject");
+
+export const onChangeUpload = async () => {
+  console.log("onChangeUpload");
+  const uploadBtn = document.querySelector(".uploadBtn");
+  let filesLength = uploadBtn.files.length;
+  if (filesLength > 3) {
+    alert("사진은 최대 3개까지만 가능합니다");
+    filesLength = 3;
+  }
+
+  const targetElement = document.querySelector(".image-preview");
+  const newPromise = async (file) => {
+    return new Promise((resolve, reject) => {
+      try {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+        fileReader.onload = (e) => {
+          resolve(e.target.result);
+        };
+      } catch (err) {
+        reject(err);
+      }
+    });
+  };
+  for (let i = 0; i < filesLength; i++) {
+    stateObject.thumbnails.push(await newPromise(uploadBtn.files[i]));
+    stateObject.postThumbnailsData.push(uploadBtn.files[i]);
+  }
+  targetElement.innerHTML = "";
+  stateObject.thumbnails.forEach((v, i) => {
+    targetElement.innerHTML += /* html */ `
+      <div>
+        <img src=${v} alt="${v}" class="thumbnail-image" style="width:100px;height:100px;" />
+        <input type="button" class="thumbnail-delete" value="삭제하기" />
+      </div>
+      `;
+  });
+  document.querySelectorAll(".thumbnail-delete").forEach((v) =>
+    v.addEventListener("click", (e) => {
+      const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
+        e.target.parentNode
+      );
+      stateObject.thumbnails.splice(index, 1);
+      stateObject.postThumbnailsData.splice(index, 1);
+      e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+    })
+  );
+  uploadBtn.value = "";
+};

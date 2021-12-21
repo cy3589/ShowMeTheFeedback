@@ -9,7 +9,7 @@
   </head>
   <body>
     <div class="loginContainer">
-      <h1 class="loginHeader">회원가입</h1>
+      <h1 class="loginHeader">계정을 생성하세요.</h1>
 
       <form class="userValueForm">
         <input type="text" class="nameInput" placeholder="이름" />
@@ -19,18 +19,29 @@
           class="signUpCodeInput"
           placeholder="인증코드 입력"
         />
-        <button type="submit" class="loginButton">인증코드받기</button>
+        <button type="submit" class="getSignUpCodeButton">인증코드발송</button>
       </form>
 
       <form class="passwordForm">
-        <input type="password" class="passwordInput" placeholder="비밀번호" />
+        <input
+          type="password"
+          class="passwordInput"
+          placeholder="비밀번호"
+          disabled
+        />
         <input
           type="password"
           class="passwordConfirmInput"
           placeholder="비밀번호 확인"
+          disabled
         />
         <button type="submit" class="signUpButton">회원가입</button>
       </form>
+
+      <div class="alreadySignUp">
+        이미 계정이 있으신가요?
+        <a href="../loginPage/index.html" class="goToLogin">로그인하기</a>
+      </div>
     </div>
     <script src="./index.js"></script>
     <script src="./api.js"></script>

@@ -1,0 +1,57 @@
+:root {
+  --link-font: #f38181;
+  --button-bg: #ff6b6b;
+  --page-bg: #e5e5e5;
+  --border: #bbbbbb;
+  --naviBar-bg: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--page-bg);
+}
+
+/* Navibar */
+.naviBar {
+  min-width: 1280px;
+  min-height: 70px;
+  background-color: var(--naviBar-bg);
+
+  display: grid;
+  grid-template-columns: 0.25fr 0.55fr 0.2fr;
+  grid-template-areas: "naviBar__logo naviBar__elements-container naviBar__auth";
+}
+.naviBar__logo {
+  grid-area: naviBar__logo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 26px;
+  font-weight: bold;
+}
+.naviBar__elements-container {
+  grid-area: naviBar__elements-container;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.naviBar__elements-container > * {
+  margin: 0 20px 0 20px;
+  font-size: 18px;
+}
+.naviBar__auth {
+  grid-area: naviBar__auth;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 40px;
+}
+.naviBar__auth > * {
+  margin: 0 20px 0 20px;
+  font-size: 18px;
+}
+
+/* ProjectsList */

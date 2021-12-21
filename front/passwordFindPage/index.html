@@ -6,12 +6,17 @@
     <title>비밀번호 찾기</title>
   </head>
   <body>
-    <form id="findform">
-      <div id="findlabel"><label>비밀번호를 잊어버리셨나요?</label></div>
-      <div><input type="text" placeholder="가입한 이메일" autofocus /></div>
-      <div><input type="text" placeholder="인증번호" /></div>
-      <div id="submitMail"><input type="submit" value="인증메일 발송" /></div>
-      <div id="gologin"><a href="">로그인 페이지로 가기</a></div>
+    <div class="findPasswordHeader">비밀번호를 잊어버리셨나요?</div>
+
+    <form class="findPasswordForm">
+      <input
+        class="emailInput"
+        type="text"
+        placeholder="가입한 이메일"
+        autofocus
+      />
+      <input class="submitValue" type="submit" value="임시비밀번호 발급" />
+      <a class="loginLink" href="">로그인 페이지로 가기</a>
     </form>
   </body>
 </html>

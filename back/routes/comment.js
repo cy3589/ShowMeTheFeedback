@@ -38,7 +38,7 @@ router.post(
       rating,
     });
 
-    await Project.findOneAndUpdate(
+    const project = await Project.findOneAndUpdate(
       { projectId },
       {
         $push: {
@@ -47,7 +47,9 @@ router.post(
           },
         },
       }
-    ).populate("comments");
+    ).populate({
+      path: "comments.comment",
+    });
 
     await User.updateOne(
       { email },
@@ -59,6 +61,7 @@ router.post(
     );
     res.status(201).json({
       message: "댓글이 작성되었습니다.",
+      project,
     });
   })
 );

@@ -6,6 +6,7 @@ const sendMail = require("../utils/sendMail");
 const generateRandomCode = require("../utils/randomCode");
 const bcrypt = require("bcrypt");
 const generatePassword = require("../utils/randomPassword");
+const { emailValidation, passwordValidation } = require("../utils/validation");
 
 const router = Router();
 
@@ -24,9 +25,18 @@ router.post(
 router.post(
   "/register",
   asyncHandler(async (req, res) => {
-    const { email, password, nickname, authcode } = req.body;
+    const { email, password, nickname, authCode } = req.body;
 
-    await userRegister(email, password, nickname, authcode, res);
+    if (!emailValidation(email)) {
+      res.status(400);
+      throw new Error("이메일 형식이 올바르지 않습니다.");
+    }
+    if (!passwordValidation(password)) {
+      res.status(400);
+      throw new Error("비밀번호를 8자 이상 입력해주세요");
+    }
+
+    await userRegister(email, password, nickname, authCode, res);
 
     res.status(201).json({ message: "회원가입이 완료되었습니다!" });
   })

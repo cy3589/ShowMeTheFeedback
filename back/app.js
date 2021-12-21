@@ -30,8 +30,8 @@ app.use("/", indexRouter);
 app.use("/auth", authRouter);
 app.use("/refresh", refreshRouter);
 app.use("/users", checkUserAccess, userRouter);
-app.use("/projects", projectRouter); // TODO: 미들웨어 연결!!!
-app.use("/comments", commentRouter); // TODO: 미들웨어 연결!!!
+app.use("/projects", checkUserAccess, projectRouter); // TODO: 미들웨어 연결!!!
+app.use("/comments", checkUserAccess, commentRouter); // TODO: 미들웨어 연결!!!
 
 app.use((err, req, res, next) => {
   res.json({ error: err.message });

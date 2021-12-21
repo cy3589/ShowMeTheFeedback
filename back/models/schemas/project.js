@@ -1,7 +1,7 @@
-const { Schema } = require('mongoose');
-const projectId = require('./type/short-id');
-const CommentSchema = require('./comment');
-const ImageSchema = require('./image');
+const { Schema } = require("mongoose");
+const projectId = require("./type/short-id");
+const CommentSchema = require("./comment");
+const ImageSchema = require("./image");
 
 const ProjectSchema = new Schema(
   {
@@ -9,7 +9,7 @@ const ProjectSchema = new Schema(
     author: {
       type: Schema.Types.ObjectId,
       required: true,
-      ref: 'User',
+      ref: "User",
     },
     title: {
       type: String,
@@ -17,10 +17,17 @@ const ProjectSchema = new Schema(
     },
     contents: {
       type: Schema.Types.ObjectId,
-      ref: 'Content',
+      ref: "Content",
     },
     image: [ImageSchema],
-    comments: [CommentSchema],
+    comments: [
+      {
+        comment: {
+          type: Schema.Types.ObjectId,
+          ref: "Comment",
+        },
+      },
+    ],
     averageRating: {
       type: Number,
       default: 0,

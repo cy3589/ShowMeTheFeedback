@@ -71,4 +71,5 @@ body {
 
 .loginLink {
   color: var(--font);
+  margin-left: 1rem;
 }

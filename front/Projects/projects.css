@@ -9,7 +9,7 @@
   /* transition: 0.25s ease-in-out; */
   margin: 0;
   padding: 0;
-  background-color: var(--page-bg);
+  /* background-color: var(--page-bg); */
 }
 
 /* a태그 색상 변경 안되도록 처리 */
@@ -115,7 +115,7 @@ a:hover {
   width: 100%;
   position: fixed;
   left: 0px;
-  background: #efefef;
+  /* background: #efefef; */
   padding: 10px 10px 10px 50px;
   font-size: 30px;
   line-height: 30px;
@@ -140,7 +140,7 @@ header {
   position: fixed;
   display: flex;
   left: 0px;
-  background: #efefef;
+  /* background: #efefef; */
   padding: 10px 10px 10px 50px;
   font-size: 30px;
   line-height: 30px;

@@ -127,21 +127,3 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-// const dummyProjects = [];
-// for (let i = 0; i < 10; i++) {
-//   dummyProjects.push({
-//     Title: `타이틀${i}`,
-//     Image: `https://media.discordapp.net/attachments/919476237720772628/920238099198525470/unknown.png?width=722&height=663`,
-//     Rating: `${Math.ceil(Math.random() * 5).toString()}`, // 평균 평점, 더미는 1~5의 값을 랜덤으로 생성
-//     ProjectId: `${parseInt(Math.random() * 100000000000000, 10).toString()}`, // project의 고유ID, 랜덤값으로 생성
-//     createdAt: getDate(new Date()), // createdAt, 더미는 현재날짜로 생성
-//   });
-// }
-/* 
-            dummyProject:object Array
-  object:
-  Title, Image, Rating, ProjectId  <- string
-*/
-
-// document.getElementById("임시버튼").addEventListener("click", getMoreProject);

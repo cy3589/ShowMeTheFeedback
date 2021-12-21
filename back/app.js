@@ -23,7 +23,6 @@ mongoose
   .catch((err) => console.log(err));
 
 // routes
-app.use("/", indexRouter);
 app.use("/api", apiRouter);
 
 app.use((err, req, res, next) => {

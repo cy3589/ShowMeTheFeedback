@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const asyncHandler = require("../utils/asyncHandler");
+const asyncHandler = require("../../../utils/asyncHandler");
 const {
   getProjectList,
   getProject,

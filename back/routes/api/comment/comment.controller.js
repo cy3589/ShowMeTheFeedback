@@ -27,12 +27,24 @@ exports.createComment = async (req, res) => {
     rating,
   });
 
-  const project = await Project.findOneAndUpdate(
+  const project = await Project.findOne({ projectId });
+
+  const newAverageRating = (
+    (project.averageRating + rating) /
+    (project.comments.length + 1)
+  ).toFixed(2);
+
+  await Project.updateOne(
     { projectId },
     {
       $push: {
         comments: {
           comment,
+        },
+      },
+      $set: {
+        averageRating: {
+          newAverageRating,
         },
       },
     }

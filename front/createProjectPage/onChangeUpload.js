@@ -23,6 +23,7 @@ export const onChangeUpload = async () => {
       }
     });
   };
+
   for (let i = 0; i < filesLength; i++) {
     stateObject.thumbnails.push(await newPromise(uploadBtn.files[i]));
     stateObject.postThumbnailsData.push(uploadBtn.files[i]);
@@ -36,10 +37,7 @@ export const onChangeUpload = async () => {
       </div>
       `;
   });
-
-  //이미지 업로드시 섬네일박스 생성
-  const thumbnailBox = document.querySelector(".image-preview");
-  thumbnailBox.style.border = "1px var(--border) solid";
+  targetElement.style.border = "1px var(--border) solid";
 
   document.querySelectorAll(".thumbnail-delete").forEach((v) => {
     v.addEventListener("click", (e) => {
@@ -49,6 +47,7 @@ export const onChangeUpload = async () => {
       stateObject.thumbnails.splice(index, 1);
       stateObject.postThumbnailsData.splice(index, 1);
       e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+      targetElement.style.border = "none";
     });
   });
   uploadBtn.value = "";

@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+  font-family: "Nanum Gothic", sans-serif;
+}
+
 :root {
   --link-font: #f38181;
   --button-bg: #ff6b6b;
@@ -28,6 +33,23 @@ body {
 
 a {
   text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a:focus {
+  text-decoration: none;
+}
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 input {
@@ -205,6 +227,7 @@ textarea {
   font-size: var(--contents-button-text);
   line-height: 28px;
   border-radius: 5px;
+  cursor: pointer;
 }
 .image-preview {
   grid-area: thumbnail__img-container;
@@ -272,6 +295,7 @@ textarea {
   flex-direction: column;
 }
 
-.submit {
+.project__submit {
   grid-area: submit;
+  cursor: pointer;
 }

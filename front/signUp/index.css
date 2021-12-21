@@ -35,10 +35,10 @@ body {
 }
 
 .userValueForm > * {
-  margin: 8px 0 8px 0;
-  /* padding: 18px 0 18px 20px; */
-  line-height: 36px;
-  padding-left: 1rem;
+  /* margin: 8px 0 8px 0; */
+  padding: 18px 0 18px 20px;
+  /* line-height: 36px; */
+  /* padding-left: 1rem; */
   border: none;
   font-size: 18px;
   color: #000000;

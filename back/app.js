@@ -1,13 +1,10 @@
 require("dotenv").config();
+// library
 const express = require("express");
 const mongoose = require("mongoose");
-const userRouter = require("./routes/users");
-const indexRouter = require("./routes/index");
-const projectRouter = require("./routes/project");
-const authRouter = require("./routes/auth");
-const refreshRouter = require("./routes/refresh");
-const checkUserAccess = require("./middlewares/check-user-JWT");
-const commentRouter = require("./routes/comment");
+
+// routes
+const apiRouter = require("./routes");
 
 const port = 3000;
 
@@ -27,11 +24,7 @@ mongoose
 
 // routes
 app.use("/", indexRouter);
-app.use("/auth", authRouter);
-app.use("/refresh", refreshRouter);
-app.use("/users", checkUserAccess, userRouter);
-app.use("/projects", checkUserAccess, projectRouter); // TODO: 미들웨어 연결!!!
-app.use("/comments", checkUserAccess, commentRouter); // TODO: 미들웨어 연결!!!
+app.use("/api", apiRouter);
 
 app.use((err, req, res, next) => {
   res.json({ error: err.message });

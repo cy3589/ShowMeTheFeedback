@@ -2,13 +2,12 @@ const { Comment, Project, User } = require("../../../models");
 
 exports.getComment = async (req, res) => {
   const { projectId } = req.params;
-  const project = await Project.findOne({ projectId });
 
   const page = Number(req.query.page || 1);
   const perPage = Number(req.query.perPage || 10);
 
   const [comments, totalPage] = await Comment.getPaginatedComments(
-    { projectId: project },
+    { projectId },
     page,
     perPage
   );
@@ -97,7 +96,6 @@ exports.deleteComment = async (req, res) => {
   const { email } = req.body;
 
   const comment = await Comment.findOne({ commentId });
-  console.log(comment.author, email);
   if (comment.author !== email) {
     res.status(404);
     throw new Error("삭제 권한이 없습니다.");

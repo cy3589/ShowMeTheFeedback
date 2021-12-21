@@ -129,6 +129,10 @@ exports.deleteProject = async (req, res) => {
   const { projectId } = req.params;
   const { email } = req.body;
   const checkUser = await User.findOne({ email });
+  if (!checkUser) {
+    res.status(404);
+    throw new Error("삭제 권한이 없습니다.");
+  }
 
   if (!checkUser.projects.includes(projectId)) {
     res.status(404);

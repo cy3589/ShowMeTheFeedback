@@ -1,8 +1,7 @@
 import { stateObject } from "./stateObject.js";
 
 export const onChangeUpload = async () => {
-  console.log("onChangeUpload");
-  const uploadBtn = document.querySelector(".uploadBtn");
+  const uploadBtn = document.querySelector(".upload-button-hidden");
   let filesLength = uploadBtn.files.length;
   if (filesLength > 3) {
     alert("사진은 최대 3개까지만 가능합니다");

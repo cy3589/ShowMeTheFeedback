@@ -100,3 +100,6 @@ article .comment input {
   width: 800px;
   height: 80px;
 } */
+.invisible {
+  display: none;
+}

@@ -1,0 +1,74 @@
+:root {
+  --font: #f38181;
+  --button-bg: #ff6b6b;
+  --button-kakaoBtn: #fae100;
+  --button-googleBtn: #ffffff;
+  --page-bg: #e5e5e5;
+  --border: #bbbbbb;
+
+  --white: #ffffff;
+}
+
+body {
+  background-color: #f0f1f3;
+  display: grid;
+  place-items: center;
+}
+
+.registerContainer {
+  min-width: 400px;
+  margin-top: 342px;
+  display: grid;
+
+  grid-template-rows: 1fr 60px 60px 60px 1fr;
+  grid-gap: 8px;
+  grid-template-areas:
+    "registerChooseLabel"
+    "btnRegisterEmail"
+    "btnRegisterKakao"
+    "btnRegisterGoogle"
+    "loginLabel";
+}
+
+.registerChooseLabel {
+  grid-area: registerChooseLabel;
+  color: var(--font);
+  font-size: 26px;
+  font-weight: bold;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.registerContainer button {
+  font-size: 18px;
+  border: none;
+}
+
+.btnRegisterEmail {
+  grid-area: btnRegisterEmail;
+  background-color: var(--button-bg);
+  color: var(--white);
+}
+.btnRegisterKakao {
+  grid-area: btnRegisterKakao;
+  background-color: var(--button-kakaoBtn);
+}
+.btnRegisterGoogle {
+  grid-area: btnRegisterGoogle;
+  background-color: var(--button-googleBtn);
+}
+.loginLabel {
+  grid-area: loginLabel;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 42px;
+}
+
+.loginLink {
+  color: var(--font);
+}

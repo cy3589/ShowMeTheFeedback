@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="file" id="img" />
+    <input type="submit" onclick="upload()" value="이미지 업로드~" />
+  </body>
+  <script>
+    async function upload() {
+      const dom = document.querySelector('#img');
+
+      const file = dom.files[0];
+
+      const body = new FormData();
+
+      body.append('image', file);
+
+      const result = await fetch(
+        'https://api.imgbb.com/1/upload?key=9ded9154942189df28a59a933807d4d6',
+        {
+          method: 'POST',
+          body: body,
+        }
+      )
+        .then((res) => console.log(res.json()))
+        .catch((err) => err);
+
+      console.log(result);
+    }
+  </script>
+</html>

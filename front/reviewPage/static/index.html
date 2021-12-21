@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link href="index.css" rel="stylesheet" />
+    <title></title>
+  </head>
+  <body>
+    <script src="index.js"></script>
+    <main>
+      <article>
+        <div>
+          <div class="project-Title"></div>
+          <div class="project-Author"></div>
+          <div class="project-Date"></div>
+        </div>
+        <div class="main_img_frame">
+          <button class="prev_img_btn"><</button>
+          <img src="" class="main_img" />
+          <button class="next_img_btn">></button>
+        </div>
+        <div class="scoreContainer">
+          <div>총 평점</div>
+          <span class="scoreStar">
+            ★★★★★
+            <span class="scoreStarMask">★★★★★</div>
+          </div>
+          <div>총 평가자 수</div>
+          <div class="mainContentEval"></div>
+        </div>
+        <h3>프로젝트 설명</h3>
+        <div class="project-Content-div">
+          
+        </div>
+        <h3>평가 댓글</h3>
+        <div class="inputTagForm">
+          <div>평가 남기기</div>
+          <div>닉네임 :</div>
+          <textarea class="writeCommentContent"></textarea>
+          <div>평점</div>
+          <span class="commentRegStar">
+            ★★★★★
+            <span class ="commentRegStarMask">★★★★★</span>
+            <input type="range" class="commentRegStarDrag" value="1" step="1" min="0" max="10">
+          </span>
+          <button class="commentRegBtn">등록</button>
+        </div>
+        <h4>다른 사람의 평가</h4>
+        <div class="commentsList"></div>
+      </article>
+    </main>
+
+    <template class="commentTemplate">
+      <div class="commentAuthor"></div>
+      <div class="commentDate"></div>
+      <div class="commentContent"></div>
+      <div>평점 :</div>
+      <span class="commentStar">
+        ★★★★★
+        <span class ="commentStarMask">★★★★★</span>
+      </span>
+      <a class="commentMoreContent" href="">전체 내용 보기</a>
+    </template>
+  </body>
+</html>

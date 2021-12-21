@@ -35,10 +35,9 @@ body {
 }
 
 .userValueForm > * {
-  /* margin: 8px 0 8px 0; */
-  padding: 18px 0 18px 20px;
-  /* line-height: 36px; */
-  /* padding-left: 1rem; */
+  margin: 8px 0 8px 0;
+  height: 54px;
+  padding-left: 1rem;
   border: none;
   font-size: 18px;
   color: #000000;
@@ -72,7 +71,8 @@ body {
 
 .passwordForm > * {
   margin: 8px 0 8px 0;
-  padding: 18px 0 18px 20px;
+  height: 54px;
+  padding-left: 1rem;
   border: none;
   background: white;
   font-size: 18px;

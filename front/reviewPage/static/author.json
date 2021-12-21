@@ -1,9 +1,18 @@
 [
   {
     "id": 2356,
-    "user": "개쩌는 팀",
-    "uploadDate": "2017.10.19 10:13:34",
-    "title": "아주 멋진 프로젝트 이름",
-    "content": "Ross: What? Wh- hello? The Millners' farm in Connecticut? \nThe Millners, they had this unbelievable farm, they had horses, and,\n andrabbits that he could chase and it was- it w- .....Oh my God, Chi Chi!\nPhoebe: It's not mine, I didn't earn it, if I kept it, it would be\n like stealing. Rachel: Yeah, but if you spent it, it would be like \n shopping!"
+    "date": "2019.11.28 11:24:19",
+    "teamName": "개쩌는 팀",
+    "projectName": "개쩌는 프로젝트",
+    "mainFunc": "쓰레기를 나무로 바꾸는 기능",
+    "skills": "java, c, c++, c#",
+    "member": [
+      { "name": "김덕배", "job": "프론트", "task": "잠자기" },
+      { "name": "김춘자", "job": "백엔드", "task": "눕기" },
+      { "name": "이옥자", "job": "백엔드", "task": "졸기" }
+    ],
+    "teamDiscribe": "",
+    "thumbnails": [],
+    "postThumbnailsData": []
   }
 ]

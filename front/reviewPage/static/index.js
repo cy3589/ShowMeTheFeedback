@@ -121,14 +121,25 @@ function mainContentInfo(data) {
   let projectTitle = document.getElementsByClassName("project-Title")[0];
   let projectAuthor = document.getElementsByClassName("project-Author")[0];
   let projectDate = document.getElementsByClassName("project-Date")[0];
-  let projectContent = document.getElementsByClassName(
-    "project-Content-div"
+  let projectMainFunc = document.getElementsByClassName(
+    "project-Container_mainFunc"
+  )[0];
+  let projectSkills = document.getElementsByClassName(
+    "project-Container_skills"
+  )[0];
+  let projectMembersAndJobs = document.getElementsByClassName(
+    "project-Container_MembersAndJobs"
   )[0];
 
-  projectTitle.innerText = data[0].title;
-  projectAuthor.innerText = data[0].user;
-  projectDate.innerText = data[0].uploadDate;
-  projectContent.innerText = data[0].content;
+  projectTitle.innerText = data[0].projectName;
+  projectAuthor.innerText = data[0].teamName;
+  projectDate.innerText = data[0].date;
+  projectMainFunc.innerText = data[0].mainFunc;
+  projectSkills.innerHTML = data[0].skills;
+
+  for (let i = 0; i < data[0].member.length; i++) {
+    projectMembersAndJobs.innerHTML += `<div class = "project-Container_MembersAndJobs_list${i}">${data[0].member[i].name}(${data[0].member[i].job}) : ${data[0].member[i].task}<div>`;
+  }
 }
 
 //상세 페이지 본문 별점

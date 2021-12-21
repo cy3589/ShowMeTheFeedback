@@ -28,20 +28,59 @@ const btnClick = () => {
     alert("사진은 최대 3개까지만 가능합니다");
     return;
   }
-  const uploadBtn = document.querySelector(".uploadBtn");
-  uploadBtn.click();
+  document.querySelector(".upload-button-hidden").click();
 };
-window.btnClick = btnClick;
-window.addMember = addMember;
-window.onChangeUpload = onChangeUpload;
-window.onChangeTeamName = onChangeTeamName;
-window.onChangeProjectName = onChangeProjectName;
-window.onChangeMainFunc = onChangeMainFunc;
-window.onChangeSkills = onChangeSkills;
-window.initOnChangeMemberName = initOnChangeMemberName;
-window.initOnChangeMemberJob = initOnChangeMemberJob;
-window.initOnChangeMemberTask = initOnChangeMemberTask;
-window.submitFunc = submitFunc;
+// window.submitFunc = submitFunc;
+// window.onChangeTeamName = onChangeTeamName;
+// window.onChangeProjectName = onChangeProjectName;
+// window.onChangeUpload = onChangeUpload;
+// window.btnClick = btnClick;
+// window.onChangeMainFunc = onChangeMainFunc;
+// window.onChangeSkills = onChangeSkills;
+// window.initOnChangeMemberName = initOnChangeMemberName;
+// window.initOnChangeMemberJob = initOnChangeMemberJob;
+// window.initOnChangeMemberTask = initOnChangeMemberTask;
+// window.addMember = addMember;
+document
+  .querySelector(".create-project-form")
+  .addEventListener("submit", submitFunc);
+submitFunc;
+document
+  .querySelector(".team-name")
+  .querySelector(".team-name")
+  .addEventListener("input", onChangeTeamName);
+document
+  .querySelector(".project-name")
+  .querySelector(".project-name")
+  .addEventListener("input", onChangeProjectName);
+document
+  .querySelector(".upload-button-hidden")
+  .addEventListener("change", onChangeUpload);
+document.querySelector(".upload-button").addEventListener("click", btnClick);
+document
+  .querySelector(".main-func")
+  .querySelector(".main-func")
+  .addEventListener("input", onChangeMainFunc);
+document
+  .querySelector(".skills")
+  .querySelector(".skills")
+  .addEventListener("input", onChangeSkills);
+document
+  .querySelector(".team-discribe")
+  .querySelector(".members")
+  .querySelector(".member-name")
+  .addEventListener("input", initOnChangeMemberName);
+document
+  .querySelector(".team-discribe")
+  .querySelector(".members")
+  .querySelector(".member-job")
+  .addEventListener("input", initOnChangeMemberJob);
+document
+  .querySelector(".team-discribe")
+  .querySelector(".members")
+  .querySelector(".member-task")
+  .addEventListener("input", initOnChangeMemberTask);
+document.querySelector(".add-member").addEventListener("click", addMember);
 
 onChangeTeamName();
 onChangeProjectName();

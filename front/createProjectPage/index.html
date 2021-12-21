@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <base href="/createProject/" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +11,7 @@
     <div class="header"></div>
     <div class="create-page-head">프로젝트 등록</div>
     <form
-      onsubmit="return submitFunc()"
+      class="create-project-form"
       style="display: flex; flex-direction: column"
     >
       <div class="team-name" style="display: flex">
@@ -21,7 +20,6 @@
           type="text"
           name="team-name"
           class="team-name"
-          oninput="onChangeTeamName()"
           placeholder="팀명"
         />
       </div>
@@ -31,7 +29,6 @@
           type="text"
           name="project-name"
           class="project-name"
-          oninput="onChangeProjectName()"
           placeholder="프로젝트 명"
         />
       </div>
@@ -39,14 +36,13 @@
       <div class="thumbnail">
         <input
           type="file"
-          class="uploadBtn"
+          class="upload-button-hidden"
           name="image"
           hidden
           multiple
           accept="image/*"
-          onchange="onChangeUpload()"
         />
-        <input type="button" onclick="btnClick()" value="이미지 업로드 하기" />
+        <input type="button" class="upload-button" value="이미지 업로드 하기" />
         <br />
         <div class="image-preview" style="display: flex"></div>
       </div>
@@ -57,7 +53,6 @@
           type="text"
           name="main-func"
           class="main-func"
-          oninput="onChangeMainFunc()"
           placeholder="여러분의 작품을 설명해주세요!"
         />
       </div>
@@ -69,7 +64,6 @@
           type="text"
           name="skills"
           class="skills"
-          oninput="onChangeSkills()"
           placeholder="#을 기준으로 작성해주세요! (ex-#JAVA #REACT #EXPRESS)"
           style="width: 100%"
         />
@@ -83,25 +77,25 @@
           <div class="member" style="display: flex">
             <input
               type="text"
+              class="member-name"
               name="member-name"
               placeholder="이름"
-              oninput="initOnChangeMemberName()"
             />
             <input
               type="text"
+              class="member-job"
               name="member-job"
               placeholder="담당업무"
-              oninput="initOnChangeMemberJob()"
             />
             <input
               type="text"
+              class="member-task"
               name="member-task"
               placeholder="업무내용"
-              oninput="initOnChangeMemberTask()"
             />
           </div>
         </div>
-        <a href="#" class="add-member" onclick="addMember()">+</a>
+        <a href="#" class="add-member">+</a>
       </div>
 
       <input type="submit" value="서밋" />

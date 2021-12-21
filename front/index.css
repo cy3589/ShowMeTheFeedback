@@ -13,6 +13,7 @@ body {
   background: var(--page-bg);
 }
 
+/* Navibar */
 .naviBar {
   min-width: 1280px;
   min-height: 70px;
@@ -22,7 +23,6 @@ body {
   grid-template-columns: 0.25fr 0.55fr 0.2fr;
   grid-template-areas: "naviBar__logo naviBar__elements-container naviBar__auth";
 }
-
 .naviBar__logo {
   grid-area: naviBar__logo;
   display: flex;
@@ -53,3 +53,5 @@ body {
   margin: 0 20px 0 20px;
   font-size: 18px;
 }
+
+/* ProjectsList */

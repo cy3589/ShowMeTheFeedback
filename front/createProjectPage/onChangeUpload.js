@@ -2,7 +2,7 @@ import { stateObject } from "./stateObject.js";
 
 export const onChangeUpload = async () => {
   console.log("onChangeUpload");
-  const uploadBtn = document.querySelector(".uploadBtn");
+  const uploadBtn = document.querySelector(".upload-button-hidden");
   let filesLength = uploadBtn.files.length;
   if (filesLength > 3) {
     alert("사진은 최대 3개까지만 가능합니다");
@@ -36,7 +36,12 @@ export const onChangeUpload = async () => {
       </div>
       `;
   });
-  document.querySelectorAll(".thumbnail-delete").forEach((v) =>
+
+  //이미지 업로드시 섬네일박스 생성
+  const thumbnailBox = document.querySelector(".image-preview");
+  thumbnailBox.style.border = "1px var(--border) solid";
+
+  document.querySelectorAll(".thumbnail-delete").forEach((v) => {
     v.addEventListener("click", (e) => {
       const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
         e.target.parentNode
@@ -44,7 +49,7 @@ export const onChangeUpload = async () => {
       stateObject.thumbnails.splice(index, 1);
       stateObject.postThumbnailsData.splice(index, 1);
       e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-    })
-  );
+    });
+  });
   uploadBtn.value = "";
 };

@@ -4,13 +4,44 @@
   --page-bg: #e5e5e5;
   --border: #bbbbbb;
   --naviBar-bg: #ffffff;
+
+  --contents-bg: #ffffff;
+  --contents-legend: #ff6b6b;
+  --contents-alert-icon: #f44336;
+
+  /* 폰트크기 지정해야함 */
+
+  --contents-legend-text: 24px;
+  --contents-header-text: 24px;
+  --contents-text: 18px;
+  --contents-text-small: 9px;
+  --contents-button-text: 14px;
+
+  --contents-text-gray: #bbbbbb;
 }
 
 body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   background: var(--page-bg);
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--contents-text);
+}
+
+input:focus {
+  outline: none;
+}
+
+textarea {
+  resize: none;
 }
 
 /* Navibar */
@@ -54,4 +85,193 @@ body {
   font-size: 18px;
 }
 
-/* ProjectsList */
+/* ProjectCreatePage */
+
+.create-page__main-content {
+  margin: 50px 100px 100px 100px;
+  background: var(--contents-bg);
+  padding: 50px 50px 50px 50px;
+  min-width: 700px;
+}
+
+.create-page__container {
+  border: none;
+  border-top: 30px var(--contents-legend) solid;
+}
+.create-page-head {
+  font-size: var(--contents-legend-text);
+  font-weight: bold;
+  width: auto;
+  padding: 0 30px 0 30px;
+  margin-left: 30px;
+}
+
+.project-value__alert {
+  display: flex;
+  justify-content: flex-end;
+  font-size: var(--contents-text);
+  color: var(--contents-text-gray);
+}
+
+.project-team-value__header {
+  margin-left: 30px;
+  font-size: var(--contents-header-text);
+}
+
+.check-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--contents-alert-icon);
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin-right: 5px;
+}
+.check-true {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgb(135, 228, 109);
+  display: flex;
+  justify-content: center;
+  color: black;
+  margin-right: 5px;
+}
+
+.create-project-form {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr auto auto auto auto 1fr;
+  grid-gap: 30px;
+  grid-template-areas:
+    "project-team-value__header"
+    "team-name"
+    "project-name"
+    "project-thumbnail__header"
+    "thumbnail"
+    "main-func"
+    "skills"
+    "team-discribe"
+    "submit";
+}
+
+.project-team-value__header {
+  grid-area: project-team-value__header;
+}
+.team-name {
+  grid-area: team-name;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.team-name input {
+  width: 400px;
+}
+.project-name {
+  grid-area: project-name;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.project-name input {
+  width: 400px;
+}
+
+.project-thumbnail__header {
+  grid-area: project-thumbnail__header;
+  margin-left: 30px;
+  font-size: var(--contents-header-text);
+}
+.thumbnail {
+  grid-area: thumbnail;
+  /* background-color: green; */
+
+  display: grid;
+  grid-template-rows: 50px auto;
+  grid-template-areas:
+    "thumbnail__file-name__button"
+    "thumbnail__img-container";
+}
+.project-thumbnail__input-value {
+  margin-left: 30px;
+  grid-area: thumbnail__file-name__button;
+}
+.thumbnail__file-name {
+  width: 300px;
+  margin-right: 20px;
+}
+.upload-button {
+  width: 100px;
+  font-size: var(--contents-button-text);
+  line-height: 28px;
+  border-radius: 5px;
+}
+.image-preview {
+  grid-area: thumbnail__img-container;
+
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+}
+.image-preview div:nth-child(n) {
+  margin: 10px 10px 10px 10px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.image-preview img {
+  width: 100px;
+  height: 100px;
+}
+.thumbnail-delete {
+  margin-top: 10px;
+  background: var(--button-bg);
+  width: 60px;
+  color: white;
+  font-size: var(--contents-text-small);
+}
+
+.main-func {
+  grid-area: main-func;
+}
+.main-func label {
+  margin-left: 30px;
+  font-size: var(--contents-header-text);
+}
+.main-func__container {
+  margin-top: 20px;
+  display: flex;
+}
+
+.skills {
+  grid-area: skills;
+}
+.skills label {
+  margin-left: 30px;
+  font-size: var(--contents-header-text);
+}
+.skills__container {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+.skills input {
+  min-width: 500px;
+}
+
+.team-discribe {
+  grid-area: team-discribe;
+}
+.team-discribe label {
+  margin-left: 30px;
+  font-size: var(--contents-header-text);
+}
+.team-discribe .members {
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+}
+
+.submit {
+  grid-area: submit;
+}

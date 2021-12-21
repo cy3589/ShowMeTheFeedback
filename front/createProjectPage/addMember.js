@@ -42,6 +42,8 @@ export const addMember = () => {
   deleteButton.className = "delete-member";
   deleteButton.innerText = "-";
   deleteButton.addEventListener("click", (e) => {
+    //eventBubbling prevent
+    e.preventDefault();
     const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
       e.target.parentNode
     );

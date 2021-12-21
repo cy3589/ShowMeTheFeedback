@@ -80,7 +80,11 @@ document
   .querySelector(".members")
   .querySelector(".member-task")
   .addEventListener("input", initOnChangeMemberTask);
-document.querySelector(".add-member").addEventListener("click", addMember);
+document.querySelector(".add-member").addEventListener("click", (e) => {
+  //eventBubbling prevent
+  e.preventDefault();
+  addMember();
+});
 
 onChangeTeamName();
 onChangeProjectName();

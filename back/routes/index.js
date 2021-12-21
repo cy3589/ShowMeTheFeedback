@@ -10,8 +10,8 @@ const router = Router();
 
 router.use("/auth", authRouter);
 router.use("/refresh", refreshRouter);
-router.use("/project", checkUserAccess, projectRouter);
-router.use("/comment", checkUserAccess, commentRouter);
-router.use("/user", checkUserAccess, userRouter);
+router.use("/projects", checkUserAccess, projectRouter);
+router.use("/comments", checkUserAccess, commentRouter);
+router.use("/users", checkUserAccess, userRouter);
 
 module.exports = router;

@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const { userLogin, duplicateCheck } = require("../../../utils/auth");
 const { User, TempUser } = require("../../../models");
 const generateRandomCode = require("../../../utils/randomCode");
@@ -6,6 +7,7 @@ const {
   emailValidation,
   passwordValidation,
 } = require("../../../utils/validation");
+const sendMail = require("../../../utils/sendMail");
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;

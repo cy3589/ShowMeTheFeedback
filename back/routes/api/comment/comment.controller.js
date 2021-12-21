@@ -19,7 +19,6 @@ exports.getComment = async (req, res) => {
 exports.createComment = async (req, res) => {
   const { projectId } = req.params;
   const { email, content, rating } = req.body;
-
   const comment = await Comment.create({
     projectId,
     author: email,
@@ -29,10 +28,11 @@ exports.createComment = async (req, res) => {
 
   const project = await Project.findOne({ projectId });
 
-  const newAverageRating = (
-    (project.averageRating + rating) /
-    (project.comments.length + 1)
-  ).toFixed(2);
+  const newAverageRating = Number(
+    ((project.averageRating + rating) / (project.comments.length + 1)).toFixed(
+      2
+    )
+  );
 
   await Project.updateOne(
     { projectId },
@@ -43,9 +43,7 @@ exports.createComment = async (req, res) => {
         },
       },
       $set: {
-        averageRating: {
-          newAverageRating,
-        },
+        averageRating: newAverageRating,
       },
     }
   ).populate({

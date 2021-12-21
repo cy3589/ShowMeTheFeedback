@@ -81,7 +81,6 @@ document
   .querySelector(".member-task")
   .addEventListener("input", initOnChangeMemberTask);
 document.querySelector(".add-member").addEventListener("click", (e) => {
-  //eventBubbling prevent
   e.preventDefault();
   addMember();
 });

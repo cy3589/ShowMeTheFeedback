@@ -9,20 +9,18 @@
   --page-bg: #e5e5e5;
   --border: #bbbbbb;
   --naviBar-bg: #ffffff;
+  --addButton-bg: #2c98f0;
 
   --contents-bg: #ffffff;
   --contents-legend: #ff6b6b;
   --contents-alert-icon: #f44336;
-
-  /* 폰트크기 지정해야함 */
+  --contents-text-gray: #bbbbbb;
 
   --contents-legend-text: 24px;
   --contents-header-text: 24px;
   --contents-text: 18px;
   --contents-text-small: 9px;
   --contents-button-text: 14px;
-
-  --contents-text-gray: #bbbbbb;
 }
 
 body {
@@ -141,8 +139,8 @@ textarea {
 }
 
 .check-icon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: var(--contents-alert-icon);
   display: flex;
@@ -151,8 +149,8 @@ textarea {
   margin-right: 5px;
 }
 .check-true {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: rgb(135, 228, 109);
   display: flex;
@@ -206,7 +204,6 @@ textarea {
 }
 .thumbnail {
   grid-area: thumbnail;
-  /* background-color: green; */
 
   display: grid;
   grid-template-rows: 50px auto;
@@ -232,6 +229,7 @@ textarea {
 .image-preview {
   grid-area: thumbnail__img-container;
 
+  width: 450px;
   display: grid;
   grid-template-columns: repeat(3, 150px);
 }
@@ -245,6 +243,7 @@ textarea {
 .image-preview img {
   width: 100px;
   height: 100px;
+  border: 0.5px var(--border) solid;
 }
 .thumbnail-delete {
   margin-top: 10px;
@@ -284,18 +283,77 @@ textarea {
 
 .team-discribe {
   grid-area: team-discribe;
+
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 18px auto;
+  grid-row-gap: 20px;
+  grid-template-areas:
+    "team-describe__check-icon team-describe__header"
+    "team-describe__members team-describe__members";
+}
+.team-discribe .check-icon {
+  grid-area: team-describe__check-icon;
+  margin-top: 4px;
 }
 .team-discribe label {
-  margin-left: 30px;
+  grid-area: team-describe__header;
+  margin-left: 12px;
   font-size: var(--contents-header-text);
 }
 .team-discribe .members {
+  grid-area: team-describe__members;
+  margin-left: 30px;
+}
+
+.team-discribe .members > * :nth-child(-n + 2) {
+  width: 100px;
+  margin-right: 20px;
+}
+.team-discribe .members > * :nth-child(3) {
+  width: 250px;
+}
+
+.member {
+  display: grid;
+  grid-template-columns: 120px 120px 270px 50px;
+  margin-bottom: 20px;
+}
+
+.add-member {
+  border: none;
+  width: 40px;
+  height: 40px;
+  background-color: var(--addButton-bg);
   display: flex;
-  /* align-items: center; */
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+  font-size: var(--contents-header-text);
+}
+.delete-member {
+  border: none;
+  width: 40px;
+  height: 40px;
+  background-color: var(--contents-legend);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+  font-size: var(--contents-header-text);
 }
 
 .project__submit {
   grid-area: submit;
   cursor: pointer;
+  width: 120px;
+  height: 36px;
+  margin-left: auto;
+  border-radius: 5px;
+  background-color: var(--button-bg);
+  color: white;
 }

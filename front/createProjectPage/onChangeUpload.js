@@ -47,7 +47,10 @@ export const onChangeUpload = async () => {
       stateObject.thumbnails.splice(index, 1);
       stateObject.postThumbnailsData.splice(index, 1);
       e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-      targetElement.style.border = "none";
+
+      if (index === 0) {
+        targetElement.style.border = "none";
+      }
     });
   });
   uploadBtn.value = "";

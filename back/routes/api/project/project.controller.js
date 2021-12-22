@@ -1,4 +1,4 @@
-const { Project, Content, User } = require('../../../models');
+const { Project, Content, User } = require("../../../models");
 
 exports.getProjectList = async (req, res) => {
   const projects = await Project.find({});
@@ -19,8 +19,8 @@ exports.getProjectList = async (req, res) => {
 exports.getProject = async (req, res) => {
   const { projectId } = req.params;
   const project = await Project.findOne({ projectId })
-    .populate('author')
-    .populate('contents');
+    .populate("author")
+    .populate("contents");
 
   const result = {
     author: project.author.nickname,
@@ -54,10 +54,10 @@ exports.createProject = async (req, res) => {
     projectId: project.projectId,
     description,
     stack,
-    members: members ?? ' ',
+    members: members ?? " ",
   });
   //elice.....:5000/back/uploads/xxxx.jpg
-  http: await Project.updateOne(
+  await Project.findOneAndUpdate(
     { projectId: project.projectId },
     {
       $set: {
@@ -78,7 +78,8 @@ exports.createProject = async (req, res) => {
   // TODO: 이미지 저장 imgbb 사용 여부
 
   res.status(201).json({
-    message: '프로젝트를 생성했습니다.',
+    message: "프로젝트를 생성했습니다.",
+    projectId: project.projectId,
   });
 };
 
@@ -89,7 +90,7 @@ exports.updateProject = async (req, res) => {
   const checkUser = await User.findOne({ email });
   if (!checkUser.projects.includes(projectId)) {
     res.status(404);
-    throw new Error('수정 권한이 없습니다.');
+    throw new Error("수정 권한이 없습니다.");
   }
 
   const content = await Content.findOneAndUpdate(
@@ -114,7 +115,7 @@ exports.updateProject = async (req, res) => {
       },
     }
   );
-  const project = await Project.findOne({ projectId }).populate('contents');
+  const project = await Project.findOne({ projectId }).populate("contents");
   const result = {
     author: project.author.nickname,
     title: project.title,
@@ -134,12 +135,12 @@ exports.deleteProject = async (req, res) => {
   const checkUser = await User.findOne({ email });
   if (!checkUser) {
     res.status(404);
-    throw new Error('삭제 권한이 없습니다.');
+    throw new Error("삭제 권한이 없습니다.");
   }
 
   if (!checkUser.projects.includes(projectId)) {
     res.status(404);
-    throw new Error('삭제 권한이 없습니다.');
+    throw new Error("삭제 권한이 없습니다.");
   }
 
   await Project.deleteOne({ projectId });
@@ -148,6 +149,6 @@ exports.deleteProject = async (req, res) => {
   checkUser.save();
 
   res.status(200).json({
-    message: '프로젝트를 삭제했습니다.',
+    message: "프로젝트를 삭제했습니다.",
   });
 };

@@ -1,21 +1,33 @@
-const { Router } = require('express');
-const asyncHandler = require('../../../utils/asyncHandler');
+const { Router } = require("express");
+const passport = require("passport");
+const asyncHandler = require("../../../utils/asyncHandler");
 const {
   login,
   register,
   emailRegister,
   passwordFind,
   googleLogin,
-} = require('./auth.controller');
+} = require("./auth.controller");
 
 const router = Router();
 
-router.post('/login', asyncHandler(login));
-router.post('/register', asyncHandler(register));
-router.post('/register/email', asyncHandler(emailRegister));
-router.post('/find-password', asyncHandler(passwordFind));
+router.post("/login", asyncHandler(login));
+router.post("/register", asyncHandler(register));
+router.post("/register/email", asyncHandler(emailRegister));
+router.post("/find-password", asyncHandler(passwordFind));
 
-router.post('/google-login', asyncHandler(googleLogin));
+// router.get(
+//   "/auth/google/callback",
+//   passport.authenticate("google", {
+//     successRedirect: "/",
+//     failureRedirect: "/",
+//   })
+// );
+
+// router.get(
+//   "/google",
+//   passport.authenticate("google", { scope: ["profile"] })
+// );
 
 module.exports = router;
 

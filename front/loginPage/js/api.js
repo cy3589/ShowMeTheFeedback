@@ -19,3 +19,7 @@ logInBtn.addEventListener("click", async (e) => {
   const res = await (await fetch(loginAPI, options)).json();
   console.log(res);
 });
+
+async function logIn(params) {
+  const response = await fetch();
+}

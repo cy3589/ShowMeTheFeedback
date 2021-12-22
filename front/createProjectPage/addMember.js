@@ -5,8 +5,9 @@ export const addMember = () => {
   const memberLastIndex = stateObject.member.length - 1;
   const targetElement = document.querySelector(".members");
 
-  const checkIconDiv = document.createElement("div");
-  checkIconDiv.className = "check-icon";
+  // 항목별 체크아이콘은 난잡해보임
+  // const checkIconDiv = document.createElement("div");
+  // checkIconDiv.className = "check-icon";
 
   const wrapperDiv = document.createElement("div");
   wrapperDiv.className = "member";
@@ -42,6 +43,7 @@ export const addMember = () => {
   deleteButton.className = "delete-member";
   deleteButton.innerText = "-";
   deleteButton.addEventListener("click", (e) => {
+    e.preventDefault();
     const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
       e.target.parentNode
     );
@@ -50,7 +52,7 @@ export const addMember = () => {
     setIconTeamDiscribe();
   });
 
-  wrapperDiv.appendChild(checkIconDiv);
+  // wrapperDiv.appendChild(checkIconDiv);
   wrapperDiv.appendChild(inputMemberName);
   wrapperDiv.appendChild(inputMemberJob);
   wrapperDiv.appendChild(inputMemberTask);

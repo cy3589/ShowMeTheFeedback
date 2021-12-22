@@ -4,8 +4,8 @@ export function unauthorizedNaviBar() {
   authorizedTopNaviBar.innerHTML = `
     <div class="naviBar__logo">Show Me The Feedback</div>
     <div class="naviBar__auth">
-      <div class="naviBar__logIn">로그인</div>
-      <div class="naviBar__signUp">회원가입</div>
+      <a class="naviBar__logIn" href="../loginPage" >로그인</a>
+      <a class="naviBar__signUp" href="../signUpPage" >회원가입</a>
     </div>
 `;
 }

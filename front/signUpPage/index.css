@@ -90,6 +90,7 @@ body {
   grid-area: signUpButton;
   padding: 10px 0 10px 0;
   background: #ff6b6b;
+  color: white;
 }
 
 .alreadySignUp {

@@ -43,7 +43,10 @@ const btnClick = () => {
 // window.addMember = addMember;
 document
   .querySelector(".create-project-form")
-  .addEventListener("submit", submitFunc);
+  .addEventListener("submit", (e) => {
+    e.preventDefault();
+    submitFunc();
+  });
 submitFunc;
 document
   .querySelector(".team-name")

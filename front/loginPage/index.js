@@ -23,7 +23,7 @@ logInBtn.addEventListener("click", async (e) => {
 
   console.log(config);
 
-  const response = await fetch(`${baseURL}/api/auth/login`, {
+  const response = await fetch(`${baseURL}/auth/login`, {
     method: "POST",
     body: config,
   });

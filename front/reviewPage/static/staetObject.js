@@ -12,5 +12,7 @@ export const stateObject = {
   ],
   gotThumbnails: [
     "https://cdn.discordapp.com/attachments/919476237720772628/922814614897577984/i13672836487.jpg",
+    "https://cdn.discordapp.com/attachments/919476237720772628/922814614897577984/i13672836487.jpg",
+    "https://cdn.discordapp.com/attachments/919476237720772628/922814614897577984/i13672836487.jpg",
   ],
 };

@@ -24,21 +24,6 @@ app.use("/", express.static("indexPage"));
 const reviewPageRouter = require("./reviewPage/reviewPageRouter.js");
 app.use("/reviewPage/static", reviewPageRouter);
 
-// app.use("/reviewPage/static/*", (rqe, res, next) => {
-//   res.sendFile(path.resolve("reviewPage/static", "index.html"));
-// });
-
-// // app.use("/reviewPage", reviewPage);
-// app.use("/projects", projectsRouter);
-// app.use("/login", (req, res, next) => {
-//   res.redirect("/loginPage");
-// });
-// // app.use("/logout", logoutRouter);
-// app.use("/createProject", createProjectRouter);
-// app.get("/join", (req, res, next) => {
-//   res.redirect("/registerMember");
-// });
-
 app.use(express.static(path.join(__dirname, "/")));
 app.listen(port, () => {
   console.log("FrontEnd Server is running on port ", port);

@@ -249,3 +249,7 @@ function commentCreate(data) {
 mainArea();
 imageArea();
 commentArea();
+
+// const pathArr = window.location.pathname.split("/")
+// const  id = pathArr[pathArr.length-1]
+// console.log(id);

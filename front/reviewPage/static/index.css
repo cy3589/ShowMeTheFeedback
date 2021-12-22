@@ -103,3 +103,8 @@ article .comment input {
 .invisible {
   display: none;
 }
+.thumbnail-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}

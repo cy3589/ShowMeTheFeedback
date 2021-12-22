@@ -1,4 +1,4 @@
-const { Project, Content, User, Image } = require("../../../models");
+const { Project, Content, User } = require('../../../models');
 
 exports.getProjectList = async (req, res) => {
   const projects = await Project.find({});
@@ -6,7 +6,7 @@ exports.getProjectList = async (req, res) => {
   const result = projects.map((project) => {
     return {
       title: project.title,
-      image: project.image,
+      images: project.images,
       averageRating: project.averageRating,
       createdAt: project.createdAt,
       projectId: project.projectId,
@@ -19,8 +19,8 @@ exports.getProjectList = async (req, res) => {
 exports.getProject = async (req, res) => {
   const { projectId } = req.params;
   const project = await Project.findOne({ projectId })
-    .populate("author")
-    .populate("contents");
+    .populate('author')
+    .populate('contents');
 
   const result = {
     author: project.author.nickname,
@@ -37,24 +37,27 @@ exports.getProject = async (req, res) => {
 };
 
 exports.createProject = async (req, res) => {
-  const { email, title, description, stack, members, image } = req.body;
-
+  const { email, title, description, stack, members } = req.body;
+  const imgs = req.files.map(
+    (v) =>
+      `https://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/back/uploads/${v.filename}`
+  );
   const author = await User.findOne({ email }); // 사용자 확인
 
   const project = await Project.create({
     author,
     title,
-    // image: image ?? ' ',
+    images: imgs,
   });
 
   const content = await Content.create({
     projectId: project.projectId,
     description,
     stack,
-    members: members ?? " ",
+    members: members ?? ' ',
   });
-
-  await Project.updateOne(
+  //elice.....:5000/back/uploads/xxxx.jpg
+  http: await Project.updateOne(
     { projectId: project.projectId },
     {
       $set: {
@@ -75,7 +78,7 @@ exports.createProject = async (req, res) => {
   // TODO: 이미지 저장 imgbb 사용 여부
 
   res.status(201).json({
-    message: "프로젝트를 생성했습니다.",
+    message: '프로젝트를 생성했습니다.',
   });
 };
 
@@ -86,7 +89,7 @@ exports.updateProject = async (req, res) => {
   const checkUser = await User.findOne({ email });
   if (!checkUser.projects.includes(projectId)) {
     res.status(404);
-    throw new Error("수정 권한이 없습니다.");
+    throw new Error('수정 권한이 없습니다.');
   }
 
   const content = await Content.findOneAndUpdate(
@@ -111,7 +114,7 @@ exports.updateProject = async (req, res) => {
       },
     }
   );
-  const project = await Project.findOne({ projectId }).populate("contents");
+  const project = await Project.findOne({ projectId }).populate('contents');
   const result = {
     author: project.author.nickname,
     title: project.title,
@@ -131,12 +134,12 @@ exports.deleteProject = async (req, res) => {
   const checkUser = await User.findOne({ email });
   if (!checkUser) {
     res.status(404);
-    throw new Error("삭제 권한이 없습니다.");
+    throw new Error('삭제 권한이 없습니다.');
   }
 
   if (!checkUser.projects.includes(projectId)) {
     res.status(404);
-    throw new Error("삭제 권한이 없습니다.");
+    throw new Error('삭제 권한이 없습니다.');
   }
 
   await Project.deleteOne({ projectId });
@@ -145,6 +148,6 @@ exports.deleteProject = async (req, res) => {
   checkUser.save();
 
   res.status(200).json({
-    message: "프로젝트를 삭제했습니다.",
+    message: '프로젝트를 삭제했습니다.',
   });
 };

@@ -1,18 +1,21 @@
-const { Router } = require("express");
-const asyncHandler = require("../../../utils/asyncHandler");
+const { Router } = require('express');
+const asyncHandler = require('../../../utils/asyncHandler');
 const {
   login,
   register,
   emailRegister,
   passwordFind,
-} = require("./auth.controller");
+  googleLogin,
+} = require('./auth.controller');
 
 const router = Router();
 
-router.post("/login", asyncHandler(login));
-router.post("/register", asyncHandler(register));
-router.post("/register/email", asyncHandler(emailRegister));
-router.post("/find-password", asyncHandler(passwordFind));
+router.post('/login', asyncHandler(login));
+router.post('/register', asyncHandler(register));
+router.post('/register/email', asyncHandler(emailRegister));
+router.post('/find-password', asyncHandler(passwordFind));
+
+router.post('/google-login', asyncHandler(googleLogin));
 
 module.exports = router;
 

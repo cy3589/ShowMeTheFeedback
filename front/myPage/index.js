@@ -3,6 +3,10 @@ const myPageInputs = document.getElementsByTagName("input");
 
 let isEqual = false;
 
+//fetch로 기존 이메일, 닉네임 불러오기
+myPageInputs["email"].value = "wanna@MomsTouch.com";
+myPageInputs["nickName"].value = "원래 닉네임";
+
 myPageInputs["passwordConfirm"].addEventListener("input", () => {
   if (
     myPageInputs["password"].value !== myPageInputs["passwordConfirm"].value

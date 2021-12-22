@@ -26,6 +26,10 @@ const UserSchema = new Schema({
   token: {
     type: String,
   },
+  google: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 module.exports = UserSchema;

@@ -1,20 +1,22 @@
 require("dotenv").config();
+const asyncHandler = require("./utils/asyncHandler");
 // library
 const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const cors = require("cors");
+const passportStart = require("./passport");
+const { sign, refresh } = require("./utils/jwt");
 // routes
 const apiRouter = require("./routes");
 
-const port = 3000;
+const port = 5000;
 
 const app = express();
 
-const passportStart = require("./passport");
 passportStart();
 
-app.use(cors({ origin: "http://localhost:5000" }));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
@@ -30,14 +32,8 @@ mongoose
 
 app.use(passport.initialize());
 
-// routes
-// app.all("/*", function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   next();
-// }); // 헤더 설정
-
 app.get("/", (req, res) => {
-  res.send("Hello~!");
+  res.render("index");
 });
 
 app.get(
@@ -50,19 +46,12 @@ app.get(
 app.get(
   "/auth/google/secrets",
   passport.authenticate("google", { session: false }),
-  (req, res, next) => {
-    console.log(req.user._json.email);
-    res.render("success.ejs");
-  }
+  asyncHandler((req, res) => {
+    const accessToken = sign(req.user.userEmail);
+    const refreshToken = refresh();
+    res.status(200).json({ accessToken, refreshToken });
+  })
 );
-
-app.get("/succ", (req, res) => {
-  res.render("success.ejs");
-});
-
-app.get("/fail", (req, res) => {
-  res.render("goo.ejs");
-});
 
 app.use("/api", apiRouter);
 

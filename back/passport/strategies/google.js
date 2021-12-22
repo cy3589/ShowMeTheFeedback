@@ -1,4 +1,6 @@
 var GoogleStrategy = require("passport-google-oauth20").Strategy;
+const { User } = require("../../models/index");
+const generateRandomPassword = require("../../utils/randomPassword");
 
 module.exports = new GoogleStrategy(
   {
@@ -6,8 +8,25 @@ module.exports = new GoogleStrategy(
     clientSecret: process.env.GOOGLE_SECRET_PASSWORD,
     callbackURL: "http://localhost:5000/auth/google/secrets",
   },
-  function (accessToken, refreshToken, profile, cb) {
+  async function (accessToken, refreshToken, profile, cb) {
     const email = profile._json.email;
-    return cb(null, profile);
+    const name = profile._json.name;
+
+    const userInfo = {
+      userEmail: email,
+    };
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      await User.create({
+        email,
+        nickname: name,
+        password: generateRandomPassword(),
+        google: true,
+      });
+    }
+
+    return cb(null, userInfo);
   }
 );

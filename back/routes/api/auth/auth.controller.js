@@ -1,4 +1,3 @@
-const passport = require("passport");
 const bcrypt = require("bcrypt");
 const { userLogin, duplicateCheck } = require("../../../utils/auth");
 const { User, TempUser } = require("../../../models");
@@ -9,8 +8,6 @@ const {
   passwordValidation,
 } = require("../../../utils/validation");
 const sendMail = require("../../../utils/sendMail");
-
-// exports.googleLogin = async (req, res) => {};
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -117,5 +114,3 @@ exports.passwordFind = async (req, res) => {
     status: 201,
   });
 };
-
-// OAuth

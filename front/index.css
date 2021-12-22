@@ -498,6 +498,7 @@ textarea {
 .signUpCodeInput {
   grid-area: signUpCodeInput;
   margin: 0.5rem 1rem 0.5rem 0;
+  background-color: var(--border);
 }
 .getSignUpCodeButton {
   grid-area: getSignUpCodeButton;
@@ -535,7 +536,7 @@ textarea {
 .signUpButton {
   grid-area: signUpButton;
   padding: 10px 0 10px 0;
-  background: #ff6b6b;
+  background: var(--button-bg);
   color: white;
 }
 

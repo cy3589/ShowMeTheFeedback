@@ -16,7 +16,6 @@ logInBtn.addEventListener("click", async (e) => {
   const { data, status } = await logIn(emailValue, passwordValue);
 
   if (status === 200) {
-    console.log(data);
     for (let key in data) {
       saveToken(key, data[key]);
     }

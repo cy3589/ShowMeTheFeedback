@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- <base href="/reviewPage/static/" /> -->
     <meta charset="UTF-8" />
     <link href="index.css" rel="stylesheet" />
     <title>리뷰페이지</title>
@@ -9,6 +10,7 @@
     <input type="button" value="수정하기버튼" class="수정하기버튼" />
     <input type="button" value="수정취소하기버튼" class="수정취소하기버튼" />
     <input type="button" value="상태확인버튼" class="상태확인버튼" />
+    <input type="button" value="임의기능버튼" class="임의기능버튼" />
     <div class="show-project">
       <main>
         <article>
@@ -77,6 +79,11 @@
     </div>
     <div class="edit-project"></div>
   </body>
-  <script src="index.js"></script>
-  <script type="module" src="editProject.js"></script>
+  <!-- <script>
+    console.log(window.location.pathname);
+  </script> -->
+  <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+  <!-- <script src="../reviewPageRouter.js"></script> -->
+  <script type="module" src="index.js"></script>
+  <script type="module" src="./editProject.js"></script>
 </html>

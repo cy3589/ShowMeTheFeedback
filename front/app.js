@@ -10,7 +10,24 @@ const port = 5500;
 const app = express();
 // app.use("/", indexRouter);
 // app.use(cookieParser());
+
 app.use("/", express.static("indexPage"));
+// app.use("/reviewPage/static", (req, res, next) => {
+//   console.log(path.join(__dirname, "/reviewPage/static/index.html"));
+//   res.render(path.join(__dirname, "/reviewPage/static/index.html"));
+//   // res.contentType(path.basename("/index.html"));
+//   // res.send("adsfafs");
+// });
+
+// app.use("/reviewPage/static/*", express.static("reviewPage/static"));
+
+const reviewPageRouter = require("./reviewPage/reviewPageRouter.js");
+app.use("/reviewPage/static", reviewPageRouter);
+
+// app.use("/reviewPage/static/*", (rqe, res, next) => {
+//   res.sendFile(path.resolve("reviewPage/static", "index.html"));
+// });
+
 // // app.use("/reviewPage", reviewPage);
 // app.use("/projects", projectsRouter);
 // app.use("/login", (req, res, next) => {

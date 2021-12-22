@@ -119,3 +119,9 @@ const getInputElementsFromEditForm = () => {
     addMemberElement,
   };
 };
+
+//임의기능버튼
+document.querySelector(".임의기능버튼").addEventListener("click", (e) => {
+  console.log(window.location.pathname);
+});
+//

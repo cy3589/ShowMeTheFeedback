@@ -29,7 +29,7 @@ const wait = (delay) => new Promise((resolve) => setTimeout(resolve, delay)); //
 const getProjectList = async (lastId) => {
   // 옵저버를 이용한 인피니티 스크롤 구현 시 백엔드 요청 API에 lastID값을 날리기 위해 인자로 lastID값을 받음
   // 이용하지 않는다면 lastId는 생략 가능
-  let isGetMyProject = location.pathname.match(/\w+/g)[1] === "myProjects";
+  // let isGetMyProject = location.pathname.match(/\w+/g)[1] === "myProjects";
   let result = "";
   let temp;
   // let fetchURL = API_URL
@@ -60,10 +60,17 @@ const getProjectList = async (lastId) => {
       access: getTokenFromCookies("accessToken"),
     },
   };
-  const projects = await fetch(
-    "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/api/projects",
-    option
-  ).then((result) => result.json());
+  const getAllProjectsURL =
+    "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/api/projects";
+  const getMyProjectsURL =
+    "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/api/users/my-projects";
+  let fetchURL = getAllProjectsURL;
+  const pathNameArr = window.location.pathname.split("/");
+  if (pathNameArr[pathNameArr.length - 1] === "my-projects")
+    fetchURL = getMyProjectsURL;
+  const projects = await fetch(fetchURL, option).then((result) =>
+    result.json()
+  );
 
   // .then(console.log);
   // fetch로 데이터를 갖고온 후 사용할 값에 맞게 가공하여 projects에 저장
@@ -90,8 +97,8 @@ const getProjectList = async (lastId) => {
         ${isEnd}  
         <div class="thumbnail">
           <img src=${
-            v.thumbnails[0]
-              ? v.thumbnails[0]
+            encodeURI(v.thumbnails[0])
+              ? encodeURI(v.thumbnails[0])
               : "https://s3-alpha-sig.figma.com/img/b3fd/2d1d/de486d511bc4ffd77c7b74c5fcec860a?Expires=1640563200&Signature=Z51KL7qTLBT1rpd7tmydxvmrHZjzyqq4~gkPw28Pywih7yu~DPu2iJTwD1S1GRUFnTpin3SBEl7b0zxoDIWuZu6s4iB-~sE5aJ4T~lQtWM9tMr2MsL8B-ZFHYMCBl35Tkqr7re2sGr68aK9DsQzhNCP7u5XGVsf~AbghtRgtMyF91ZanxzgOAEtvRcIXBCix9~bsiGdDv2LJ8pmFkMl-rWhE2prGSR61kwx8lx15D2YEPW7el8zjt8Fd7soMKus5WkTO~wCgZ6l-8kDVEzKDrq891Hcy28bNdkxvDDAMx1dR5xzsU3GHn8FSQKj3i0uGG0GOJ48NUvnH~CsN2SzhNA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
           } /> 
         </div>
@@ -118,8 +125,8 @@ const firstRender = () => {
   targetEl.innerHTML = `<div class="render"></div>`;
   getProjectList().then((result) => {
     document.querySelector(".render").innerHTML = result;
-    const targets = document.querySelectorAll(".observeThis");
-    const target = targets[targets.length - 1];
+    // const targets = document.querySelectorAll(".observeThis");
+    // const target = targets[targets.length - 1];
     // io.observe(target);
   });
 };
@@ -136,8 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // 홈과 내프로젝트 페이지 전환 시 SPA처럼 동작하도록 구현
   document.body.addEventListener("click", (e) => {
     if (
-      e.target.matches("[id='header-home']") ||
-      e.target.matches("[id='header-my-project']")
+      e.target.className === "naviBar--home-link" ||
+      e.target.className === "naviBar--my-projects-link"
     ) {
       e.preventDefault();
       navigateTo(e.target.href);

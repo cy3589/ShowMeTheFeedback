@@ -23,6 +23,8 @@ export const submitFunc = () => {
   formData.append("mainFunc", mainFunc);
   formData.append("skills", skills);
   formData.append("member", JSON.stringify(member));
+  console.log(JSON.stringify(member));
+  console.log(member);
   for (let i = 0; i < postThumbnailsData.length; i++) {
     formData.append("thumbnails", postThumbnailsData[i]);
   }

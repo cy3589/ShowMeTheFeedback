@@ -1,18 +1,4 @@
 export const saveToken = (tokenName, value) => {
-  const hour = "3600";
-
-  if (tokenName === "accessToken") {
-    document.cookie = `${tokenName}=${value}; path=/; max-age=${hour};`; //1시간
-    return;
-  }
-
-  if (tokenName === "refreshToken") {
-    document.cookie = `${tokenName}=${value}; path=/; max-age=${String(
-      Number(hour) * 24 * 14
-    )}`;
-    return;
-  }
-
   document.cookie = `${tokenName}=${value}; path=/;`;
 };
 

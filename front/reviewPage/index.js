@@ -1,8 +1,9 @@
 import { stateObject, setStateObject } from "./staetObject.js";
 const pathArr = window.location.pathname.split("/");
-export const id = "nfhgZgFJIeFopxIyb2tXb";
-import { getTokenFromCookies } from "../auth/token.js"
-const BACKEND_BASE_URL = "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000"
+export const id = pathArr[pathArr.length - 1];
+import { getTokenFromCookies } from "../auth/token.js";
+const BACKEND_BASE_URL =
+  "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
 
 // const postCommentOption = {
 //   method: "post",
@@ -38,7 +39,8 @@ function mainArea() {
   fetch(`${BACKEND_BASE_URL}/api/projects/${id}`, {
     method: "GET",
     headers: {
-      access:getTokenFromCookies("accessToken")},
+      access: getTokenFromCookies("accessToken"),
+    },
   })
     .then((res) => res.json())
     .then((data) => {
@@ -68,11 +70,12 @@ function mainArea() {
 
 // 댓글 조회 관련
 function commentArea() {
-  fetch(`${BACKEND_BASE_URL}/api/comments/${id}`,{
-    headers: { 
+  fetch(`${BACKEND_BASE_URL}/api/comments/${id}`, {
+    headers: {
       "Content-Type": "application/json",
-      access:getTokenFromCookies("accessToken"),
-    }})
+      access: getTokenFromCookies("accessToken"),
+    },
+  })
     .then((res) => res.json())
     .then((data) => {
       console.log(data.comments);
@@ -223,7 +226,7 @@ function commentList(data) {
     let commentTemplate = document.getElementsByClassName("commentTemplate")[0];
     let node = document.importNode(commentTemplate.content, true);
 
-    node.querySelector(".commentAuthor").innerText = data[i].name;
+    node.querySelector(".commentAuthor").innerText = data[i].author;
     node.querySelector(".commentDate").innerText = data[i].commentDate;
     node.querySelector(".commentContent").style.width = "400px";
     node.querySelector(".commentContent").style.height = "100px";
@@ -277,8 +280,10 @@ function commentCreate() {
   });
 
   commentRegBtn.addEventListener("click", async (e) => {
-    const content = e.target.parentElement.parentElement.querySelector(".writeCommentContent").value;
-    if(!content){
+    const content = e.target.parentElement.parentElement.querySelector(
+      ".writeCommentContent"
+    ).value;
+    if (!content) {
       return alert("댓글을 입력해주세요");
     }
     const rating =
@@ -291,18 +296,21 @@ function commentCreate() {
     console.log("게시글의 id는 :", id);
     const postCommentOptions = {
       method: "post",
-      headers: { 
+      headers: {
         "Content-Type": "application/json",
-        access:getTokenFromCookies("accessToken"),
+        access: getTokenFromCookies("accessToken"),
       },
       body: JSON.stringify({
         content,
-        rating
+        rating,
       }),
     };
-    await fetch(`http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/api/comments/${id}`,postCommentOptions)
-    .then(result=>result.json())
-    .then(console.log)
+    await fetch(
+      `http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/api/comments/${id}`,
+      postCommentOptions
+    )
+      .then((result) => result.json())
+      .then(console.log);
 
     // await fetch("http://localhost:8080/commentPost", options)
     //   .then((result) => result.json())

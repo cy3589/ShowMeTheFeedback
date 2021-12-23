@@ -5,6 +5,8 @@ const path = require("path");
 // const logoutRouter = require("./logoutPage/logoutRouter.js");
 const cookieParser = require("cookie-parser");
 // const projectRouter = 11;
+const reviewPageRouter = require("./reviewPage/reviewPageRouter.js");
+const projectsRouter = require("./Projects/projectsRouter.js");
 const port = 80;
 
 const app = express();
@@ -18,8 +20,8 @@ app.use("/", express.static("indexPage"));
 //   // res.contentType(path.basename("/index.html"));
 //   // res.send("adsfafs");
 // });
-const reviewPageRouter = require("./reviewPage/reviewPageRouter.js");
 app.use("/reviewPage", reviewPageRouter);
+app.use("/Projects", projectsRouter);
 
 app.use(express.static(path.join(__dirname, "/")));
 

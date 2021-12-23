@@ -25,3 +25,13 @@ logInBtn.addEventListener("click", async (e) => {
     alert("이메일 또는 비밀번호를 확인해주세요");
   }
 });
+
+// const baseURL =
+//   "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
+
+// const logInBtnByGoogle = document.querySelector(".loginByGoogleButton");
+
+// logInBtnByGoogle.addEventListener("click", (e) => {
+//   history.pushState({ data: data }, null, `${baseURL}/auth/google`); //실제 url = /project/projectId123 => fetch res.data.projectId
+//   location.reload();
+// });

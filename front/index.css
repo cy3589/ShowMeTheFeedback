@@ -629,3 +629,20 @@ textarea {
   font-size: 14px;
   border-radius: 4px;
 }
+
+/* CreateProjectButton */
+
+.create-project__button {
+  border: none;
+  width: 80px;
+  height: 80px;
+  background-color: var(--addButton-bg);
+  border-radius: 50%;
+  color: white;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+  font-size: 50px;
+
+  position: fixed;
+  top: 85%;
+  left: 85%;
+}

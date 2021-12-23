@@ -3,6 +3,7 @@ function mainArea() {
   fetch("./author.json")
     .then((res) => res.json())
     .then((data) => {
+      stateProjectSave(data);
       mainContentInfo(data);
     });
 }
@@ -13,6 +14,7 @@ function imageArea() {
     .then((res) => res.json())
     .then((data) => {
       mainContentImage(data);
+      commentCreate();
     });
 }
 
@@ -21,34 +23,30 @@ function commentArea() {
   fetch("./comment.json")
     .then((res) => res.json())
     .then((data) => {
-      commentList(data);
+      stateCommentSave(data);
       mainContentStar(data);
       mainContentEval(data);
-      commentCreate(data);
+      commentList(stateComment);
     });
 }
 
 //댓글 작성 관련
-const getAuthor = async () => {
-  const res = await fetch("./author.json");
-  const user = await res.json();
-  return user.user;
-};
 
-function commentAreaCreate() {
-  fetch("./comment.json", {
-    method: "post",
-    body: JSON.stringify({
-      name: "yeri",
-      batch: 1,
-    }),
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      if (res.success) {
-        alert("저장 완료");
-      }
-    });
+//상태 저장
+
+let stateProject = [];
+let stateComment = [];
+
+function stateProjectSave(data) {
+  for (let i = 0; i < data.length; i++) {
+    stateProject.push(data[i]);
+  }
+}
+
+function stateCommentSave(data) {
+  for (let i = 0; i < data.length; i++) {
+    stateComment.push(data[i]);
+  }
 }
 
 //날짜 출력하기
@@ -131,14 +129,14 @@ function mainContentInfo(data) {
     "project-Container_MembersAndJobs"
   )[0];
 
-  projectTitle.innerText = data[0].projectName;
-  projectAuthor.innerText = data[0].teamName;
-  projectDate.innerText = data[0].date;
-  projectMainFunc.innerText = data[0].mainFunc;
-  projectSkills.innerHTML = data[0].skills;
+  projectTitle.innerText = data.projectName;
+  projectAuthor.innerText = data.teamName;
+  projectDate.innerText = data.date;
+  projectMainFunc.innerText = data.mainFunc;
+  projectSkills.innerHTML = data.skills;
 
-  for (let i = 0; i < data[0].member.length; i++) {
-    projectMembersAndJobs.innerHTML += `<div class = "project-Container_MembersAndJobs_list${i}">${data[0].member[i].name}(${data[0].member[i].job}) : ${data[0].member[i].task}<div>`;
+  for (let i = 0; i < data.member.length; i++) {
+    projectMembersAndJobs.innerHTML += `<div class = "project-Container_MembersAndJobs_list${i}">${data.member[i].name}(${data.member[i].job}) : ${data.member[i].task}</div>`;
   }
 }
 
@@ -163,6 +161,8 @@ function mainContentEval(data) {
 
 //댓글 목록
 function commentList(data) {
+  let node_list = [];
+
   for (let i = 0; i < data.length; i++) {
     let commentTemplate = document.getElementsByClassName("commentTemplate")[0];
     let node = document.importNode(commentTemplate.content, true);
@@ -172,14 +172,26 @@ function commentList(data) {
     node.querySelector(".commentContent").style.width = "400px";
     node.querySelector(".commentContent").style.height = "100px";
     node.querySelector(".commentContent").innerText = data[i].body;
+
+    node_list.push(node.querySelector(".commentContent"));
     if (data[i].body.length <= 100) {
       node.querySelector(".commentMoreContent").style.display = "none";
     } else {
       node.querySelector(".commentContent").style.overflow = "hidden";
+      node
+        .querySelector(".commentMoreContent")
+        .addEventListener("click", (e) => {
+          e.preventDefault();
+          if (e.target.innerText === "전체 내용 보기") {
+            node_list[i].style.height = "auto";
+            e.target.innerText = "간략히 보기";
+          } else {
+            node_list[i].style.height = "100px";
+            e.target.innerText = "전체 내용 보기";
+          }
+        });
     }
-    node.querySelector(".commentMoreContent").addEventListener("click", (e) => {
-      e.preventDefault();
-    });
+
     node.querySelector(".commentStar").style.position = "relative";
     node.querySelector(".commentStar").style.fontSize = "1rem";
     node.querySelector(".commentStar").style.color = "#ddd";
@@ -198,51 +210,44 @@ function commentList(data) {
 
 //댓글 등록
 
-function commentCreate(data) {
-  // let commentBtn = document.getElementsByClassName("commentBtn")[0];
-
-  // commentBtn.addEventListener("click", () => {
-  //   let commentTemplate = document.getElementsByClassName("commentTemplate")[0];
-  //   let node = document.importNode(commentTemplate.content, true);
-  //   let writeCommentContent = document.getElementsByClassName(
-  //     "writeCommentContent"
-  //   )[0];
-
-  // data.push({
-  //   postId: 2356,
-  //   id: 2356,
-  //   name: "집게사장",
-  //   email: "asdf@naver.com",
-  //   starScore: 9,
-  //   commentDate: dateFormat(new Date()),
-  //   commentDate: writeCommentContent.value,
-  // });
-
-  //     commentList(data);
-
-  // node.querySelector(".commentAuthor").innerText = User.nickName;
-  // node.querySelector(".commentDate").innerText = User.commentDate;
-  // if (writeCommentContent.value.length <= 100) {
-  //   node.querySelector(".commentMoreContent").style.display = "none";
-  //   node.querySelector(".commentContent").innerText =
-  //     writeCommentContent.value;
-  // } else {
-  //   node.querySelector(".commentContent").innerText =
-  //     writeCommentContent.value.slice(0, 100) + "...";
-  // }
-  // node.querySelector(".commentContent").innerText = writeCommentContent.value;
-  // node.querySelector(".commentStar").innerText += "asdf";
-  // document.getElementsByClassName("commentsList")[0].appendChild(node);
-  // });
-
+function commentCreate() {
   let commentRegStarDrag =
     document.getElementsByClassName("commentRegStarDrag")[0];
-  commentRegStarDrag.addEventListener("input", () => {
+  let commentRegBtn = document.getElementsByClassName("commentRegBtn")[0];
+  commentRegStarDrag.addEventListener("input", (e) => {
     let commentRegStarMask =
       document.getElementsByClassName("commentRegStarMask")[0];
-    let x = document.getElementsByClassName("commentRegStarMask")[0];
+    commentRegStarMask.style.width = `${e.target.value * 10}%`;
+  });
 
-    commentRegStarMask.style.width = `${x.value * 10}%`;
+  commentRegBtn.addEventListener("click", () => {
+    let comment = {
+      postId: 1,
+      id: 1,
+      name: "김용규",
+      email: "Eliseo@gardner.biz",
+      rating: document.getElementsByClassName("commentRegStarDrag")[0].value,
+      commentDate: dateFormat(new Date()),
+      body: document.getElementsByClassName("writeCommentContent")[0].value,
+    };
+    stateComment.push(comment);
+
+    fetch("http://localhost:9999/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(stateComment),
+    })
+      .then((res) => {
+        if (res.status === 200 || res.status === 201) {
+          res.json().then((json) => console.log(json));
+        } else {
+          console.error(res.statusText);
+        }
+      })
+      .catch((err) => console.error(err));
+    commentList(stateComment);
   });
 }
 

@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="index.css" rel="stylesheet" />
     <title></title>
   </head>
@@ -9,6 +11,10 @@
     <script src="index.js"></script>
     <main>
       <article>
+        <div>
+          <button class="project-Modify-Button">수정</button>
+          <button class="project-Delete-Button">삭제</button>
+        </div>
         <div>
           <div class="project-Title"></div>
           <div class="project-Author"></div>
@@ -23,19 +29,19 @@
           <div>총 평점</div>
           <span class="scoreStar">
             ★★★★★
-            <span class="scoreStarMask">★★★★★</div>
-          </div>
+            <span class="scoreStarMask">★★★★★</span>
+          </span>
           <div>총 평가자 수</div>
           <div class="mainContentEval"></div>
         </div>
         <h3>프로젝트 설명</h3>
         <div class="project-Container">
-        <div>주요 기능</div>
-        <div class ="project-Container_mainFunc"></div>
-        <div>사용한 기술 스택</div>
-        <div class ="project-Container_skills"></div>
-        <div>참여 팀원 & 담당 업무</div>
-        <div class ="project-Container_MembersAndJobs"></div>
+          <div>주요 기능</div>
+          <div class="project-Container_mainFunc"></div>
+          <div>사용한 기술 스택</div>
+          <div class="project-Container_skills"></div>
+          <div>참여 팀원 & 담당 업무</div>
+          <div class="project-Container_MembersAndJobs"></div>
         </div>
         <h3>평가 댓글</h3>
         <div class="inputTagForm">
@@ -45,8 +51,15 @@
           <div>평점</div>
           <span class="commentRegStar">
             ★★★★★
-            <span class ="commentRegStarMask">★★★★★</span>
-            <input type="range" class="commentRegStarDrag" value="1" step="1" min="0" max="10">
+            <span class="commentRegStarMask">★★★★★</span>
+            <input
+              type="range"
+              class="commentRegStarDrag"
+              value="1"
+              step="1"
+              min="0"
+              max="10"
+            />
           </span>
           <button class="commentRegBtn">등록</button>
         </div>
@@ -62,7 +75,7 @@
       <div>평점 :</div>
       <span class="commentStar">
         ★★★★★
-        <span class ="commentStarMask">★★★★★</span>
+        <span class="commentStarMask">★★★★★</span>
       </span>
       <a class="commentMoreContent" href="">전체 내용 보기</a>
     </template>

@@ -1,6 +1,7 @@
 import { getTokenFromCookies } from "../auth/token.js";
 import { authorizedNaviBar } from "./authorizedNavibar.js";
 import { unauthorizedNaviBar } from "./unauthorizedNavibar.js";
+야;
 import { refreshToken as ref } from "../api/refreshToken.js";
 import { logOut } from "../api/logOut.js";
 import { deleteAuthToken } from "../auth/token.js";

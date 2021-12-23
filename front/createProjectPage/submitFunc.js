@@ -23,6 +23,8 @@ export const submitFunc = () => {
   formData.append("mainFunc", mainFunc);
   formData.append("skills", skills);
   formData.append("member", JSON.stringify(member));
+  console.log(JSON.stringify(member));
+  console.log(member);
   for (let i = 0; i < postThumbnailsData.length; i++) {
     formData.append("thumbnails", postThumbnailsData[i]);
   }
@@ -38,8 +40,9 @@ export const submitFunc = () => {
     .then((result) =>result.json())
     .then((result) => {
       if(result.projectId){
-        const { projectId}  = result;
-        window.location.href = `/reviewPage/${projectId}`;
+        const { projectId }  = result;
+        // window.location.href = `/reviewPage/${projectId}`;
+        
       }
     })
 }

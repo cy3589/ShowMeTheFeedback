@@ -54,7 +54,8 @@ a:hover {
 
 .card .thumbnail {
   display: block;
-  height: 70%;
+  height: 300px;
+  border-bottom: 1px solid #ddd;
 }
 
 .thumbnail > img {
@@ -109,13 +110,12 @@ a:hover {
 }
 
 .title {
-  min-width: 100px;
-  font-size: medium;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  width:150px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
+
 #header {
   width: 100%;
   position: fixed;

@@ -69,10 +69,11 @@ const getProjectList = async (lastId) => {
   // fetch로 데이터를 갖고온 후 사용할 값에 맞게 가공하여 projects에 저장
   // projects의 데이터를 순회하며 innerHTML로 넣을 값으로 가공하여 results생성
   [].forEach.call(projects, (v, i) => {
-    let isEnd = "";
+    
+    let isEnd = ""; 
     let rating = "";
     console.log(v);
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {  
       if (i < parseInt(v.averageRating, 10))
         rating += /*html*/ `<span class="fill-star">★</span>`;
       else rating += /*html*/ `<span class="star">☆</span>`;
@@ -90,8 +91,8 @@ const getProjectList = async (lastId) => {
         ${isEnd}  
         <div class="thumbnail">
           <img src=${
-            v.thumbnails[0]
-              ? v.thumbnails[0]
+            encodeURI(v.thumbnails[0])
+              ? encodeURI(v.thumbnails[0])
               : "https://s3-alpha-sig.figma.com/img/b3fd/2d1d/de486d511bc4ffd77c7b74c5fcec860a?Expires=1640563200&Signature=Z51KL7qTLBT1rpd7tmydxvmrHZjzyqq4~gkPw28Pywih7yu~DPu2iJTwD1S1GRUFnTpin3SBEl7b0zxoDIWuZu6s4iB-~sE5aJ4T~lQtWM9tMr2MsL8B-ZFHYMCBl35Tkqr7re2sGr68aK9DsQzhNCP7u5XGVsf~AbghtRgtMyF91ZanxzgOAEtvRcIXBCix9~bsiGdDv2LJ8pmFkMl-rWhE2prGSR61kwx8lx15D2YEPW7el8zjt8Fd7soMKus5WkTO~wCgZ6l-8kDVEzKDrq891Hcy28bNdkxvDDAMx1dR5xzsU3GHn8FSQKj3i0uGG0GOJ48NUvnH~CsN2SzhNA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
           } /> 
         </div>

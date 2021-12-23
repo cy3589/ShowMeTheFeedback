@@ -1,6 +1,6 @@
 import { stateObject, setStateObject } from "./staetObject.js";
 const pathArr = window.location.pathname.split("/");
-export const id = "nfhgZgFJIeFopxIyb2tXb";
+export const id = pathArr[pathArr.length-1];
 import { getTokenFromCookies } from "../auth/token.js"
 const BACKEND_BASE_URL = "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000"
 
@@ -222,8 +222,8 @@ function commentList(data) {
   for (let i = 0; i < data.length; i++) {
     let commentTemplate = document.getElementsByClassName("commentTemplate")[0];
     let node = document.importNode(commentTemplate.content, true);
-
-    node.querySelector(".commentAuthor").innerText = data[i].name;
+    
+    node.querySelector(".commentAuthor").innerText = data[i].author;
     node.querySelector(".commentDate").innerText = data[i].commentDate;
     node.querySelector(".commentContent").style.width = "400px";
     node.querySelector(".commentContent").style.height = "100px";

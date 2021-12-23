@@ -613,3 +613,18 @@ textarea {
   font-size: 14px;
   border-radius: 4px;
 }
+
+/* hamburger */
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .naviBar__elements-container,
+  .naviBar__logOut {
+    display: none;
+  }
+  .fa-bars {
+    display: block;
+  }
+}

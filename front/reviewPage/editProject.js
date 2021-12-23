@@ -53,15 +53,15 @@ document.querySelector(".project-Modify-Button").addEventListener("click", (e) =
     const memberTaskElement = memberElement.querySelector(".member-task");
     const index = i;
     memberNameElement.addEventListener("input", (e) => {
-      newStateObject.member[index].name = e.target.value;
+      newStateObject.members[index].name = e.target.value;
       setIconTeamDiscribe();
     });
     memberJobElement.addEventListener("input", (e) => {
-      newStateObject.member[index].job = e.target.value;
+      newStateObject.members[index].job = e.target.value;
       setIconTeamDiscribe();
     });
     memberTaskElement.addEventListener("input", (e) => {
-      newStateObject.member[index].task = e.target.value;
+      newStateObject.members[index].task = e.target.value;
       setIconTeamDiscribe();
     });
     const deleteButton = document.createElement("a");
@@ -102,7 +102,7 @@ document.querySelector(".project-Modify-Button").addEventListener("click", (e) =
   newStateObject.currentThumbnails.forEach((v, i) => {
     targetElement.innerHTML += /* html */ `
       <div>
-        <img src=${v} alt="${v}" class="thumbnail-image current-image" />
+        <img src=${encodeURI(v)} alt="${encodeURI(v)}" class="thumbnail-image current-image" />
         <input type="button" class="thumbnail-delete" value="삭제하기" />
       </div>
       `;
@@ -113,7 +113,7 @@ document.querySelector(".project-Modify-Button").addEventListener("click", (e) =
   newStateObject.additionalThumbnails.forEach((v, i) => {
     targetElement.innerHTML += /* html */ `
       <div>
-        <img src=${v} alt="${v}" class="thumbnail-image" />
+        <img src=${encodeURI(v)} alt="${encodeURI(v)}" class="thumbnail-image" />
         <input type="button" class="thumbnail-delete" value="삭제하기" />
       </div>
       `;

@@ -15,7 +15,7 @@ export const addMember = () => {
     const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
       e.target.parentNode
     );
-    stateObject.member[index].name = e.target.value;
+    stateObject.members[index].name = e.target.value;
     setIconTeamDiscribe();
   });
 
@@ -27,7 +27,7 @@ export const addMember = () => {
     const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
       e.target.parentNode
     );
-    stateObject.member[index].job = e.target.value;
+    stateObject.members[index].job = e.target.value;
     setIconTeamDiscribe();
   });
 
@@ -39,7 +39,7 @@ export const addMember = () => {
     const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
       e.target.parentNode
     );
-    stateObject.member[index].task = e.target.value;
+    stateObject.members[index].task = e.target.value;
     setIconTeamDiscribe();
   });
 

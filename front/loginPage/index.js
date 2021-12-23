@@ -19,6 +19,8 @@ logInBtn.addEventListener("click", async (e) => {
     for (let key in data) {
       saveToken(key, data[key]);
     }
+    history.pushState({ data: data }, null, "../Projects"); //실제 url = /project/projectId123 => fetch res.data.projectId
+    location.reload();
   } else {
     alert("이메일 또는 비밀번호를 확인해주세요");
   }

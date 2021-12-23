@@ -1,5 +1,26 @@
 const bcrypt = require("bcrypt");
-const { User } = require("../../../models");
+const { User, Project } = require("../../../models");
+
+exports.getMyProjects = async (req, res) => {
+  const { email } = req;
+
+  const user = await User.findOne({ email });
+
+  const projects = await Project.find({ author: user }).populate("author");
+
+  const result = projects.map((project) => {
+    return {
+      projectName: project.projectName,
+      author: project.author.nickname,
+      thumbnails: project.thumbnails,
+      averageRating: project.averageRating,
+      createdAt: project.createdAt,
+      projectId: project.projectId,
+    };
+  });
+
+  res.status(200).json(result);
+};
 
 exports.getMyAccount = async (req, res) => {
   const { email } = req;

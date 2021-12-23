@@ -2,9 +2,10 @@ const baseURL =
   "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
 
 /**
+ * instance화 임시중지(24일 리팩토링시 다시 시도)
  *
  * @param {*} path : {baseURL}/path
- * @param {*} params : {header, body}
+ * @param {*} params : {headers, body}
  * @param {*} method : GET/POST/DELETE
  * @returns : {response.data, response.status}
  */
@@ -15,8 +16,11 @@ export async function fetchInstance(path, params, method) {
       "Content-Type": "application/json",
       ...params.headers,
     },
-    ...params.body,
+    body: JSON.stringify(params.body),
   };
+  // if (params.body !== undefined) {
+  //   config.body = SON.stringify(params.body);
+  // }
 
   console.log(config);
   const response = await fetch(`${baseURL}${path}`, config);

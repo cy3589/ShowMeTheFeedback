@@ -354,9 +354,20 @@ article .comment input {
 }
 
 .commentsList .comment .commentContent {
-  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   width: 100% !important;
-  margin-bottom: 6px;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 5; /* 라인수 */
+
+  word-wrap: break-word;
+}
+
+.forShort {
+  -webkit-box-orient: vertical;
 }
 
 .commentsList .comment .commentDate {

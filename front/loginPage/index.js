@@ -29,9 +29,14 @@ logInBtn.addEventListener("click", async (e) => {
 // const baseURL =
 //   "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
 
-// const logInBtnByGoogle = document.querySelector(".loginByGoogleButton");
+const logInBtnByGoogle = document.querySelector(".loginByGoogleButton");
 
-// logInBtnByGoogle.addEventListener("click", (e) => {
-//   history.pushState({ data: data }, null, `${baseURL}/auth/google`); //실제 url = /project/projectId123 => fetch res.data.projectId
-//   location.reload();
-// });
+logInBtnByGoogle.addEventListener("click", async (e) => {
+  const res = await fetch(
+    "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/auth/google/secrets",
+    {
+      method: "GET",
+    }
+  );
+  console.log(res.data);
+});

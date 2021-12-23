@@ -207,7 +207,7 @@ function mainContentStar(data) {
 
   let avg = sum / data.length;
 
-  scoreStarMask.style.width = `${avg * 10}%`;
+  scoreStarMask.style.width = `${avg * 20}%`;
 }
 
 //상세 페이지 본문 평가한 사람의 수
@@ -233,19 +233,23 @@ function commentList(data) {
     node.querySelector(".commentContent").innerText = data[i].content;
 
     node_list.push(node.querySelector(".commentContent"));
+    node_list[i].classList.add("forShort");
     if (data[i].content.length <= 100) {
       node.querySelector(".commentMoreContent").style.display = "none";
     } else {
       node.querySelector(".commentContent").style.overflow = "hidden";
+
       node
         .querySelector(".commentMoreContent")
         .addEventListener("click", (e) => {
           e.preventDefault();
           if (e.target.innerText === "전체 내용 보기") {
             node_list[i].style.height = "auto";
+            node_list[i].classList.remove("forShort");
             e.target.innerText = "간략히 보기";
           } else {
             node_list[i].style.height = "100px";
+            node_list[i].classList.add("forShort");
             e.target.innerText = "전체 내용 보기";
           }
         });

@@ -1,11 +1,24 @@
+import { getUserValue } from "../api/getUserValue.js";
+
 const submitBtn = document.querySelector(".my-page__submit-button");
 const myPageInputs = document.getElementsByTagName("input");
 
 let isEqual = false;
 
 //fetch로 기존 이메일, 닉네임 불러오기
-myPageInputs["email"].value = "wanna@MomsTouch.com";
-myPageInputs["nickName"].value = "원래 닉네임";
+globalThis.addEventListener("load", async () => {
+  const userValues = await getUserValue();
+
+  if (userValues.status !== 200) {
+    alert("로그인이 필요합니다.");
+    history.pushState({ data: null }, null, "../loginPage");
+    location.reload();
+    return;
+  }
+
+  myPageInputs["email"].value = userValues.data.email;
+  myPageInputs["nickName"].value = userValues.data.nickname;
+});
 
 myPageInputs["passwordConfirm"].addEventListener("input", () => {
   if (

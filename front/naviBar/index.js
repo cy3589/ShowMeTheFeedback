@@ -1,4 +1,4 @@
-import { deleteAuthToken, getTokenFromCookies } from "../auth/token.js";
+import { getTokenFromCookies } from "../auth/token.js";
 import { authorizedNaviBar } from "./authorizedNavibar.js";
 import { unauthorizedNaviBar } from "./unauthorizedNavibar.js";
 import { refreshToken as ref } from "../api/refreshToken.js";
@@ -23,15 +23,13 @@ globalThis.addEventListener("load", async () => {
 
   const logOutBtn = document.querySelector(".naviBar__logOut");
 
-  logOutBtn.addEventListener("click", async (e) => {
+  logOutBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
-    const logOutRes = logOut();
-    deleteAuthToken("accessToken");
-    deleteAuthToken("refreshToken");
+    logOut();
 
     alert("로그아웃 되었습니다.");
-    history.pushState({ data: logOutRes }, null, "../loginPage");
+    history.pushState({ data: null }, null, "../loginPage");
     location.reload();
   });
 });

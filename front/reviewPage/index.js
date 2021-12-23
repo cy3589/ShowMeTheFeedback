@@ -3,7 +3,7 @@ const pathArr = window.location.pathname.split("/");
 export const id = pathArr[pathArr.length-1];
 import { getTokenFromCookies } from "../auth/token.js"
 const BACKEND_BASE_URL = "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000"
-
+const now = new Date();
 // const postCommentOption = {
 //   method: "post",
 //   headers: {
@@ -48,10 +48,13 @@ function mainArea() {
       // stateProjectSave(stateObject);
       // mainContentInfo(stateObject);
       // mainContentImage(stateObject.gotThumbnails);
+      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
       console.log(data);
+      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
       stateProjectSave(data);
       mainContentInfo(data);
       mainContentImage(data.thumbnails);
+      mainContentStar(data.averageRating);
     });
 }
 
@@ -66,6 +69,8 @@ function mainArea() {
 //     });
 // }
 
+
+
 // 댓글 조회 관련
 function commentArea() {
   fetch(`${BACKEND_BASE_URL}/api/comments/${id}`,{
@@ -75,11 +80,13 @@ function commentArea() {
     }})
     .then((res) => res.json())
     .then((data) => {
+      console.log("**************************");
+      console.log(data);
+      console.log("**************************");
       console.log(data.comments);
-      stateCommentSave(data.comments);
-      mainContentStar(data.comments);
+      // stateCommentSave(data.comments);
       mainContentEval(data.comments);
-      commentList(stateComment);
+      commentList(data.comments);
       commentCreate();
     });
 }
@@ -97,11 +104,11 @@ function stateProjectSave(data) {
   }
 }
 
-function stateCommentSave(data) {
-  for (let i = 0; i < data.length; i++) {
-    stateComment.push(data[i]);
-  }
-}
+// function stateCommentSave(data) {
+//   for (let i = 0; i < data.length; i++) {
+//     stateComment.push(data[i]);
+//   }
+// }
 
 //날짜 출력하기
 const getProjectDateFormat = (dateObject) => {
@@ -119,26 +126,42 @@ const getProjectDateFormat = (dateObject) => {
     Date
   return result;
 }
-const toStringAndFillZero = (STR)=> STR.toString().padStart(2,"0");
-const getCommentDateFormat = (dateObject) => {
+
+// const toStringAndFillZero = (STR)=> STR.toString().padStart(2,"0");
+const getAgoStringComment = (dateObject) => {
+  const dateDiff =  now - dateObject;
+  let AgoMinute = Math.round(dateDiff/(1000*60));
+  if(AgoMinute === 0)
+    return `방금 전`
+  if(AgoMinute < 60)
+    return `${AgoMinute}분 전`
+  let AgoTime = parseInt(AgoMinute/60, 10);
+  AgoMinute -= AgoTime * 60;
+  if(AgoTime <24)
+    return `${Math.round(AgoTime + AgoMinute/60)}시간 전`
+  
+  console.log();
+  console.log(now);
+  console.log(dateObject);
   let Year = dateObject.getFullYear();
   let Month = dateObject.getMonth() + 1;
   let Date = dateObject.getDate();
-  let Hour = toStringAndFillZero(dateObject.getHours());
-  let Minutes = toStringAndFillZero(dateObject.getMinutes());
-  let Seconds = toStringAndFillZero(dateObject.getSeconds());
+  // let Hour = toStringAndFillZero(dateObject.getHours());
+  // let Minutes = toStringAndFillZero(dateObject.getMinutes());
+  // let Seconds = toStringAndFillZero(dateObject.getSeconds());
   let result =
     Year +
     "." +
     Month +
     "." +
-    Date +
-    " " +
-    Hour +
-    ":" +
-    Minutes +
-    ":" +
-    Seconds;
+    Date;
+    //  +
+    // " " +
+    // Hour +
+    // ":" +
+    // Minutes +
+    // ":" +
+    // Seconds;
   return result;
 }
 
@@ -209,16 +232,10 @@ function mainContentInfo(data) {
 }
 
 //상세 페이지 본문 별점
-function mainContentStar(data) {
+function mainContentStar(avg) {
   let scoreStarMask = document.getElementsByClassName("scoreStarMask")[0];
-  let sum = 0;
-  for (let i = 0; i < data.length; i++) {
-    sum = sum + data[i].rating;
-  }
 
-  let avg = sum / data.length;
-
-  scoreStarMask.style.width = `${avg * 10}%`;
+  scoreStarMask.style.width = `${Number(avg) * 20}%`;
 }
 
 //상세 페이지 본문 평가한 사람의 수
@@ -230,15 +247,13 @@ function mainContentEval(data) {
 //댓글 목록
 function commentList(data) {
   let node_list = [];
-  console.log("@@@@@@@@");
-  console.log(data);
-  console.log("@@@@@@@@");
   for (let i = 0; i < data.length; i++) {
     let commentTemplate = document.getElementsByClassName("commentTemplate")[0];
+    console.log("1341241324132441243124312413r1424312r1234r2rd123r32");
     let node = document.importNode(commentTemplate.content, true);
-    
+
     node.querySelector(".commentAuthor").innerText = data[i].author;
-    node.querySelector(".commentDate").innerText = getCommentDateFormat(new Date(data[i].createdAt));
+    node.querySelector(".commentDate").innerText = getAgoStringComment(new Date(data[i].createdAt));
     node.querySelector(".commentContent").style.width = "400px";
     node.querySelector(".commentContent").style.height = "100px";
     node.querySelector(".commentContent").innerText = data[i].content;

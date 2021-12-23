@@ -1,5 +1,5 @@
 export const saveToken = (tokenName, value) => {
-  const hour = 3600;
+  const hour = 20;
 
   if (tokenName === "accessToken") {
     document.cookie = `${tokenName}=${value}; path=/; max-age=${hour}`; //1시간

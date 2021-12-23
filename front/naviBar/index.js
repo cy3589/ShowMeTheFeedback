@@ -13,7 +13,13 @@ globalThis.addEventListener("load", async () => {
   const accExpired = accessToken === undefined ? true : false; //만료되었다면
   if (accExpired) {
     const res = await ref();
-    console.log("tokenRefresh!", res); //acc, ref토큰을 리프레시받는다
+    if (res.status === 200) {
+      for (let key in data) {
+        saveToken(key, data[key]);
+      }
+      console.log("tokenRefresh!", res); //acc, ref토큰을 리프레시받는다
+    }
+    console.log("refresh에 문제가 있습니다!", res);
   }
 
   const logOutBtn = document.querySelector(".naviBar__logOut");

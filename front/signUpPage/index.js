@@ -9,7 +9,7 @@ const submitBtn = document.querySelector(".signUpButton");
 const nickNameValue = document.querySelector(".nickNameInput");
 const emailValue = document.querySelector(".emailInput");
 
-getSignUpCodeButton.addEventListener("click", (e) => {
+getSignUpCodeButton.addEventListener("click", async (e) => {
   e.preventDefault();
 
   if (
@@ -21,15 +21,18 @@ getSignUpCodeButton.addEventListener("click", (e) => {
     return;
   }
 
-  const { data, status } = signUpCode(nickNameValue.value, emailValue.value);
+  const { data, status } = await signUpCode(
+    nickNameValue.value,
+    emailValue.value
+  );
   console.log(data, status);
   alert("인증코드가 발송되었습니다.");
-  getSignUpCodeButton.innerText = "발송됐습니다";
+  getSignUpCodeButton.innerText = "인증코드 재발송";
   signUpCodeInput.disabled = false;
   signUpCodeInput.style.backgroundColor = "white";
 });
 
-submitBtn.addEventListener("click", (e) => {
+submitBtn.addEventListener("click", async (e) => {
   e.preventDefault();
 
   if (signUpCodeInput.value === "") {
@@ -42,7 +45,7 @@ submitBtn.addEventListener("click", (e) => {
     return;
   }
 
-  const { data, status } = signUp(
+  const { data, status } = await signUp(
     nickNameValue.value,
     emailValue.value,
     passwordInput.value,
@@ -50,6 +53,7 @@ submitBtn.addEventListener("click", (e) => {
   );
 
   if (status === 201) {
+    console.log(data, status);
     alert("가입 완료되었습니다.");
     history.pushState({ data: data }, null, "../loginPage");
     location.reload();

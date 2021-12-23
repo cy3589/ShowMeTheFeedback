@@ -11,7 +11,7 @@ export async function fetchInstance(path, params, method) {
   };
 
   const response = await fetch(`${baseURL}${path}`, config);
-  const status = await response.status;
   const data = await response.json();
+  const status = response.status;
   return { data, status };
 }

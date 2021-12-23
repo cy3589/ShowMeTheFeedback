@@ -4,11 +4,9 @@ import { addMember } from "./addMember.js";
 import { setIcon, setIconTeamDiscribe } from "./setIcon.js";
 import { onChangeUpload } from "./onChangeUpload.js";
 
-export let newStateObject = JSON.parse(JSON.stringify(prevStateObject));
-newStateObject.additionalThumbnails = []; // 추가 file
-newStateObject.currentThumbnails = [...newStateObject.gotThumbnails]; // url들
-newStateObject.previewThumbnails = [...newStateObject.gotThumbnails];
-delete newStateObject.gotThumbnails;
+export let newStateObject;
+// export let newStateObject = JSON.parse(JSON.stringify(prevStateObject));
+
 const showProjectElementsWrapper = document.querySelector(".show-project");
 const editProjectElementsWrapper = document.querySelector(".edit-project");
 
@@ -19,6 +17,11 @@ document.querySelector(".상태확인버튼").addEventListener("click", () => {
   // document.querySelector(".upload-button-hidden").click();
 });
 document.querySelector(".수정하기버튼").addEventListener("click", (e) => {
+  newStateObject = JSON.parse(JSON.stringify(prevStateObject));
+  newStateObject.additionalThumbnails = []; // 추가 file
+  newStateObject.currentThumbnails = [...newStateObject.gotThumbnails]; // url들
+  newStateObject.previewThumbnails = [...newStateObject.gotThumbnails];
+  delete newStateObject.gotThumbnails;
   showProjectElementsWrapper.classList.add("invisible");
   editProjectElementsWrapper.innerHTML = editProjectForm;
   prevStateObject.member.forEach((member) => {

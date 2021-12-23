@@ -11,7 +11,7 @@ export async function refreshToken() {
   const response = await fetch(`${baseURL}/api/refresh`, {
     method: "GET",
     headers: {
-      // access: getTokenFromCookies("accessToken"),
+      access: getTokenFromCookies("accessToken"),
       refresh: getTokenFromCookies("refreshToken"),
     },
   });

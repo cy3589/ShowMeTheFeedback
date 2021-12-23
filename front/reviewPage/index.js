@@ -1,3 +1,36 @@
+const pathArr = window.location.pathname.split("/");
+const id = pathArr[pathArr.length - 1];
+const getProejct_API_BASE_URL = "http://90u90u349jw:5000/fjiowejfoiw";
+
+// const postCommentOption = {
+//   method: "post",
+//   headers: {
+//     accessToken: getToken("accessToken"),
+//   },
+// };
+
+// document
+//   .querySelector(".커멘트전송버튼클래스")
+//   .addEventListener("click", (e) => {
+//     const comment = {
+//       content: e.target.value,
+//       rating: e.target.parentNode.querySelector(".star").value,
+//     };
+//     postCommentFunction(id, comment);
+//   });
+// const postCommentFunction = async (id, comment) => {
+//   let projectData;
+//   await fetch(`getProejct_API_BASE_URL/${id}`, {
+//     ...postCommentOption,
+//     body: comment,
+//   })
+//     .then((result) => result.json())
+//     .then((result) => {
+//       projectData = result;
+//     });
+//   render(projectData);
+// };
+
 //작성자 관련
 function mainArea() {
   fetch("./author.json")
@@ -220,34 +253,57 @@ function commentCreate() {
     commentRegStarMask.style.width = `${e.target.value * 10}%`;
   });
 
-  commentRegBtn.addEventListener("click", () => {
-    let comment = {
-      postId: 1,
-      id: 1,
-      name: "김용규",
-      email: "Eliseo@gardner.biz",
-      rating: document.getElementsByClassName("commentRegStarDrag")[0].value,
-      commentDate: dateFormat(new Date()),
-      body: document.getElementsByClassName("writeCommentContent")[0].value,
-    };
-    stateComment.push(comment);
+  commentRegBtn.addEventListener("click", (e) => {
+    const content = e.target.parentElement.querySelector(
+      ".writeCommentContent"
+    ).value;
 
-    fetch("http://localhost:9999/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(stateComment),
-    })
-      .then((res) => {
-        if (res.status === 200 || res.status === 201) {
-          res.json().then((json) => console.log(json));
-        } else {
-          console.error(res.statusText);
-        }
-      })
-      .catch((err) => console.error(err));
-    commentList(stateComment);
+    const rating = e.target.parentElement.querySelector(
+      ".commentRegStarDrag"
+    ).value;
+    console.log("작성한댓글은 : ", content);
+    console.log("별점은 : ", rating, "점 입니다");
+    console.log("게시글의 id는 :", id);
+    const options = {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: id,
+        content: content,
+        rating: rating,
+      }),
+    };
+
+    await fetch("http://localhost:8080/commentPost", options)
+      .then((result) => result.json())
+      .then(console.log);
+    // let comment = {
+    //   postId: 1,
+    //   id: 1,
+    //   name: "김용규",
+    //   email: "Eliseo@gardner.biz",
+    //   rating: document.getElementsByClassName("commentRegStarDrag")[0].value,
+    //   commentDate: dateFormat(new Date()),
+    //   body: document.getElementsByClassName("writeCommentContent")[0].value,
+    // };
+    // stateComment.push(comment);
+
+    // fetch("http://localhost:9999/", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(stateComment),
+    // })
+    //   .then((res) => {
+    //     if (res.status === 200 || res.status === 201) {
+    //       res.json().then((json) => console.log(json));
+    //     } else {
+    //       console.error(res.statusText);
+    //     }
+    //   })
+    //   .catch((err) => console.error(err));
+    // commentList(stateComment);
   });
 }
 

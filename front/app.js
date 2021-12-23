@@ -21,6 +21,8 @@ app.use("/", express.static("indexPage"));
 // app.get("/join", (req, res, next) => {
 //   res.redirect("/registerMember");
 // });
+const reviewPageRouter = require("./reviewPage/reviewPageRouter.js");
+app.use("/reviewPage", reviewPageRouter);
 
 app.use(express.static(path.join(__dirname, "/")));
 app.listen(port, () => {

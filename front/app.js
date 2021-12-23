@@ -23,12 +23,6 @@ app.use("/reviewPage", reviewPageRouter);
 
 app.use(express.static(path.join(__dirname, "/")));
 
-// app.use("/reviewPage/static/*", express.static("reviewPage/static"));
-
-// const reviewPageRouter = require("./reviewPage/reviewPageRouter.js");
-// app.use("/reviewPage", reviewPageRouter);
-
-// app.use(express.static(path.join(__dirname, "/")));
 app.listen(port, () => {
   console.log("FrontEnd Server is running on port ", port);
 });

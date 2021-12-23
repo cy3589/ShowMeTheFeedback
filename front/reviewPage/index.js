@@ -186,7 +186,7 @@ function mainContentInfo(data) {
 
   projectTitle.innerText = data.projectName;
   projectTeamName.innerText = data.teamName;
-  projectDate.innerText = data.date;
+  projectDate.innerText = dateFormat(new Date(data.createdAt));
   projectMainFunc.innerText = data.mainFunc;
   projectSkills.innerHTML = data.skills;
   for (let i = 0; i < data.members.length; i++) {
@@ -224,7 +224,7 @@ function commentList(data) {
     let node = document.importNode(commentTemplate.content, true);
     
     node.querySelector(".commentAuthor").innerText = data[i].author;
-    node.querySelector(".commentDate").innerText = data[i].commentDate;
+    node.querySelector(".commentDate").innerText = dateFormat(new Date(data[i].createdAt));
     node.querySelector(".commentContent").style.width = "400px";
     node.querySelector(".commentContent").style.height = "100px";
     node.querySelector(".commentContent").innerText = data[i].content;
@@ -337,6 +337,26 @@ function commentCreate() {
     // commentList(stateComment);
   });
 }
+
+document.querySelector(".project-Delete-Button").addEventListener("click",(e)=>{
+  if(confirm("삭제하시겠습니까?")){
+    fetch(`${BACKEND_BASE_URL}/api/projects/${id}`, {
+      method: "DELETE",
+      headers: {
+        access:getTokenFromCookies("accessToken")},
+    })
+    .then((result)=>result.json())
+    .then((result)=>{
+      if(result.message){
+        alert(result.message);
+        window.location.href="/Projects";
+      }else{
+        alert(result.error);
+      }
+    })
+  }
+})
+
 
 mainArea();
 // imageArea();

@@ -61,7 +61,7 @@ const getProjectList = async (lastId) => {
     },
   };
   const getAllProjectsURL = "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/api/projects";
-  const getMyProjectsURL = "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/api/projects/my-projects";
+  const getMyProjectsURL = "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/api/users/my-projects";
   let fetchURL = getAllProjectsURL;
   const pathNameArr = window.location.pathname.split("/");
   if(pathNameArr[pathNameArr.length-1] === "my-projects")

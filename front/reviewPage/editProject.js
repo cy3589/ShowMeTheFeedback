@@ -42,6 +42,13 @@ document.querySelector(".project-Modify-Button").addEventListener("click", (e) =
   inputMainFuncElement.value = prevStateObject.mainFunc;
   inputSkillsElement.value = prevStateObject.skills;
 
+  document.querySelector(".edit-cancel-button").addEventListener("click",(e)=>{
+    if(confirm("지금 취소하시면 변경 내역이 모두 삭제됩니다")){
+      editProjectElementsWrapper.innerHTML="";
+      showProjectElementsWrapper.classList.remove("invisible");
+    }
+  })
+
   addEventListenerInput(inputTeamNameElement, "teamName", "team-name");
   addEventListenerInput(inputProjectNameElement, "projectName", "project-name");
   addEventListenerInput(inputMainFuncElement, "mainFunc", "main-func");

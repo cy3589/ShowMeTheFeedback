@@ -1,10 +1,8 @@
 import { getTokenFromCookies } from "../auth/token.js";
 import { authorizedNaviBar } from "./authorizedNavibar.js";
 import { unauthorizedNaviBar } from "./unauthorizedNavibar.js";
-야;
 import { refreshToken as ref } from "../api/refreshToken.js";
-import { logOut } from "../api/logOut.js";
-import { deleteAuthToken } from "../auth/token.js";
+import { logOut } from "../auth/logOut.js";
 globalThis.addEventListener("load", async () => {
   const refreshToken = getTokenFromCookies("refreshToken"); //먼저 ref토큰이 살아있는지 확인하고
   const isAuthed = refreshToken !== undefined ? true : false; //살아있다면
@@ -19,15 +17,13 @@ globalThis.addEventListener("load", async () => {
 
   const logOutBtn = document.querySelector(".naviBar__logOut");
 
-  logOutBtn.addEventListener("click", async (e) => {
+  logOutBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
-    const logOutRes = await logOut();
-    deleteAuthToken("accessToken");
-    deleteAuthToken("refreshToken");
+    logOut();
 
     alert("로그아웃 되었습니다.");
-    history.pushState({ data: logOutRes }, null, "../loginPage");
+    history.pushState({ data: null }, null, "../loginPage");
     location.reload();
   });
 });

@@ -3,13 +3,11 @@ import { getTokenFromCookies } from "../auth/token.js";
 const baseURL =
   "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
 
-//api작성중
 export async function getUserValue() {
-  const response = await fetch(`${baseURL}/api/refresh`, {
+  const response = await fetch(`${baseURL}/api/users/my-account`, {
     method: "GET",
     headers: {
       access: getTokenFromCookies("accessToken"),
-      refresh: getTokenFromCookies("refreshToken"),
     },
   });
 

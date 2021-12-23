@@ -14,7 +14,7 @@ import { getTokenFromCookies } from "../auth/token.js";
 //   const target = targets[targets.length - 3];
 //   io.observe(target);
 // };
-
+  
 const getDate = (date) => {
   // dateString을 얻기위한 임시 함수, 백엔드에서 형식에 맞게 보내준다면 생략 가능, 또는 dayjs이용가능(빌드필요)
   const year = date.getFullYear();

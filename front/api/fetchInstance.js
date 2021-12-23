@@ -21,6 +21,7 @@ export async function fetchInstance(path, params, method) {
   // if (params.body !== undefined) {
   //   config.body = SON.stringify(params.body);
   // }
+  //
 
   console.log(config);
   const response = await fetch(`${baseURL}${path}`, config);

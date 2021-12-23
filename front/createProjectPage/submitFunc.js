@@ -1,7 +1,9 @@
 import { stateObject } from "./stateObject.js";
 import { getTokenFromCookies } from "../auth/token.js";
-export const submitFunc = (e) => {
-  e.preventDefault();
+const baseURL =
+  "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
+
+export const submitFunc = () => {
   const countFalseIcon = document.querySelectorAll(".check-false").length;
   if (countFalseIcon >= 1) {
     alert("모든 칸을 작성해주세요");
@@ -24,24 +26,20 @@ export const submitFunc = (e) => {
   for (let i = 0; i < postThumbnailsData.length; i++) {
     formData.append("thumbnails", postThumbnailsData[i]);
   }
+  console.log("보내는 formData", formData);
   const options = {
     method: "POST",
     body: formData,
     headers: {
-      access: getTokenFromCookies(accessToken),
+      access: getTokenFromCookies("accessToken"),
     },
   };
-  fetch(
-    "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/api/projects",
-    options
-  )
+  fetch(`${baseURL}/api/projects`, options)
     .then((result) => result.json())
     .then((result) => {
-      if (result.message) {
-        alert("프로젝트를 생성했습니다.");
-        window.location.href(`/project/${result.projectId}`);
-      } else {
-        alert(result.error);
+      if (result.projectId) {
+        const { projectId } = result;
+        window.location.href = `/reviewPage/${projectId}`;
       }
     });
 };

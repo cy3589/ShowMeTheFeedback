@@ -110,7 +110,7 @@ exports.updateProject = async (req, res) => {
 
   const thumbnails = req.files.map(
     (v) =>
-      `https://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/back/uploads/${v.filename}`
+      `http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/uploads/${v.filename}`
   );
 
   const updatedThumbnails = thumbnails.concat(currentThumbnails);

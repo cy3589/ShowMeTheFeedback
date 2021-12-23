@@ -113,7 +113,9 @@ exports.updateProject = async (req, res) => {
       `http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/uploads/${v.filename}`
   );
 
-  const updatedThumbnails = thumbnails.concat(currentThumbnails);
+  const updatedThumbnails = thumbnails
+    .concat(currentThumbnails)
+    .filter((v) => v != "");
 
   const content = await Content.findOneAndUpdate(
     { projectId },

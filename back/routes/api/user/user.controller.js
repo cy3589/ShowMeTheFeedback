@@ -17,6 +17,8 @@ exports.resetPassword = async (req, res) => {
 
   const { email } = req;
 
+  const passwordValidation = passwordValidation(password);
+
   if (password !== confirmPassword) {
     res.status(400).json({
       message: "비밀번호가 같지 않습니다.",

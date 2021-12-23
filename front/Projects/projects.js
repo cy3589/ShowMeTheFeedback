@@ -145,3 +145,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+const createProjectBtn = document.querySelector(".create-project__button");
+createProjectBtn.addEventListener("click", () => {
+  history.pushState({ data: null }, null, "../createProjectPage");
+  location.reload();
+});

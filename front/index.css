@@ -2,7 +2,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Spoqa Han Sans Neo', 'Nanum Gothic', sans-serif;
+  font-family: "Spoqa Han Sans Neo", "Nanum Gothic", sans-serif;
 }
 
 :root {
@@ -204,15 +204,15 @@ textarea {
   grid-template-rows: 1fr 1fr 1fr 1fr auto auto auto auto 1fr;
   grid-gap: 30px;
   grid-template-areas:
-    'project-team-value__header'
-    'team-name'
-    'project-name'
-    'project-thumbnail__header'
-    'thumbnail'
-    'main-func'
-    'skills'
-    'team-discribe'
-    'submit';
+    "project-team-value__header"
+    "team-name"
+    "project-name"
+    "project-thumbnail__header"
+    "thumbnail"
+    "main-func"
+    "skills"
+    "team-discribe"
+    "submit";
 }
 
 .project-team-value__header {
@@ -248,8 +248,8 @@ textarea {
   display: grid;
   grid-template-rows: 50px auto;
   grid-template-areas:
-    'thumbnail__file-name__button'
-    'thumbnail__img-container';
+    "thumbnail__file-name__button"
+    "thumbnail__img-container";
 }
 .project-thumbnail__input-value {
   margin-left: 30px;
@@ -329,8 +329,8 @@ textarea {
   grid-template-columns: 18px auto;
   grid-row-gap: 20px;
   grid-template-areas:
-    'team-describe__check-icon team-describe__header'
-    'team-describe__members team-describe__members';
+    "team-describe__check-icon team-describe__header"
+    "team-describe__members team-describe__members";
 }
 .team-discribe .check-icon {
   grid-area: team-describe__check-icon;
@@ -468,9 +468,9 @@ textarea {
   grid-template-columns: 2fr 1fr;
   grid-template-rows: repeat(60px, 3);
   grid-template-areas:
-    'nameInput nameInput'
-    'emailInput emailInput'
-    'signUpCodeInput getSignUpCodeButton';
+    "nameInput nameInput"
+    "emailInput emailInput"
+    "signUpCodeInput getSignUpCodeButton";
 }
 
 .createUserValueForm > * {
@@ -503,10 +503,10 @@ textarea {
   display: grid;
   grid-template-rows: 70px 70px 30px 70px;
   grid-template-areas:
-    'passwordInput'
-    'passwordConfirmInput'
-    'none'
-    'signUpButton';
+    "passwordInput"
+    "passwordConfirmInput"
+    "none"
+    "signUpButton";
 }
 
 .signUpPasswordForm > * {
@@ -555,12 +555,28 @@ textarea {
   }
 }
 
+/* CreateProjectButton */
+
+.create-project__button {
+  border: none;
+  width: 80px;
+  height: 80px;
+  background-color: var(--addButton-bg);
+  border-radius: 50%;
+  color: white;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+  font-size: 50px;
+
+  position: fixed;
+  top: 85%;
+  left: 85%;
+}
 .show-project {
   padding: 4rem 0;
 }
 
 /* edit project */
-.edit-project .container{
+.edit-project .container {
   max-width: 1200px;
   margin: 4rem auto;
   background-color: #fff;
@@ -592,7 +608,7 @@ textarea {
 }
 
 .edit-project .skills input {
-  width:initial !important;
+  width: initial !important;
 }
 
 .edit-project input[type="submit"] {

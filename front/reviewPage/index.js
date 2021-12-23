@@ -104,14 +104,29 @@ function stateCommentSave(data) {
 }
 
 //날짜 출력하기
-function dateFormat(dateObject) {
+const getProjectDateFormat = (dateObject) => {
   let Year = dateObject.getFullYear();
   let Month = dateObject.getMonth() + 1;
   let Date = dateObject.getDate();
-  let Hour = dateObject.getHours();
-  let Minutes = dateObject.getMinutes();
-  let Seconds = dateObject.getSeconds();
-
+  // let Hour = dateObject.getHours();
+  // let Minutes = dateObject.getMinutes();
+  // let Seconds = dateObject.getSeconds();
+  let result =
+    Year +
+    "." +
+    Month +
+    "." +
+    Date
+  return result;
+}
+const toStringAndFillZero = (STR)=> STR.toString().padStart(2,"0");
+const getCommentDateFormat = (dateObject) => {
+  let Year = dateObject.getFullYear();
+  let Month = dateObject.getMonth() + 1;
+  let Date = dateObject.getDate();
+  let Hour = toStringAndFillZero(dateObject.getHours());
+  let Minutes = toStringAndFillZero(dateObject.getMinutes());
+  let Seconds = toStringAndFillZero(dateObject.getSeconds());
   let result =
     Year +
     "." +
@@ -124,7 +139,6 @@ function dateFormat(dateObject) {
     Minutes +
     ":" +
     Seconds;
-
   return result;
 }
 
@@ -186,7 +200,7 @@ function mainContentInfo(data) {
 
   projectTitle.innerText = data.projectName;
   projectTeamName.innerText = data.teamName;
-  projectDate.innerText = dateFormat(new Date(data.createdAt));
+  projectDate.innerText = getProjectDateFormat(new Date(data.createdAt));
   projectMainFunc.innerText = data.mainFunc;
   projectSkills.innerHTML = data.skills;
   for (let i = 0; i < data.members.length; i++) {
@@ -224,7 +238,7 @@ function commentList(data) {
     let node = document.importNode(commentTemplate.content, true);
     
     node.querySelector(".commentAuthor").innerText = data[i].author;
-    node.querySelector(".commentDate").innerText = dateFormat(new Date(data[i].createdAt));
+    node.querySelector(".commentDate").innerText = getCommentDateFormat(new Date(data[i].createdAt));
     node.querySelector(".commentContent").style.width = "400px";
     node.querySelector(".commentContent").style.height = "100px";
     node.querySelector(".commentContent").innerText = data[i].content;

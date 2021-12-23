@@ -1,11 +1,12 @@
 import { getUserValue } from "../api/getUserValue.js";
+import {
+  updateUserNickName,
+  updateUserPassword,
+} from "../api/updateUserValue.js";
 
 const submitBtn = document.querySelector(".my-page__submit-button");
 const myPageInputs = document.getElementsByTagName("input");
 
-let isEqual = false;
-
-//fetch로 기존 이메일, 닉네임 불러오기
 globalThis.addEventListener("load", async () => {
   const userValues = await getUserValue();
 
@@ -18,38 +19,50 @@ globalThis.addEventListener("load", async () => {
 
   myPageInputs["email"].value = userValues.data.email;
   myPageInputs["nickName"].value = userValues.data.nickname;
-});
 
-myPageInputs["passwordConfirm"].addEventListener("input", () => {
-  if (
-    myPageInputs["password"].value !== myPageInputs["passwordConfirm"].value
-  ) {
-    document.querySelector(
-      ".my-page__new-password-confirm-input label"
-    ).innerHTML = "위와 다릅니다";
-    isEqual = false;
-  } else {
-    document.querySelector(
-      ".my-page__new-password-confirm-input label"
-    ).innerHTML = "위와 일치합니다!";
-    isEqual = true;
-  }
-});
+  let isEqualPw = true;
 
-submitBtn.addEventListener("click", (e) => {
-  e.preventDefault();
+  myPageInputs["passwordConfirm"].addEventListener("input", () => {
+    if (
+      myPageInputs["password"].value !== myPageInputs["passwordConfirm"].value
+    ) {
+      document.querySelector(
+        ".my-page__new-password-confirm-input label"
+      ).innerHTML = "위와 다릅니다";
+      isEqualPw = false;
+    } else {
+      document.querySelector(
+        ".my-page__new-password-confirm-input label"
+      ).innerHTML = "위와 일치합니다!";
+      isEqualPw = true;
+    }
+  });
 
-  if (!isEqual) {
-    alert("비밀번호를 다시 확인해주세요!");
-    return;
-  }
+  submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
 
-  const myPageValues = {
-    email: myPageInputs["email"].value,
-    nickName: myPageInputs["nickName"].value,
-    password: myPageInputs["password"].value,
-  };
+    if (!isEqualPw) {
+      alert("비밀번호를 다시 확인해주세요!");
+      return;
+    }
 
-  //myPageValues를 fetch
-  console.log(myPageValues);
+    if (userValues.data.nickname !== myPageInputs["nickName"].value) {
+      const nickChangeRes = updateUserNickName(myPageInputs["nickName"].value);
+      console.log(nickChangeRes);
+    }
+
+    if (
+      myPageInputs["password"].value === myPageInputs["passwordConfirm"].value
+    ) {
+      console.log({
+        password: myPageInputs["password"].value,
+        passwordConfirm: myPageInputs["passwordConfirm"].value,
+      });
+      const pwChangeRes = updateUserPassword(
+        myPageInputs["password"].value,
+        myPageInputs["passwordConfirm"].value
+      );
+      console.log(pwChangeRes);
+    }
+  });
 });

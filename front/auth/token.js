@@ -9,7 +9,7 @@ export const saveToken = (tokenName, value) => {
   if (tokenName === "refreshToken") {
     document.cookie = `${tokenName}=${value}; path=/; max-age=${String(
       Number(hour) * 24 * 14
-    )}`; //2주
+    )}`;
     return;
   }
 

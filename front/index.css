@@ -1,12 +1,14 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
 * {
   box-sizing: border-box;
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: "Spoqa Han Sans Neo", "Nanum Gothic", sans-serif;
 }
 
 :root {
   --link-font: #f38181;
   --button-bg: #ff6b6b;
-  --page-bg: #e5e5e5;
+  --page-bg: #f0f1f3;
   --border: #bbbbbb;
   --naviBar-bg: #ffffff;
   --addButton-bg: #2c98f0;
@@ -18,7 +20,7 @@
   --contents-text-gray: #bbbbbb;
 
   --contents-legend-text: 24px;
-  --contents-header-text: 24px;
+  --contents-header-text: 20px;
 
   --contents-text-small: 9px;
   --contents-text: 18px;
@@ -38,19 +40,7 @@ body {
 
 a {
   text-decoration: none;
-}
-a:visited {
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: none;
-}
-a:focus {
-  text-decoration: none;
-}
-a:hover,
-a:active {
-  text-decoration: none;
+  color: inherit;
 }
 
 button:hover {
@@ -72,26 +62,21 @@ textarea {
 
 /* Navibar */
 .naviBar {
-  min-width: 1280px;
   min-height: 70px;
   background-color: var(--naviBar-bg);
-
-  display: grid;
-  grid-template-columns: 0.25fr 0.55fr 0.2fr;
-  grid-template-areas: "naviBar__logo naviBar__elements-container naviBar__auth";
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5vw;
 }
 .naviBar__logo {
-  grid-area: naviBar__logo;
   display: flex;
   justify-content: center;
   align-items: center;
-
   color: black;
   font-size: var(--contents-header-text);
-  font-weight: bold;
 }
 .naviBar__elements-container {
-  grid-area: naviBar__elements-container;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -101,27 +86,27 @@ textarea {
   font-size: var(--contents-text);
   color: black;
 }
-.naviBar__auth {
-  grid-area: naviBar__auth;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 40px;
-}
-.naviBar__auth > * {
-  margin: 0 20px 0 20px;
+
+.naviBar__auth a {
   font-size: var(--contents-text);
+  padding: 1rem;
 }
 
 /* IndexPage */
 
 .index-page {
-  background-color: var(--indexpage-bg);
+  height: 100vh;
+  background-image: linear-gradient(
+    120deg,
+    #ff9a9e 0%,
+    #fad0c4 99%,
+    #fad0c4 100%
+  );
 }
 
 .index-page__container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   margin-top: 300px;
   color: white;
 }
@@ -130,14 +115,15 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-weight: bold;
 }
 
 .index-page__container > * :nth-child(1) {
-  font-size: var(--contents-header-text);
+  font-size: 30px;
 }
 .index-page__container > * :nth-child(2) {
   margin-top: 20px;
-  font-size: var(--contents-text-big);
+  font-size: 50px;
 }
 
 @media screen and (max-width: 720px) {
@@ -155,10 +141,10 @@ textarea {
 
 /* ProjectCreatePage */
 .create-page__main-content {
-  margin: 50px 100px 100px 100px;
+  max-width: 1200px;
+  margin: 4rem auto;
   background: var(--contents-bg);
   padding: 50px 50px 50px 50px;
-  min-width: 700px;
 }
 
 .create-page__container {
@@ -398,7 +384,7 @@ textarea {
   grid-area: submit;
   cursor: pointer;
   width: 120px;
-  height: 36px;
+  height: 46px;
   margin-left: auto;
   border-radius: 5px;
   background-color: var(--button-bg);
@@ -408,7 +394,8 @@ textarea {
 /* MyPage */
 
 .my-page__main-content {
-  margin: 50px 100px 100px 100px;
+  max-width: 1000px;
+  margin: 4rem auto;
   background: var(--contents-bg);
   padding: 50px 50px 50px 50px;
   min-width: 800px;
@@ -431,7 +418,7 @@ textarea {
 .my-page__main-content input {
   border: 1px var(--border) solid;
   border-radius: 5px;
-
+  padding-left: 1rem;
   display: inline-block;
   width: 300px;
   height: 50px;
@@ -447,7 +434,7 @@ textarea {
   font-size: var(--contents-text);
   color: white;
   width: 120px;
-  height: 36px;
+  height: 40px;
   border: none;
   border-radius: 5px;
 }
@@ -456,7 +443,6 @@ textarea {
 
 .signUpContainer {
   margin: 100px auto 0 auto;
-  background: #e5e5e5;
   max-width: 400px;
   max-height: 400px;
 }
@@ -548,6 +534,33 @@ textarea {
 }
 .goToLogin {
   margin-left: 10px;
-  text-decoration: none;
+  text-decoration: underline;
   color: #f38181;
+}
+
+@media (max-width: 768px) {
+  .naviBar__logo {
+    font-size: 20px;
+  }
+  .naviBar__auth a {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+}
+
+/* CreateProjectButton */
+
+.create-project__button {
+  border: none;
+  width: 80px;
+  height: 80px;
+  background-color: var(--addButton-bg);
+  border-radius: 50%;
+  color: white;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+  font-size: 50px;
+
+  position: fixed;
+  top: 85%;
+  left: 85%;
 }

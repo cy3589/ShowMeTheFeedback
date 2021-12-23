@@ -4,6 +4,10 @@ const baseURL =
   "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
 
 export async function refreshToken() {
+  console.log({
+    access: getTokenFromCookies("accessToken"),
+    refresh: getTokenFromCookies("refreshToken"),
+  });
   const response = await fetch(`${baseURL}/api/refresh`, {
     method: "GET",
     headers: {

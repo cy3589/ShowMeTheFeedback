@@ -30,8 +30,8 @@ body {
   grid-template-rows: repeat(2, 60px);
   grid-gap: 16px;
   grid-template-areas:
-    "emailInput"
-    "submitValue";
+    'emailInput'
+    'submitValue';
 }
 
 .emailInput {
@@ -52,4 +52,5 @@ body {
   display: flex;
   justify-content: center;
   color: var(--link-font);
+  text-decoration: underline;
 }

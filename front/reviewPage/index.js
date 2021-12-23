@@ -1,6 +1,6 @@
 import { stateObject, setStateObject } from "./staetObject.js";
 const pathArr = window.location.pathname.split("/");
-const id = pathArr[pathArr.length - 1];
+export const id = pathArr[pathArr.length - 1];
 const getProejct_API_BASE_URL = "http://90u90u349jw:5000/fjiowejfoiw";
 
 // const postCommentOption = {

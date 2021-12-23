@@ -3,10 +3,13 @@ import { editProjectForm, getMemberElement } from "./editProjectForm.js";
 import { addMember } from "./addMember.js";
 import { setIcon, setIconTeamDiscribe } from "./setIcon.js";
 import { onChangeUpload } from "./onChangeUpload.js";
+import { getTokenFromCookies } from "../auth/token.js";
+import { id as projectId } from "./index.js";
 
 export let newStateObject;
 // export let newStateObject = JSON.parse(JSON.stringify(prevStateObject));
-
+const FETCH_URL_UPDATE_PORT =
+  "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/api/projects";
 const showProjectElementsWrapper = document.querySelector(".show-project");
 const editProjectElementsWrapper = document.querySelector(".edit-project");
 
@@ -184,15 +187,18 @@ document.querySelector(".수정하기버튼").addEventListener("click", (e) => {
         formData.append("additionalThumbnails", additionalThumbnails[i]);
       }
       const options = {
-        method: "POST",
-        // headers:{"authobearer":getCookie("accessToken")},
+        method: "PUT",
+        headers: {
+          access: getTokenFromCookies(accessToken),
+        },
         body: formData,
       };
-      fetch("http://localhost:8080/update", options)
+      fetch(`${FETCH_URL_UPDATE_PORT}/${projectId}`, options)
         .then((result) => result.json())
         .then((result) => {
           if (result.error) console.log(result.error);
           if (result.message) console.log(result.message);
+          // 성공 시 동작 작성 필요
         });
     });
 });

@@ -615,8 +615,10 @@ textarea {
 }
 
 /* hamburger */
-.mobile-menu {
+.fa-bars {
   display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
 }
 
 @media (max-width: 768px) {

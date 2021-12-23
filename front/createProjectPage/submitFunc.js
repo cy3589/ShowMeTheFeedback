@@ -40,9 +40,8 @@ export const submitFunc = () => {
     .then((result) =>result.json())
     .then((result) => {
       if(result.projectId){
-        const { projectId }  = result;
-        // window.location.href = `/reviewPage/${projectId}`;
-        
+        const { projectId } = result;
+        window.location.href = `/reviewPage/${projectId}`;
       }
     })
 }

@@ -65,6 +65,7 @@ function commentArea() {
       mainContentStar(data);
       mainContentEval(data);
       commentList(stateComment);
+      commentCreate();
     });
 }
 
@@ -263,9 +264,11 @@ function commentCreate() {
       ".writeCommentContent"
     ).value;
 
-    const rating = e.target.parentElement.querySelector(
-      ".commentRegStarDrag"
-    ).value;
+    const rating =
+      parseInt(
+        e.target.parentElement.querySelector(".commentRegStarDrag").value,
+        10
+      ) / 2;
     console.log("작성한댓글은 : ", content);
     console.log("별점은 : ", rating, "점 입니다");
     console.log("게시글의 id는 :", id);

@@ -32,9 +32,7 @@ mongoose
 
 app.use(passport.initialize());
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+app.use("/uploads", express.static("uploads"));
 
 app.get(
   "/auth/google",

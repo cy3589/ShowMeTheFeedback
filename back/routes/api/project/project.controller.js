@@ -49,7 +49,7 @@ exports.createProject = async (req, res) => {
 
   const thumbnails = req.files.map(
     (v) =>
-      `https://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/back/uploads/${v.filename}`
+      `http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/uploads/${v.filename}`
   );
   const author = await User.findOne({ email }); // 사용자 확인
   const project = await Project.create({
@@ -105,7 +105,7 @@ exports.updateProject = async (req, res) => {
     throw new Error("수정 권한이 없습니다.");
   }
 
-  const membersParsed = JSON.parse(member).member;
+  const membersParsed = JSON.parse(member);
 
   const thumbnails = req.files.map(
     (v) =>

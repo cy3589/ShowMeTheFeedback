@@ -23,6 +23,7 @@ exports.getComment = async (req, res) => {
         author: comment.author,
         content: comment.content,
         rating: comment.rating,
+        createdAt: comment.createdAt,
       };
     }
   });
@@ -34,9 +35,12 @@ exports.createComment = async (req, res) => {
   const { projectId } = req.params;
   const { content, rating } = req.body;
   const { email } = req;
+
+  const user = await User.findOne({ email });
+
   const comment = await Comment.create({
     projectId,
-    author: email,
+    author: user.nickname,
     content,
     rating,
   });

@@ -46,7 +46,7 @@ exports.createProject = async (req, res) => {
   const { email } = req;
   const { teamName, projectName, skills, mainFunc, member } = req.body;
 
-  const membersParsed = JSON.parse(member).member;
+  const membersParsed = JSON.parse(member);
 
   const thumbnails = req.files.map(
     (v) =>

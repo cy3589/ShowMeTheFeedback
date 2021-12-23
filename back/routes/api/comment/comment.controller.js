@@ -14,13 +14,13 @@ exports.getComment = async (req, res) => {
 
   // res.status(200).json({ comments, page, perPage, totalPage });
 
-  const rawComments = await Comment.find({ projectId });
+  const rawComments = await Comment.find({ projectId }).populate("author");
 
   const comments = rawComments.map((comment) => {
     {
       return {
         commentId: comment.commentId,
-        author: comment.author,
+        author: comment.author.nickname,
         content: comment.content,
         rating: comment.rating,
         createdAt: comment.createdAt,
@@ -40,8 +40,7 @@ exports.createComment = async (req, res) => {
 
   const comment = await Comment.create({
     projectId,
-    email,
-    author: user.nickname,
+    author: user,
     content,
     rating,
   });
@@ -82,9 +81,9 @@ exports.updateComment = async (req, res) => {
   const { commentId } = req.params;
   const { content, rating } = req.body;
   const { email } = req;
-  const comment = await Comment.findOne({ commentId });
+  const comment = await Comment.findOne({ commentId }).populate("author");
 
-  if (comment.email !== email) {
+  if (comment.author.email !== email) {
     res.status(404);
     throw new Error("수정 권한이 없습니다.");
   }
@@ -129,8 +128,8 @@ exports.deleteComment = async (req, res) => {
   const { commentId } = req.params;
   const { email } = req;
 
-  const comment = await Comment.findOne({ commentId });
-  if (comment.email !== email) {
+  const comment = await Comment.findOne({ commentId }).populate("author");
+  if (comment.author.email !== email) {
     res.status(404);
     throw new Error("삭제 권한이 없습니다.");
   }

@@ -1,5 +1,4 @@
 const { Schema } = require("mongoose");
-const ProjectSchema = require("./project");
 
 const UserSchema = new Schema({
   nickname: {

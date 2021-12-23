@@ -13,7 +13,9 @@ exports.getMyAccount = async (req, res) => {
 };
 
 exports.resetPassword = async (req, res) => {
-  const { email, password, confirmPassword } = req.body;
+  const { password, confirmPassword } = req.body;
+
+  const { email } = req;
 
   if (password !== confirmPassword) {
     res.status(400).json({
@@ -43,13 +45,11 @@ exports.resetNickname = async (req, res) => {
 
   const user = await User.findOne({ nickname: changeNickname });
   if (user) {
-    res.status(400);
-    res.json({
+    res.status(400).json({
       message: "이미 존재하는 닉네임입니다.",
     });
-    return;
   } else {
-    await User.findOneAndUpdate(
+    await User.updateOne(
       { email },
       {
         $set: {
@@ -57,8 +57,7 @@ exports.resetNickname = async (req, res) => {
         },
       }
     );
-    res.status(201);
-    res.json({
+    res.status(201).json({
       message: "닉네임이 성공적으로 변경되었습니다.",
     });
     return;

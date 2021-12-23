@@ -4,17 +4,13 @@ const commentId = require("./type/short-id");
 const CommentSchema = new Schema(
   {
     commentId,
-    email: {
-      type: "String",
-      required: true,
-    },
     projectId: {
       type: "String",
       required: true,
     },
     author: {
-      type: String,
-      required: true,
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
     content: {
       type: String,

@@ -29,6 +29,7 @@ exports.getProject = async (req, res) => {
   const result = {
     projectId,
     author: project.author.nickname,
+    teamName: project.contents.teamName,
     projectName: project.projectName,
     members: project.contents.members,
     mainFunc: project.contents.mainFunc,

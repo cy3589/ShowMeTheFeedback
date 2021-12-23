@@ -12,10 +12,13 @@
       referrerpolicy="no-referrer"
     />
     <link href="index.css" rel="stylesheet" />
+    <link href="../index.css" rel="stylesheet" />
     <title></title>
   </head>
   <body>
-    <script src="index.js"></script>
+    <div class="naviBar"></div>
+
+    <div class="show-project">
     <main>
       <article>
         <header>
@@ -93,9 +96,8 @@
                       <input
                         type="range"
                         class="commentRegStarDrag"
-                        value="1"
-                        step="1"
-                        min="0"
+                        step="2"
+                        min="2"
                         max="10"
                       />
                     </span>
@@ -118,15 +120,28 @@
     </main>
 
     <template class="commentTemplate">
-      <div class="commentAuthor"></div>
-      <div class="commentDate"></div>
+        <div class="comment">
+          <div class="top">
+            <div class="commentAuthor"></div>
+        <div class="commentDate"></div>
+          </div>
       <div class="commentContent"></div>
-      <div>평점 :</div>
+      <div class="bottom">
+        <div class="left">
+          <div>평점:&nbsp;</div>
       <span class="commentStar">
         ★★★★★
         <span class="commentStarMask">★★★★★</span>
       </span>
+        </div>
       <a class="commentMoreContent" href="">전체 내용 보기</a>
+      </div>
+        </div>
     </template>
+  </div>
+  <div class="edit-project"></div>
   </body>
+  <script type="module" src="index.js"></script>
+  <script type="module" src="editProject.js"></script>
+  <script type="module" src="../naviBar/index.js"></script>
 </html>

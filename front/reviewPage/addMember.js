@@ -1,8 +1,8 @@
 import { newStateObject as stateObject } from "./editProject.js";
 import { setIconTeamDiscribe } from "./setIcon.js";
 export const addMember = () => {
-  stateObject.member.push({ name: "", job: "", task: "" });
-  const memberLastIndex = stateObject.member.length - 1;
+  stateObject.members.push({ name: "", job: "", task: "" });
+  const memberLastIndex = stateObject.members.length - 1;
   const targetElement = document.querySelector(".members");
 
   const wrapperDiv = document.createElement("div");
@@ -52,7 +52,7 @@ export const addMember = () => {
       e.target.parentNode
     );
     e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-    stateObject.member.splice(index, 1);
+    stateObject.members.splice(index, 1);
     setIconTeamDiscribe();
   });
 

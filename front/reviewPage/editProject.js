@@ -5,7 +5,6 @@ import { setIcon, setIconTeamDiscribe } from "./setIcon.js";
 import { onChangeUpload } from "./onChangeUpload.js";
 import { getTokenFromCookies } from "../auth/token.js";
 import { id as projectId } from "./index.js";
-
 export let newStateObject;
 // export let newStateObject = JSON.parse(JSON.stringify(prevStateObject));
 const FETCH_URL_UPDATE_PORT =
@@ -13,21 +12,21 @@ const FETCH_URL_UPDATE_PORT =
 const showProjectElementsWrapper = document.querySelector(".show-project");
 const editProjectElementsWrapper = document.querySelector(".edit-project");
 
-document.querySelector(".상태확인버튼").addEventListener("click", () => {
-  console.log("prevStateObject: ", prevStateObject);
-  console.log("newStateObject: ", newStateObject);
-  // console.log(document.querySelector(".upload-button-hidden").files);
-  // document.querySelector(".upload-button-hidden").click();
-});
-document.querySelector(".수정하기버튼").addEventListener("click", (e) => {
+// document.querySelector(".상태확인버튼").addEventListener("click", () => {
+//   console.log("prevStateObject: ", prevStateObject);
+//   console.log("newStateObject: ", newStateObject);
+//   // console.log(document.querySelector(".upload-button-hidden").files);
+//   // document.querySelector(".upload-button-hidden").click();
+// });
+document.querySelector(".project-Modify-Button").addEventListener("click", (e) => {
   newStateObject = JSON.parse(JSON.stringify(prevStateObject));
   newStateObject.additionalThumbnails = []; // 추가 file
-  newStateObject.currentThumbnails = [...newStateObject.gotThumbnails]; // url들
-  newStateObject.previewThumbnails = [...newStateObject.gotThumbnails];
-  delete newStateObject.gotThumbnails;
+  newStateObject.currentThumbnails = [...newStateObject.thumbnails]; // url들
+  newStateObject.previewThumbnails = [...newStateObject.thumbnails];
+  delete newStateObject.thumbnails;
   showProjectElementsWrapper.classList.add("invisible");
   editProjectElementsWrapper.innerHTML = editProjectForm;
-  prevStateObject.member.forEach((member) => {
+  prevStateObject.members.forEach((member) => {
     document.querySelector(".members").innerHTML += getMemberElement(member);
   });
   const {
@@ -73,14 +72,12 @@ document.querySelector(".수정하기버튼").addEventListener("click", (e) => {
       const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
         e.target.parentNode
       );
-      console.log(index);
       e.target.parentNode.parentNode.removeChild(e.target.parentNode);
       newStateObject.member.splice(index, 1);
       setIconTeamDiscribe();
     });
     if (i !== 0) memberElement.appendChild(deleteButton);
   });
-  console.log(newStateObject);
 
   setIcon(newStateObject["teamName"], "team-name");
   setIcon(newStateObject["projectName"], "project-name");
@@ -131,14 +128,14 @@ document.querySelector(".수정하기버튼").addEventListener("click", (e) => {
       const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
         e.target.parentNode
       );
-      console.log("@@@@@@");
-      // console.log(Array.from(document.querySelectorAll(".additional-image")));
-      console.log(
-        Array.from(document.querySelectorAll(".current-image")).indexOf(
-          e.target.parentNode.children[0]
-        )
-      );
-      console.log("@@@@@@");
+      // console.log("@@@@@@");
+      // // console.log(Array.from(document.querySelectorAll(".additional-image")));
+      // console.log(
+      //   Array.from(document.querySelectorAll(".current-image")).indexOf(
+      //     e.target.parentNode.children[0]
+      //   )
+      // );
+      // console.log("@@@@@@");
       const additionalImageIndex = Array.from(
         document.querySelectorAll(".additional-image")
       ).indexOf(e.target.parentNode.children[0]);
@@ -146,9 +143,9 @@ document.querySelector(".수정하기버튼").addEventListener("click", (e) => {
         document.querySelectorAll(".current-image")
       ).indexOf(e.target.parentNode.children[0]);
       // console.log(e.target.parentNode.parentNode);
-      console.log(e.target.parentNode.children[0]);
-      console.log("additionalImageIndex: ", additionalImageIndex);
-      console.log("currentImageIndex: ", currentImageIndex);
+      // console.log(e.target.parentNode.children[0]);
+      // console.log("additionalImageIndex: ", additionalImageIndex);
+      // console.log("currentImageIndex: ", currentImageIndex);
       if (additionalImageIndex !== -1) {
         newStateObject.additionalThumbnails.splice(additionalImageIndex, 1);
       }
@@ -173,29 +170,33 @@ document.querySelector(".수정하기버튼").addEventListener("click", (e) => {
         projectName,
         mainFunc,
         skills,
-        member,
+        members,
         currentThumbnails,
         additionalThumbnails,
       } = newStateObject;
+      console.log(newStateObject);
+      console.log("currentThumbnails:", currentThumbnails);
+      console.log("member:", members);
       formData.append("teamName", teamName);
       formData.append("projectName", projectName);
-      formData.append("mainFunc", mainFunc);
+      formData.append("mainFunc", mainFunc); 
       formData.append("skills", skills);
       formData.append("currentThumbnails", currentThumbnails);
-      formData.append("member", JSON.stringify(member));
+      formData.append("member", JSON.stringify(members));
       for (let i = 0; i < additionalThumbnails.length; i++) {
         formData.append("additionalThumbnails", additionalThumbnails[i]);
       }
-      const options = {
+      const UpdataProjectOptions = {
         method: "PUT",
         headers: {
-          access: getTokenFromCookies(accessToken),
+          access: getTokenFromCookies("accessToken"),
         },
         body: formData,
       };
-      fetch(`${FETCH_URL_UPDATE_PORT}/${projectId}`, options)
+      fetch(`${FETCH_URL_UPDATE_PORT}/${projectId}`, UpdataProjectOptions)
         .then((result) => result.json())
         .then((result) => {
+          console.log(result);
           if (result.error) console.log(result.error);
           if (result.message) console.log(result.message);
           // 성공 시 동작 작성 필요
@@ -208,14 +209,14 @@ const addEventListenerInput = (element, targetStateName, elementId) => {
     setIcon(newStateObject[targetStateName], elementId);
   });
 };
-document.querySelector(".수정취소하기버튼").addEventListener("click", (e) => {
-  // if (confirm("지금 취소하면 수정하신 내역이 모두 사라집니다!")) {
-  showProjectElementsWrapper.classList.remove("invisible");
-  newStateObject = JSON.parse(JSON.stringify(prevStateObject));
-  editProjectElementsWrapper.innerHTML = "";
-  return;
-  // }
-});
+// document.querySelector(".수정취소하기버튼").addEventListener("click", (e) => {
+//   // if (confirm("지금 취소하면 수정하신 내역이 모두 사라집니다!")) {
+//   showProjectElementsWrapper.classList.remove("invisible");
+//   newStateObject = JSON.parse(JSON.stringify(prevStateObject));
+//   editProjectElementsWrapper.innerHTML = "";
+//   return;
+//   // }
+// });
 
 const getInputElementsFromEditForm = () => {
   const inputTeamNameElement = document
@@ -244,7 +245,7 @@ const getInputElementsFromEditForm = () => {
 };
 
 //임의기능버튼
-document.querySelector(".임의기능버튼").addEventListener("click", (e) => {
-  console.log(window.location.pathname);
-});
+// document.querySelector(".임의기능버튼").addEventListener("click", (e) => {
+//   console.log(window.location.pathname);
+// });
 //

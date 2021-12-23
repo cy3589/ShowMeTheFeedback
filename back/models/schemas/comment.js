@@ -4,6 +4,10 @@ const commentId = require("./type/short-id");
 const CommentSchema = new Schema(
   {
     commentId,
+    email: {
+      type: "String",
+      required: true,
+    },
     projectId: {
       type: "String",
       required: true,

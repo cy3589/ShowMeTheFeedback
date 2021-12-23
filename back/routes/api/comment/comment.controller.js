@@ -40,6 +40,7 @@ exports.createComment = async (req, res) => {
 
   const comment = await Comment.create({
     projectId,
+    email,
     author: user.nickname,
     content,
     rating,
@@ -83,7 +84,7 @@ exports.updateComment = async (req, res) => {
   const { email } = req;
   const comment = await Comment.findOne({ commentId });
 
-  if (comment.author !== email) {
+  if (comment.email !== email) {
     res.status(404);
     throw new Error("수정 권한이 없습니다.");
   }
@@ -129,7 +130,7 @@ exports.deleteComment = async (req, res) => {
   const { email } = req;
 
   const comment = await Comment.findOne({ commentId });
-  if (comment.author !== email) {
+  if (comment.email !== email) {
     res.status(404);
     throw new Error("삭제 권한이 없습니다.");
   }

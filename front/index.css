@@ -69,12 +69,19 @@ textarea {
   align-items: center;
   padding: 0 5vw;
 }
+
+.naviBar__left {
+  display: flex;
+  align-items: center;
+}
+
 .naviBar__logo {
   display: flex;
   justify-content: center;
   align-items: center;
   color: black;
   font-size: var(--contents-header-text);
+  margin-right: 1rem;
 }
 .naviBar__elements-container {
   display: flex;
@@ -82,7 +89,7 @@ textarea {
   justify-content: flex-start;
 }
 .naviBar__elements-container > * {
-  margin: 0 20px 0 20px;
+  padding: 1rem;
   font-size: var(--contents-text);
   color: black;
 }
@@ -563,4 +570,62 @@ textarea {
   position: fixed;
   top: 85%;
   left: 85%;
+}
+.show-project {
+  padding: 4rem 0;
+}
+
+/* edit project */
+.edit-project .container {
+  max-width: 1200px;
+  margin: 4rem auto;
+  background-color: #fff;
+  padding: 4rem;
+}
+
+.edit-project .upload-button {
+  width: 150px;
+  border: none;
+}
+
+.edit-project .main-func,
+.edit-project .skills,
+.edit-project .team-discribe {
+  align-items: center;
+}
+
+.edit-project .main-func label,
+.edit-project .skills label,
+.edit-project .team-discribe label {
+  margin-left: 6px;
+  margin-right: 20px;
+}
+
+.edit-project .team-discribe label,
+.edit-project .team-discribe .check-icon,
+.edit-project .add-member {
+  align-self: flex-start;
+}
+
+.edit-project .skills input {
+  width: initial !important;
+}
+
+.edit-project input[type="submit"] {
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  background-color: var(--button-bg);
+  color: #fff;
+  align-self: flex-end;
+  margin-left: 20px;
+  border-radius: 4px;
+}
+
+.edit-project .thumbnail-delete {
+  width: 80px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
 }

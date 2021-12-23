@@ -1,4 +1,5 @@
 export const editProjectForm = /* html */ `
+    <div class="container">
     <form
       class="create-project-form"
       style="display: flex; flex-direction: column"
@@ -48,7 +49,7 @@ export const editProjectForm = /* html */ `
 
       <div class="skills" style="display: flex">
         <div class="check-icon"></div>
-        <label for="skills">사용한 기술 스텍</label>
+        <label for="skills">사용한 기술 스택</label>
         <input
           type="text"
           name="skills"
@@ -61,13 +62,13 @@ export const editProjectForm = /* html */ `
       <div class="team-discribe" style="display: flex">
         <div class="check-icon"></div>
         <label for="team-discribe">팀 소개</label>
-        <div class="check-icon"></div>
         <a href="#" class="add-member">+</a>
         <div class="members">
       </div>
 
-      <input type="submit" value="서밋" />
+      <input type="submit" value="수정하기" />
     </form>
+    </div>
 `;
 
 export const getMemberElement = (member) => /* html */ `

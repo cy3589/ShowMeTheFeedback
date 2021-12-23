@@ -4,11 +4,11 @@ export const setIconTeamDiscribe = () => {
   const checkElement = document
     .querySelector(".team-discribe")
     .querySelector(".check-icon");
-  for (let i = 0; i < stateObject.member.length; i++) {
+  for (let i = 0; i < stateObject.members.length; i++) {
     if (
-      !stateObject.member[i].name ||
-      !stateObject.member[i].job ||
-      !stateObject.member[i].task
+      !stateObject.members[i].name ||
+      !stateObject.members[i].job ||
+      !stateObject.members[i].task
     ) {
       checkElement.innerText = "!";
       checkElement.classList.remove("check-true");

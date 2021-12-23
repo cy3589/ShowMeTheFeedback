@@ -5,7 +5,7 @@ const path = require("path");
 // const logoutRouter = require("./logoutPage/logoutRouter.js");
 const cookieParser = require("cookie-parser");
 // const projectRouter = 11;
-const port = 8000;
+const port = 80;
 
 const app = express();
 // app.use("/", indexRouter);

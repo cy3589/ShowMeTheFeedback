@@ -197,9 +197,10 @@ article .header__bottom .project-Date {
   margin-bottom: 1rem;
 }
 
-.other-comments-wrapper .top {
+.other-comments-wrapper > .top {
   display: flex;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
 .other-comments-wrapper .line {
@@ -329,4 +330,49 @@ article .comment input {
   width: 200px;
   height: 200px;
   object-fit: contain;
+}
+
+/* commentTamplate */
+.commentsList .comment {
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.commentsList .comment .commentAuthor {
+  font-weight: bold;
+}
+
+.commentsList .comment .top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.commentsList .comment .commentStar {
+  bottom: 1px;
+}
+
+.commentsList .comment .commentContent {
+  box-sizing: border-box;
+  width: 100% !important;
+  margin-bottom: 6px;
+}
+
+.commentsList .comment .commentDate {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.commentsList .comment .bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.commentsList .comment .bottom .commentMoreContent {
+  color: #666;
+}
+
+.commentsList .comment .bottom .left{
+  display: flex;
 }

@@ -1,8 +1,8 @@
 import { stateObject, setStateObject } from "./staetObject.js";
 const pathArr = window.location.pathname.split("/");
 export const id = "nfhgZgFJIeFopxIyb2tXb";
-const getProejct_API_BASE_URL =
-  "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
+import { getTokenFromCookies } from "../auth/token.js"
+const BACKEND_BASE_URL = "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000"
 
 // const postCommentOption = {
 //   method: "post",
@@ -35,15 +35,14 @@ const getProejct_API_BASE_URL =
 
 //작성자 관련
 function mainArea() {
-  fetch(`${getProejct_API_BASE_URL}/api/projects/${id}`, {
+  fetch(`${BACKEND_BASE_URL}/api/projects/${id}`, {
     method: "GET",
     headers: {
-      access:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFuc3J1ZDQ1QGdtYWlsLmNvbSIsImlhdCI6MTY0MDI0NzkyMCwiZXhwIjoxNjQwMjUxNTIwfQ.wgcbScg8MddD3mSgkFiGTry1l7RF2Louj9IP33RNxNk",
-    },
+      access:getTokenFromCookies("accessToken")},
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       setStateObject(JSON.parse(JSON.stringify(data)));
       // console.log(stateObject);
       // stateProjectSave(stateObject);
@@ -69,12 +68,17 @@ function mainArea() {
 
 // 댓글 조회 관련
 function commentArea() {
-  fetch("./comment.json")
+  fetch(`${BACKEND_BASE_URL}/api/comments/${id}`,{
+    headers: { 
+      "Content-Type": "application/json",
+      access:getTokenFromCookies("accessToken"),
+    }})
     .then((res) => res.json())
     .then((data) => {
-      stateCommentSave(data);
-      mainContentStar(data);
-      mainContentEval(data);
+      console.log(data.comments);
+      stateCommentSave(data.comments);
+      mainContentStar(data.comments);
+      mainContentEval(data.comments);
       commentList(stateComment);
       commentCreate();
     });
@@ -168,7 +172,7 @@ function mainContentImage(data) {
 //상세 페이지 작성자, 제목, 날짜
 function mainContentInfo(data) {
   let projectTitle = document.getElementsByClassName("project-Title")[0];
-  let projectAuthor = document.getElementsByClassName("project-Author")[0];
+  let projectTeamName = document.getElementsByClassName("project-Author")[0];
   let projectDate = document.getElementsByClassName("project-Date")[0];
   let projectMainFunc = document.getElementsByClassName(
     "project-Container_mainFunc"
@@ -181,7 +185,7 @@ function mainContentInfo(data) {
   )[0];
 
   projectTitle.innerText = data.projectName;
-  projectAuthor.innerText = data.teamName;
+  projectTeamName.innerText = data.teamName;
   projectDate.innerText = data.date;
   projectMainFunc.innerText = data.mainFunc;
   projectSkills.innerHTML = data.skills;
@@ -212,7 +216,9 @@ function mainContentEval(data) {
 //댓글 목록
 function commentList(data) {
   let node_list = [];
-
+  console.log("@@@@@@@@");
+  console.log(data);
+  console.log("@@@@@@@@");
   for (let i = 0; i < data.length; i++) {
     let commentTemplate = document.getElementsByClassName("commentTemplate")[0];
     let node = document.importNode(commentTemplate.content, true);
@@ -221,10 +227,10 @@ function commentList(data) {
     node.querySelector(".commentDate").innerText = data[i].commentDate;
     node.querySelector(".commentContent").style.width = "400px";
     node.querySelector(".commentContent").style.height = "100px";
-    node.querySelector(".commentContent").innerText = data[i].body;
+    node.querySelector(".commentContent").innerText = data[i].content;
 
     node_list.push(node.querySelector(".commentContent"));
-    if (data[i].body.length <= 100) {
+    if (data[i].content.length <= 100) {
       node.querySelector(".commentMoreContent").style.display = "none";
     } else {
       node.querySelector(".commentContent").style.overflow = "hidden";
@@ -248,7 +254,7 @@ function commentList(data) {
 
     node.querySelector(".commentStarMask").style.position = "absolute";
     node.querySelector(".commentStarMask").style.width = `${
-      data[i].rating * 10
+      data[i].rating * 20
     }%`;
     node.querySelector(".commentStarMask").style.left = "0";
     node.querySelector(".commentStarMask").style.color = "red";
@@ -270,11 +276,11 @@ function commentCreate() {
     commentRegStarMask.style.width = `${e.target.value * 10}%`;
   });
 
-  commentRegBtn.addEventListener("click", (e) => {
-    const content = e.target.parentElement.querySelector(
-      ".writeCommentContent"
-    ).value;
-
+  commentRegBtn.addEventListener("click", async (e) => {
+    const content = e.target.parentElement.parentElement.querySelector(".writeCommentContent").value;
+    if(!content){
+      return alert("댓글을 입력해주세요");
+    }
     const rating =
       parseInt(
         e.target.parentElement.querySelector(".commentRegStarDrag").value,
@@ -283,15 +289,20 @@ function commentCreate() {
     console.log("작성한댓글은 : ", content);
     console.log("별점은 : ", rating, "점 입니다");
     console.log("게시글의 id는 :", id);
-    const options = {
+    const postCommentOptions = {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        access:getTokenFromCookies("accessToken"),
+      },
       body: JSON.stringify({
-        id: id,
-        content: content,
-        rating: rating,
+        content,
+        rating
       }),
     };
+    await fetch(`http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/api/comments/${id}`,postCommentOptions)
+    .then(result=>result.json())
+    .then(console.log)
 
     // await fetch("http://localhost:8080/commentPost", options)
     //   .then((result) => result.json())

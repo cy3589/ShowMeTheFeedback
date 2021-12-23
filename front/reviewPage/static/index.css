@@ -100,3 +100,11 @@ article .comment input {
   width: 800px;
   height: 80px;
 } */
+.invisible {
+  display: none;
+}
+.thumbnail-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}

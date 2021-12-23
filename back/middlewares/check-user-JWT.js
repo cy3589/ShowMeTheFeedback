@@ -11,8 +11,7 @@ module.exports = (req, res, next) => {
       next();
     } else {
       res.status(401).json({
-        message:
-          "accessToken 인증에 실패했습니다. accessToken을 재발급 받으세요",
+        message: "인증에 실패했습니다. 다시 로그인 해주세요",
       });
       return;
     }

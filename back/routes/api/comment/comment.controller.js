@@ -2,17 +2,32 @@ const { Comment, Project, User } = require("../../../models");
 
 exports.getComment = async (req, res) => {
   const { projectId } = req.params;
+  // 페이지 네이션을 위한 작업
+  // const page = Number(req.query.page || 1);
+  // const perPage = Number(req.query.perPage || 10);
 
-  const page = Number(req.query.page || 1);
-  const perPage = Number(req.query.perPage || 10);
+  // const [comments, totalPage] = await Comment.getPaginatedComments(
+  //   { projectId },
+  //   page,
+  //   perPage
+  // );
 
-  const [comments, totalPage] = await Comment.getPaginatedComments(
-    { projectId },
-    page,
-    perPage
-  );
+  // res.status(200).json({ comments, page, perPage, totalPage });
 
-  res.status(200).json({ comments, page, perPage, totalPage });
+  const rawComments = await Comment.find({ projectId });
+
+  const comments = rawComments.map((comment) => {
+    {
+      return {
+        commentId: comment.commentId,
+        author: comment.author,
+        content: comment.content,
+        rating: comment.rating,
+      };
+    }
+  });
+
+  res.status(200).json({ comments });
 };
 
 exports.createComment = async (req, res) => {

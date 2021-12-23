@@ -1,6 +1,17 @@
 const bcrypt = require("bcrypt");
 const { User } = require("../../../models");
 
+exports.getMyAccount = async (req, res) => {
+  const { email } = req;
+
+  const user = await User.findOne({ email });
+
+  res.status(200).json({
+    email,
+    nickname: user.nickname,
+  });
+};
+
 exports.resetPassword = async (req, res) => {
   const { email, password, confirmPassword } = req.body;
 

@@ -1,4 +1,4 @@
-const { Comment, Project, User } = require('../../../models');
+const { Comment, Project, User } = require("../../../models");
 
 exports.getComment = async (req, res) => {
   const { projectId } = req.params;
@@ -25,13 +25,10 @@ exports.createComment = async (req, res) => {
     rating,
   });
 
-  const project = await Project.findOne({ projectId });
+  const comments = await Comment.find({ projectId });
+  const ratingSum = comments.reduce((acc, cur) => acc + cur.rating, 0);
 
-  const newAverageRating = Number(
-    ((project.averageRating + rating) / (project.comments.length + 1)).toFixed(
-      2
-    )
-  );
+  const newAverageRating = Number((ratingSum / comments.length).toFixed(2));
 
   await Project.updateOne(
     { projectId },
@@ -45,9 +42,7 @@ exports.createComment = async (req, res) => {
         averageRating: newAverageRating,
       },
     }
-  ).populate({
-    path: 'comments.comment',
-  });
+  );
 
   await User.updateOne(
     { email },
@@ -58,8 +53,7 @@ exports.createComment = async (req, res) => {
     }
   );
   res.status(201).json({
-    message: '댓글이 작성되었습니다.',
-    project,
+    message: "댓글이 작성되었습니다.",
   });
 };
 
@@ -71,7 +65,7 @@ exports.updateComment = async (req, res) => {
 
   if (comment.author !== email) {
     res.status(404);
-    throw new Error('수정 권한이 없습니다.');
+    throw new Error("수정 권한이 없습니다.");
   }
 
   await Comment.updateOne(
@@ -86,8 +80,27 @@ exports.updateComment = async (req, res) => {
     }
   );
 
+  const comments = await Comment.find({ projectId: comment.projectId });
+  const ratingSum = comments.reduce((acc, cur) => acc + cur.rating, 0);
+
+  const newAverageRating = Number((ratingSum / comments.length).toFixed(2));
+
+  await Project.updateOne(
+    { projectId: comment.projectId },
+    {
+      $push: {
+        comments: {
+          comment,
+        },
+      },
+      $set: {
+        averageRating: newAverageRating,
+      },
+    }
+  );
+
   res.status(201).json({
-    message: '댓글이 수정되었습니다.',
+    message: "댓글이 수정되었습니다.",
   });
 };
 
@@ -98,7 +111,7 @@ exports.deleteComment = async (req, res) => {
   const comment = await Comment.findOne({ commentId });
   if (comment.author !== email) {
     res.status(404);
-    throw new Error('삭제 권한이 없습니다.');
+    throw new Error("삭제 권한이 없습니다.");
   }
 
   const user = await User.findOne({ email });
@@ -112,6 +125,6 @@ exports.deleteComment = async (req, res) => {
   project.save();
 
   res.status(200).json({
-    message: '댓글이 삭제되었습니다.',
+    message: "댓글이 삭제되었습니다.",
   });
 };

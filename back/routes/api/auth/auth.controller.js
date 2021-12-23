@@ -35,7 +35,7 @@ exports.register = async (req, res) => {
   const { email, password, nickname, authCode } = req.body;
 
   emailValidation(email, res);
-  passwordValidation(password, res); // 오피스 아워
+  passwordValidation(password, res);
 
   const tempUser = await TempUser.findOne({ email });
   if (!tempUser) {
@@ -45,7 +45,7 @@ exports.register = async (req, res) => {
 
   const isDuplicated = await duplicateCheck(nickname, email, res);
 
-  if (isDuplicated && authCode === tempUser.authCode) {
+  if (isDuplicated && Number(authCode) == tempUser.authCode) {
     await User.create({
       email,
       password: await bcrypt.hash(password, 10),
@@ -83,7 +83,8 @@ exports.emailRegister = async (req, res) => {
           throw new Error("서버 에러");
         }
       });
-    } else await TempUser.updateOne({ email }, { $set: { code: randomCode } });
+    } else
+      await TempUser.updateOne({ email }, { $set: { authCode: randomCode } });
   }
   res.status(200).json({
     message: "인증코드가 전송되었습니다.",

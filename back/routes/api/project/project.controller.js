@@ -1,11 +1,12 @@
 const { Project, Content, User } = require("../../../models");
 
 exports.getProjectList = async (req, res) => {
-  const projects = await Project.find({});
+  const projects = await Project.find({}).populate("author");
 
   const result = projects.map((project) => {
     return {
       title: project.title,
+      author: project.author.nickname,
       images: project.images,
       averageRating: project.averageRating,
       createdAt: project.createdAt,
@@ -20,9 +21,13 @@ exports.getProject = async (req, res) => {
   const { projectId } = req.params;
   const project = await Project.findOne({ projectId })
     .populate("author")
-    .populate("contents");
+    .populate("contents")
+    .populate({
+      path: "comments.comment",
+    });
 
   const result = {
+    projectId,
     author: project.author.nickname,
     title: project.title,
     members: project.contents.members,
@@ -31,6 +36,7 @@ exports.getProject = async (req, res) => {
     averageRating: project.averageRating,
     images: project.image,
     createdAt: project.createdAt,
+    comments: project.comments,
   };
 
   res.status(200).json(result);
@@ -38,6 +44,11 @@ exports.getProject = async (req, res) => {
 
 exports.createProject = async (req, res) => {
   const { email, title, description, stack, members } = req.body;
+
+  const membersParsed = JSON.parse(members).member;
+
+  // '[{"name":"432","job":"432","task":"432"}]'
+
   const imgs = req.files.map(
     (v) =>
       `https://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/back/uploads/${v.filename}`
@@ -54,7 +65,7 @@ exports.createProject = async (req, res) => {
     projectId: project.projectId,
     description,
     stack,
-    members: members ?? " ",
+    members: membersParsed,
   });
   //elice.....:5000/back/uploads/xxxx.jpg
   await Project.findOneAndUpdate(

@@ -3,9 +3,6 @@
   padding: 0;
   overflow: hidden;
 }
-body {
-  background-color: #fe9fa2;
-}
 a:link {
   color: black;
   text-decoration: none;

@@ -22,6 +22,7 @@ export const onChangeUpload = async () => {
       }
     });
   };
+
   for (let i = 0; i < filesLength; i++) {
     stateObject.thumbnails.push(await newPromise(uploadBtn.files[i]));
     stateObject.postThumbnailsData.push(uploadBtn.files[i]);
@@ -35,7 +36,9 @@ export const onChangeUpload = async () => {
       </div>
       `;
   });
-  document.querySelectorAll(".thumbnail-delete").forEach((v) =>
+  targetElement.style.border = "1px var(--border) solid";
+
+  document.querySelectorAll(".thumbnail-delete").forEach((v) => {
     v.addEventListener("click", (e) => {
       const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
         e.target.parentNode
@@ -43,7 +46,11 @@ export const onChangeUpload = async () => {
       stateObject.thumbnails.splice(index, 1);
       stateObject.postThumbnailsData.splice(index, 1);
       e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-    })
-  );
+
+      if (index === 0) {
+        targetElement.style.border = "none";
+      }
+    });
+  });
   uploadBtn.value = "";
 };

@@ -5,7 +5,7 @@ const path = require("path");
 // const logoutRouter = require("./logoutPage/logoutRouter.js");
 const cookieParser = require("cookie-parser");
 // const projectRouter = 11;
-const port = 5500;
+const port = 8000;
 
 const app = express();
 // app.use("/", indexRouter);
@@ -18,13 +18,17 @@ app.use("/", express.static("indexPage"));
 //   // res.contentType(path.basename("/index.html"));
 //   // res.send("adsfafs");
 // });
-
-// app.use("/reviewPage/static/*", express.static("reviewPage/static"));
-
 const reviewPageRouter = require("./reviewPage/reviewPageRouter.js");
 app.use("/reviewPage", reviewPageRouter);
 
 app.use(express.static(path.join(__dirname, "/")));
+
+// app.use("/reviewPage/static/*", express.static("reviewPage/static"));
+
+// const reviewPageRouter = require("./reviewPage/reviewPageRouter.js");
+// app.use("/reviewPage", reviewPageRouter);
+
+// app.use(express.static(path.join(__dirname, "/")));
 app.listen(port, () => {
   console.log("FrontEnd Server is running on port ", port);
 });

@@ -1,21 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="indexPage.css" />
+    <!-- <link rel="stylesheet" href="indexPage.css" /> -->
+    <link rel="stylesheet" href="../index.css" />
     <title>Show Me The Feedback</title>
   </head>
-  <body>
-    <header id="header">
-      <div id="title">Show Me The Feedback</div>
-      <div id="link-box">
-        <a href="/loginPage" id="login">로그인</a>
-        <a href="/registerMember" id="join">회원가입</a>
+  <body class="index-page">
+    <div class="naviBar"></div>
+
+    <div class="index-page__container">
+      <div class="total-project__counter">
+        <div class="total-project__header">등록된 프로젝트</div>
+        <div class="total-project__number">38,479</div>
       </div>
-    </header>
-    <div id="root"></div>
+
+      <div class="total-feedback__counter">
+        <div class="total-feedback__header">피드백 갯수</div>
+        <div class="total-feedback__number">38,479</div>
+      </div>
+
+      <div class="total-user__counter">
+        <div class="total-user__header">전체 회원수</div>
+        <div class="total-user__number">2,275</div>
+      </div>
+    </div>
+
+    <!-- <div id="root"></div> -->
   </body>
-  <script src="./indexPage.js"></script>
+  <script type="module" src="./indexPage.js"></script>
+  <script type="module" src="../naviBar/index.js"></script>
 </html>

@@ -1,7 +1,8 @@
 import { stateObject, setStateObject } from "./staetObject.js";
 const pathArr = window.location.pathname.split("/");
-export const id = pathArr[pathArr.length - 1];
-const getProejct_API_BASE_URL = "http://90u90u349jw:5000/fjiowejfoiw";
+export const id = "nfhgZgFJIeFopxIyb2tXb";
+const getProejct_API_BASE_URL =
+  "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
 
 // const postCommentOption = {
 //   method: "post",
@@ -34,14 +35,24 @@ const getProejct_API_BASE_URL = "http://90u90u349jw:5000/fjiowejfoiw";
 
 //작성자 관련
 function mainArea() {
-  fetch("./author.json")
+  fetch(`${getProejct_API_BASE_URL}/api/projects/${id}`, {
+    method: "GET",
+    headers: {
+      access:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFuc3J1ZDQ1QGdtYWlsLmNvbSIsImlhdCI6MTY0MDI0NzkyMCwiZXhwIjoxNjQwMjUxNTIwfQ.wgcbScg8MddD3mSgkFiGTry1l7RF2Louj9IP33RNxNk",
+    },
+  })
     .then((res) => res.json())
     .then((data) => {
       setStateObject(JSON.parse(JSON.stringify(data)));
-      console.log(stateObject);
-      stateProjectSave(stateObject);
-      mainContentInfo(stateObject);
-      mainContentImage(stateObject.gotThumbnails);
+      // console.log(stateObject);
+      // stateProjectSave(stateObject);
+      // mainContentInfo(stateObject);
+      // mainContentImage(stateObject.gotThumbnails);
+      console.log(data);
+      stateProjectSave(data);
+      mainContentInfo(data);
+      mainContentImage(data.thumbnails);
     });
 }
 
@@ -174,8 +185,8 @@ function mainContentInfo(data) {
   projectDate.innerText = data.date;
   projectMainFunc.innerText = data.mainFunc;
   projectSkills.innerHTML = data.skills;
-  for (let i = 0; i < data.member.length; i++) {
-    projectMembersAndJobs.innerHTML += `<div class = "project-Container_MembersAndJobs_list${i}">${data.member[i].name}(${data.member[i].job}) : ${data.member[i].task}</div>`;
+  for (let i = 0; i < data.members.length; i++) {
+    projectMembersAndJobs.innerHTML += `<div class = "project-Container_MembersAndJobs_list${i}">${data.members[i].name}(${data.members[i].job}) : ${data.members[i].task}</div>`;
   }
 }
 

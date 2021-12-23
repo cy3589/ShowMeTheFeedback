@@ -32,7 +32,8 @@ exports.getComment = async (req, res) => {
 
 exports.createComment = async (req, res) => {
   const { projectId } = req.params;
-  const { email, content, rating } = req.body;
+  const { content, rating } = req.body;
+  const { email } = req;
   const comment = await Comment.create({
     projectId,
     author: email,
@@ -74,8 +75,8 @@ exports.createComment = async (req, res) => {
 
 exports.updateComment = async (req, res) => {
   const { commentId } = req.params;
-  const { content, rating, email } = req.body;
-
+  const { content, rating } = req.body;
+  const { email } = req;
   const comment = await Comment.findOne({ commentId });
 
   if (comment.author !== email) {
@@ -121,7 +122,7 @@ exports.updateComment = async (req, res) => {
 
 exports.deleteComment = async (req, res) => {
   const { commentId } = req.params;
-  const { email } = req.body;
+  const { email } = req;
 
   const comment = await Comment.findOne({ commentId });
   if (comment.author !== email) {

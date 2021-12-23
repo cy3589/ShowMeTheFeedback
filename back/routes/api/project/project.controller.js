@@ -5,9 +5,9 @@ exports.getProjectList = async (req, res) => {
 
   const result = projects.map((project) => {
     return {
-      title: project.title,
+      projectName: project.projectName,
       author: project.author.nickname,
-      images: project.images,
+      thumbnails: project.thumbnails,
       averageRating: project.averageRating,
       createdAt: project.createdAt,
       projectId: project.projectId,
@@ -29,45 +29,43 @@ exports.getProject = async (req, res) => {
   const result = {
     projectId,
     author: project.author.nickname,
-    title: project.title,
+    projectName: project.projectName,
     members: project.contents.members,
-    description: project.contents.description,
-    stack: project.contents.stack,
+    mainFunc: project.contents.mainFunc,
+    skills: project.contents.skills,
     averageRating: project.averageRating,
-    images: project.image,
+    thumbnails: project.thumbnails,
     createdAt: project.createdAt,
-    comments: project.comments,
   };
 
   res.status(200).json(result);
 };
 
 exports.createProject = async (req, res) => {
-  const { email, title, description, stack, members } = req.body;
+  const { email } = req;
+  const { teamName, projectName, skills, mainFunc, member } = req.body;
 
-  const membersParsed = JSON.parse(members).member;
+  const membersParsed = JSON.parse(member).member;
 
-  // '[{"name":"432","job":"432","task":"432"}]'
-
-  const imgs = req.files.map(
+  const thumbnails = req.files.map(
     (v) =>
       `https://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/back/uploads/${v.filename}`
   );
   const author = await User.findOne({ email }); // 사용자 확인
-
   const project = await Project.create({
     author,
-    title,
-    images: imgs,
+    projectName,
+    thumbnails: thumbnails,
   });
 
   const content = await Content.create({
+    teamName,
     projectId: project.projectId,
-    description,
-    stack,
+    mainFunc,
+    skills,
     members: membersParsed,
   });
-  //elice.....:5000/back/uploads/xxxx.jpg
+
   await Project.findOneAndUpdate(
     { projectId: project.projectId },
     {
@@ -96,7 +94,10 @@ exports.createProject = async (req, res) => {
 
 exports.updateProject = async (req, res) => {
   const { projectId } = req.params;
-  const { title, description, stack, members, image, email } = req.body;
+  const { email } = req;
+
+  const { teamName, projectName, skills, mainFunc, member, currentThumbnails } =
+    req.body;
 
   const checkUser = await User.findOne({ email });
   if (!checkUser.projects.includes(projectId)) {
@@ -104,13 +105,23 @@ exports.updateProject = async (req, res) => {
     throw new Error("수정 권한이 없습니다.");
   }
 
+  const membersParsed = JSON.parse(member).member;
+
+  const thumbnails = req.files.map(
+    (v) =>
+      `https://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/back/uploads/${v.filename}`
+  );
+
+  const updatedThumbnails = thumbnails.concat(currentThumbnails);
+
   const content = await Content.findOneAndUpdate(
     { projectId },
     {
       $set: {
-        members,
-        description,
-        stack,
+        teamName,
+        members: membersParsed,
+        mainFunc,
+        skills,
       },
     }
   );
@@ -119,9 +130,8 @@ exports.updateProject = async (req, res) => {
     { projectId },
     {
       $set: {
-        title,
-        // image: image ?? ' ',
-        // TODO: 이미지 저장 및 수정 처리 서버 발급시 확인
+        projectName,
+        thumbnails: updatedThumbnails,
         contents: content,
       },
     }
@@ -142,7 +152,7 @@ exports.updateProject = async (req, res) => {
 
 exports.deleteProject = async (req, res) => {
   const { projectId } = req.params;
-  const { email } = req.body;
+  const { email } = req;
   const checkUser = await User.findOne({ email });
   if (!checkUser) {
     res.status(404);

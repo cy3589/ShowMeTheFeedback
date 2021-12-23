@@ -18,10 +18,14 @@ router.get("/", asyncHandler(getProjectList));
 router.get("/:projectId", asyncHandler(getProject));
 
 // 프로젝트 생성
-router.post("/", upload.array("image"), asyncHandler(createProject));
+router.post("/", upload.array("thumbnails"), asyncHandler(createProject));
 
 // 프로젝트 수정
-router.put("/:projectId", asyncHandler(updateProject));
+router.put(
+  "/:projectId",
+  upload.array("additionalThumbnails"),
+  asyncHandler(updateProject)
+);
 
 // 프로젝트 삭제
 router.delete("/:projectId", asyncHandler(deleteProject));

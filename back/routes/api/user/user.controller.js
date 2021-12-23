@@ -37,7 +37,9 @@ exports.resetPassword = async (req, res) => {
 };
 
 exports.resetNickname = async (req, res) => {
-  const { nickname, changeNickname } = req.body;
+  const { changeNickname } = req.body;
+
+  const { email } = req;
 
   const user = await User.findOne({ nickname: changeNickname });
   if (user) {
@@ -48,7 +50,7 @@ exports.resetNickname = async (req, res) => {
     return;
   } else {
     await User.findOneAndUpdate(
-      { nickname },
+      { email },
       {
         $set: {
           nickname: changeNickname,

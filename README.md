@@ -31,7 +31,7 @@
 
 ## 4. 프로젝트 구성도
   - [와이어프레임](https://www.figma.com/file/RsrR4lqBTeJffvdjxjxz0x/Untitled?node-id=0%3A1)
-  - 스토리보드
+  - [스토리보드](https://docs.google.com/presentation/d/1aQozEXC97JmxbhB_Wlod6TEpsymIrKUz5DPSdLTBixo/edit#slide=id.p)
 
 <br>
 

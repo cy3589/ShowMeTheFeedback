@@ -98,6 +98,9 @@ textarea {
   font-size: var(--contents-text);
   padding: 1rem;
 }
+.naviBar__nickName {
+  color: var(--link-font);
+}
 
 /* IndexPage */
 

@@ -74,9 +74,7 @@ export const editProjectForm = /* html */ `
 
 export const getMemberElement = (member, i) => {
   let buttonStr = "";
-  console.log(i);
   if (i === 0) buttonStr = `<a href="#" class="add-member">+</a>`;
-  console.log(buttonStr);
   return /* html */ `
     <div class="member">
       <input

@@ -53,7 +53,6 @@ document
     showProjectElementsWrapper.classList.add("invisible");
     editProjectElementsWrapper.innerHTML = editProjectForm;
     prevStateObject.members.forEach((member, i) => {
-      console.log(document.querySelector(".members"));
       document.querySelector(".members").innerHTML += getMemberElement(
         member,
         i
@@ -262,7 +261,6 @@ document
             } else return result.json();
           })
           .then((result) => {
-            // console.log(result);
             if (result.error) {
               alert(result.error);
               return;

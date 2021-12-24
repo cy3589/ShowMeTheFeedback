@@ -57,7 +57,7 @@ exports.createProject = async (req, res) => {
     (v) =>
       `http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/uploads/${v.filename}`
   );
-  const author = await User.findOne({ email }); // 사용자 확인
+  const author = await User.findOne({ email });
   const project = await Project.create({
     author,
     projectName,
@@ -89,8 +89,6 @@ exports.createProject = async (req, res) => {
       },
     }
   );
-
-  // TODO: 이미지 저장 imgbb 사용 여부
 
   res.status(201).json({
     message: "프로젝트를 생성했습니다.",

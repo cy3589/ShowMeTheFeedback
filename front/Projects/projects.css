@@ -1,0 +1,152 @@
+:root {
+  --link-font: #f38181;
+  --button-bg: #ff6b6b;
+  --page-bg: #f8f9fa;
+  --border: #bbbbbb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* a태그 색상 변경 안되도록 처리 */
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+/* javascript로 렌더하는 element의 className */
+
+.render {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 4rem 0 5vw;
+}
+
+.card {
+  position: relative;
+  bottom: 0;
+  width: 320px;
+  height: 380px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  overflow: hidden;
+  border-radius: 4px;
+  transition: all 0.4s;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+  bottom: 8px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card .thumbnail {
+  display: block;
+  height: 300px;
+  border-bottom: 1px solid #ddd;
+}
+
+.thumbnail > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 전체 card > (썸네일, 컨텐츠) */
+/* 컨텐츠 flex > 아바타, (제목,별점), 날짜 */
+.contents {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  column-gap: 10px;
+}
+
+.avatar-image {
+  background-color: #ccc;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+.avatar-char {
+  color: #fff;
+  background-color: rgba(173, 200, 82);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+}
+.createdAt {
+  white-space: nowrap;
+  font-size: 14px;
+  color: #666;
+}
+
+.rating {
+  margin-bottom: 3px;
+}
+
+.title-rating {
+  flex: 1;
+  justify-self: flex-start;
+}
+
+.title {
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#header {
+  width: 100%;
+  position: fixed;
+  left: 0px;
+  /* background: #efefef; */
+  padding: 10px 10px 10px 50px;
+  font-size: 30px;
+  line-height: 30px;
+  z-index: 0;
+}
+
+.star {
+  background-color: #fff;
+  text-shadow: 0 #000;
+  font-size: 1rem;
+  line-height: 2.5rem;
+}
+.fill-star {
+  background-color: #fff;
+  text-shadow: 0px 0px 3px #000;
+  font-size: 1rem;
+  line-height: 2.5rem;
+  color: #fff58c;
+}
+header {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  left: 0px;
+  padding: 10px 10px 10px 50px;
+  font-size: 30px;
+  line-height: 30px;
+  z-index: 0;
+}

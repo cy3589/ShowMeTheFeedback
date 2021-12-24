@@ -52,8 +52,12 @@ document
     delete newStateObject.thumbnails;
     showProjectElementsWrapper.classList.add("invisible");
     editProjectElementsWrapper.innerHTML = editProjectForm;
-    prevStateObject.members.forEach((member) => {
-      document.querySelector(".members").innerHTML += getMemberElement(member);
+    prevStateObject.members.forEach((member, i) => {
+      console.log(document.querySelector(".members"));
+      document.querySelector(".members").innerHTML += getMemberElement(
+        member,
+        i
+      );
     });
     const {
       inputTeamNameElement,
@@ -86,6 +90,7 @@ document
     addEventListenerInput(inputMainFuncElement, "mainFunc", "main-func");
     addEventListenerInput(inputSkillsElement, "skills", "skills");
     addMemberElement.addEventListener("click", addMember);
+
     inputMemberElements.forEach((memberElement, i) => {
       const memberNameElement = memberElement.querySelector(".member-name");
       const memberJobElement = memberElement.querySelector(".member-job");
@@ -103,6 +108,7 @@ document
         newStateObject.members[index].task = e.target.value;
         setIconTeamDiscribe();
       });
+
       const {
         inputTeamNameElement,
         inputProjectNameElement,
@@ -125,37 +131,22 @@ document
       addEventListenerInput(inputMainFuncElement, "mainFunc", "main-func");
       addEventListenerInput(inputSkillsElement, "skills", "skills");
       addMemberElement.addEventListener("click", addMember);
-      inputMemberElements.forEach((memberElement, i) => {
-        const memberNameElement = memberElement.querySelector(".member-name");
-        const memberJobElement = memberElement.querySelector(".member-job");
-        const memberTaskElement = memberElement.querySelector(".member-task");
-        const index = i;
-        memberNameElement.addEventListener("input", (e) => {
-          newStateObject.members[index].name = e.target.value;
-          setIconTeamDiscribe();
-        });
-        memberJobElement.addEventListener("input", (e) => {
-          newStateObject.members[index].job = e.target.value;
-          setIconTeamDiscribe();
-        });
-        memberTaskElement.addEventListener("input", (e) => {
-          newStateObject.members[index].task = e.target.value;
-          setIconTeamDiscribe();
-        });
-        const deleteButton = document.createElement("a");
-        deleteButton.href = "#";
-        deleteButton.className = "delete-member";
-        deleteButton.innerText = "-";
-        deleteButton.addEventListener("click", (e) => {
-          const index = Array.from(
-            e.target.parentNode.parentNode.children
-          ).indexOf(e.target.parentNode);
-          e.target.parentNode.parentNode.removeChild(e.target.parentNode);
-          newStateObject.member.splice(index, 1);
-          setIconTeamDiscribe();
-        });
-        if (i !== 0) memberElement.appendChild(deleteButton);
+
+      const deleteButton = document.createElement("a");
+      deleteButton.href = "#";
+      deleteButton.className = "delete-member";
+      deleteButton.innerText = "-";
+      deleteButton.addEventListener("click", (e) => {
+        const index = Array.from(
+          e.target.parentNode.parentNode.children
+        ).indexOf(e.target.parentNode);
+        e.target.parentNode.parentNode.removeChild(e.target.parentNode);
+        newStateObject.members.splice(index, 1);
+        setIconTeamDiscribe();
       });
+      if (i !== 0) memberElement.appendChild(deleteButton);
+      // inputMemberElements.forEach((memberElement, i) => {
+      // });
 
       setIcon(newStateObject["teamName"], "team-name");
       setIcon(newStateObject["projectName"], "project-name");
@@ -228,53 +219,54 @@ document
           e.target.parentNode.parentNode.removeChild(e.target.parentNode);
         })
       );
-
-      document
-        .querySelector(".create-project-form")
-        .addEventListener("submit", (e) => {
-          e.preventDefault();
-          if (document.querySelector(".check-false")) {
-            alert("모든 항목을 채워주세요!");
-          }
-          const formData = new FormData();
-          const {
-            teamName,
-            projectName,
-            mainFunc,
-            skills,
-            members,
-            currentThumbnails,
-            additionalThumbnails,
-          } = newStateObject;
-          formData.append("teamName", teamName);
-          formData.append("projectName", projectName);
-          formData.append("mainFunc", mainFunc);
-          formData.append("skills", skills);
-          formData.append("currentThumbnails", currentThumbnails);
-          formData.append("member", JSON.stringify(members));
-          for (let i = 0; i < additionalThumbnails.length; i++) {
-            formData.append("additionalThumbnails", additionalThumbnails[i]);
-          }
-          const UpdataProjectOptions = {
-            method: "PUT",
-            headers: {
-              access: getTokenFromCookies("accessToken"),
-            },
-            body: formData,
-          };
-          fetch(`${FETCH_URL_UPDATE_PORT}/${projectId}`, UpdataProjectOptions)
-            .then((result) => {
-              if (result.status === 201) {
-                alert("수정 성공");
-                window.location.href = `/reviewPage/${projectId}`;
-              } else return result.json();
-            })
-            .then((result) => {
-              if (result.error) {
-                alert(result.error);
-                return;
-              }
-            });
-        });
     });
+    document
+      .querySelector(".create-project-form")
+      .addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (document.querySelector(".check-false")) {
+          alert("모든 항목을 채워주세요!");
+          return;
+        }
+        const formData = new FormData();
+        const {
+          teamName,
+          projectName,
+          mainFunc,
+          skills,
+          members,
+          currentThumbnails,
+          additionalThumbnails,
+        } = newStateObject;
+        formData.append("teamName", teamName);
+        formData.append("projectName", projectName);
+        formData.append("mainFunc", mainFunc);
+        formData.append("skills", skills);
+        formData.append("currentThumbnails", currentThumbnails);
+        formData.append("member", JSON.stringify(members));
+        for (let i = 0; i < additionalThumbnails.length; i++) {
+          formData.append("additionalThumbnails", additionalThumbnails[i]);
+        }
+        const UpdataProjectOptions = {
+          method: "PUT",
+          headers: {
+            access: getTokenFromCookies("accessToken"),
+          },
+          body: formData,
+        };
+        fetch(`${FETCH_URL_UPDATE_PORT}/${projectId}`, UpdataProjectOptions)
+          .then((result) => {
+            if (result.status === 201) {
+              alert("수정 성공");
+              return (window.location.href = `/reviewPage/${projectId}`);
+            } else return result.json();
+          })
+          .then((result) => {
+            // console.log(result);
+            if (result.error) {
+              alert(result.error);
+              return;
+            }
+          });
+      });
   });

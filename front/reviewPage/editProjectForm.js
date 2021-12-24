@@ -72,29 +72,35 @@ export const editProjectForm = /* html */ `
     </div>
 `;
 
-export const getMemberElement = (member) => /* html */ `
-         <div class="member">
-            <input
-              type="text"
-              class="member-name"
-              name="member-name"
-              placeholder="이름"
-              value = ${member.name}
-            />
-            <input
-              type="text"
-              class="member-job"
-              name="member-job"
-              placeholder="담당업무"
-              value = ${member.job}
-            />
-            <input
-              type="text"
-              class="member-task"
-              name="member-task"
-              value = ${member.task}
-              placeholder="업무내용"
-            />
-            <a href="#" class="add-member">+</a>
-          </div>
-`;
+export const getMemberElement = (member, i) => {
+  let buttonStr = "";
+  console.log(i);
+  if (i === 0) buttonStr = `<a href="#" class="add-member">+</a>`;
+  console.log(buttonStr);
+  return /* html */ `
+    <div class="member">
+      <input
+        type="text"
+        class="member-name"
+        name="member-name"
+        placeholder="이름"
+        value = ${member.name}
+      />
+      <input
+        type="text"
+        class="member-job"
+        name="member-job"
+        placeholder="담당업무"
+        value = ${member.job}
+      />
+      <input
+        type="text"
+        class="member-task"
+        name="member-task"
+        value = ${member.task}
+        placeholder="업무내용"
+      />
+      ${buttonStr}
+    </div>
+  `;
+};

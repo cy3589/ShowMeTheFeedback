@@ -1,5 +1,4 @@
 import { getUserValue } from "../api/getUserValue.js";
-import { logOut } from "../auth/logOut.js";
 
 export async function authorizedNaviBar() {
   const authorizedTopNaviBar = document.getElementsByClassName("naviBar")[0];

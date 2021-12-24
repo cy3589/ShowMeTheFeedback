@@ -14,7 +14,6 @@ function mainArea() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       setStateObject(JSON.parse(JSON.stringify(data)));
       stateProjectSave(data);
       mainContentInfo(data);
@@ -32,20 +31,11 @@ function commentArea() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("**************************");
-      console.log(data);
-      console.log("**************************");
-      console.log(data.comments);
-      // stateCommentSave(data.comments);
       mainContentEval(data.comments);
       commentList(data.comments);
       commentCreate();
     });
 }
-
-//댓글 작성 관련
-
-//상태 저장
 
 let stateProject = [];
 let stateComment = [];
@@ -56,25 +46,14 @@ function stateProjectSave(data) {
   }
 }
 
-// function stateCommentSave(data) {
-//   for (let i = 0; i < data.length; i++) {
-//     stateComment.push(data[i]);
-//   }
-// }
-
-//날짜 출력하기
 const getProjectDateFormat = (dateObject) => {
   let Year = dateObject.getFullYear();
   let Month = dateObject.getMonth() + 1;
   let Date = dateObject.getDate();
-  // let Hour = dateObject.getHours();
-  // let Minutes = dateObject.getMinutes();
-  // let Seconds = dateObject.getSeconds();
   let result = Year + "." + Month + "." + Date;
   return result;
 };
 
-// const toStringAndFillZero = (STR)=> STR.toString().padStart(2,"0");
 const getAgoStringComment = (dateObject) => {
   const dateDiff = now - dateObject;
   let AgoMinute = Math.round(dateDiff / (1000 * 60));
@@ -84,29 +63,14 @@ const getAgoStringComment = (dateObject) => {
   AgoMinute -= AgoTime * 60;
   if (AgoTime < 24) return `${Math.round(AgoTime + AgoMinute / 60)}시간 전`;
 
-  console.log();
-  console.log(now);
-  console.log(dateObject);
   let Year = dateObject.getFullYear();
   let Month = dateObject.getMonth() + 1;
   let Date = dateObject.getDate();
-  // let Hour = toStringAndFillZero(dateObject.getHours());
-  // let Minutes = toStringAndFillZero(dateObject.getMinutes());
-  // let Seconds = toStringAndFillZero(dateObject.getSeconds());
   let result = Year + "." + Month + "." + Date;
-  //  +
-  // " " +
-  // Hour +
-  // ":" +
-  // Minutes +
-  // ":" +
-  // Seconds;
   return result;
 };
 
-//이미지 및 버튼 이벤트
 function mainContentImage(data) {
-  console.log(data);
   let main_img = document.getElementsByClassName("main_img")[0];
   let prev_img_btn = document.getElementsByClassName("prev_img_btn")[0];
   let next_img_btn = document.getElementsByClassName("next_img_btn")[0];
@@ -151,14 +115,7 @@ function mainContentImage(data) {
   });
 }
 
-//상세 페이지 작성자, 제목, 날짜
-async function mainContentInfo(data) {
-  // if (
-  //   data.author ===
-  //   (await document.querySelector(".naviBar__nickName").innerText)
-  // ) {
-  //   document.querySelector(".header__top").classList.add("invisible");
-  // }
+function mainContentInfo(data) {
   let projectTitle = document.getElementsByClassName("project-Title")[0];
   let projectTeamName = document.getElementsByClassName("project-Author")[0];
   let projectDate = document.getElementsByClassName("project-Date")[0];
@@ -200,7 +157,6 @@ function commentList(data) {
   let node_list = [];
   for (let i = 0; i < data.length; i++) {
     let commentTemplate = document.getElementsByClassName("commentTemplate")[0];
-    console.log("1341241324132441243124312413r1424312r1234r2rd123r32");
     let node = document.importNode(commentTemplate.content, true);
 
     node.querySelector(".commentAuthor").innerText = data[i].author;
@@ -270,9 +226,6 @@ function commentCreate() {
         e.target.parentElement.querySelector(".commentRegStarDrag").value,
         10
       ) / 2;
-    console.log("작성한댓글은 : ", content);
-    console.log("별점은 : ", rating, "점 입니다");
-    console.log("게시글의 id는 :", id);
     const postCommentOptions = {
       method: "post",
       headers: {
@@ -300,38 +253,6 @@ function commentCreate() {
           return;
         }
       });
-
-    // await fetch("http://localhost:8080/commentPost", options)
-    //   .then((result) => result.json())
-    //   .then(console.log);
-
-    // let comment = {
-    //   postId: 1,
-    //   id: 1,
-    //   name: "김용규",
-    //   email: "Eliseo@gardner.biz",
-    //   rating: document.getElementsByClassName("commentRegStarDrag")[0].value,
-    //   commentDate: dateFormat(new Date()),
-    //   body: document.getElementsByClassName("writeCommentContent")[0].value,
-    // };
-    // stateComment.push(comment);
-
-    // fetch("http://localhost:9999/", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(stateComment),
-    // })
-    //   .then((res) => {
-    //     if (res.status === 200 || res.status === 201) {
-    //       res.json().then((json) => console.log(json));
-    //     } else {
-    //       console.error(res.statusText);
-    //     }
-    //   })
-    //   .catch((err) => console.error(err));
-    // commentList(stateComment);
   });
 }
 
@@ -358,5 +279,4 @@ document
   });
 
 mainArea();
-// imageArea();
 commentArea();

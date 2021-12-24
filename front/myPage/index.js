@@ -38,7 +38,7 @@ globalThis.addEventListener("load", async () => {
     }
   });
 
-  submitBtn.addEventListener("click", (e) => {
+  submitBtn.addEventListener("click", async (e) => {
     e.preventDefault();
 
     if (!isEqualPw) {
@@ -47,16 +47,40 @@ globalThis.addEventListener("load", async () => {
     }
 
     if (userValues.data.nickname !== myPageInputs["nickName"].value) {
-      updateUserNickName(myPageInputs["nickName"].value);
+      const { data, status } = await updateUserNickName(
+        myPageInputs["nickName"].value
+      );
+      alert(data.message);
+
+      if (
+        myPageInputs["password"].value === "" &&
+        myPageInputs["passwordConfirm"].value === ""
+      ) {
+        location.reload();
+      }
     }
 
     if (
-      myPageInputs["password"].value === myPageInputs["passwordConfirm"].value
+      myPageInputs["password"].value ===
+        myPageInputs["passwordConfirm"].value &&
+      myPageInputs["password"].value !== "" &&
+      myPageInputs["passwordConfirm"].value !== ""
     ) {
-      updateUserPassword(
+      const { data, status } = await updateUserPassword(
         myPageInputs["password"].value,
         myPageInputs["passwordConfirm"].value
       );
+      if(data.message){
+      alert(`${data.message} 다시 로그인 해주세요.`);
+      window.location.href="/loginPage";
+    }else{
+      alert(`다시 로그인 해주세요.`);
+      window.location.href="/loginPage"
+    }
+      logOut();
+      history.pushState({ data: data }, null, "../loginPage");
+      location.reload();
     }
   });
 });
+

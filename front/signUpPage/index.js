@@ -39,7 +39,10 @@ submitBtn.addEventListener("click", async (e) => {
     return;
   }
 
-  if (passwordInput.value !== passwordConfirmInput.value) {
+  if (
+    passwordInput.value !== passwordConfirmInput.value ||
+    passwordInput.value.length < 8
+  ) {
     alert("비밀번호를 다시 확인해주세요");
     return;
   }
@@ -56,6 +59,9 @@ submitBtn.addEventListener("click", async (e) => {
     history.pushState({ data: data }, null, "../loginPage");
     location.reload();
     return;
+  }
+  if (data.error === "중복된 이메일입니다.") {
+    alert("다른 이메일로 시도해주세요");
   }
   alert("다시 시도해주세요");
 });

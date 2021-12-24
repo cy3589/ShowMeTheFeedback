@@ -26,11 +26,16 @@ globalThis.addEventListener("load", async () => {
       for (let key in data) {
         saveToken(key, data[key]);
       }
+      return;
     }
-
-    alert("다시 로그인 해주세요.");
-    history.pushState({ data: null }, null, "../loginPage");
-    location.reload();
+    if (
+      res.data.error === "Access token이 올바르지 않습니다" ||
+      res.data.error === "토큰 값이 확인되지 않습니다."
+    ) {
+      alert("다시 로그인 해주세요.");
+      history.pushState({ data: null }, null, "../loginPage");
+      location.reload();
+    }
   }
 
   const logOutBtn = document.querySelector(".naviBar__logOut");

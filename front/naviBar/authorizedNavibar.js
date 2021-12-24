@@ -26,7 +26,6 @@ export async function authorizedNaviBar() {
         </div>
         <div class="naviBar__auth">
             <a class="naviBar__nickName" href="../myPage">${data.nickname}</a>
-            <i class="fas fa-bars"></i>
             <a class="naviBar__logOut" href="../indexPage">로그아웃</a>
             <i class="fas fa-bars"></i>
         </div>

@@ -28,7 +28,7 @@ exports.getProject = async (req, res) => {
       path: "comments.comment",
     });
 
-  let isAuthorized = email == project.author ? true : false;
+  let isAuthorized = email == project.author.email ? true : false;
 
   const result = {
     projectId,

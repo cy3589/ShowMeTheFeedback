@@ -97,11 +97,14 @@ exports.createProject = async (req, res) => {
 };
 
 exports.updateProject = async (req, res) => {
+
   const { projectId } = req.params;
   const { email } = req;
-
   const { teamName, projectName, skills, mainFunc, member, currentThumbnails } =
     req.body;
+
+  
+  const current = JSON.parse(currentThumbnails);
 
   const checkUser = await User.findOne({ email });
   if (!checkUser.projects.includes(projectId)) {
@@ -117,7 +120,7 @@ exports.updateProject = async (req, res) => {
   );
 
   const updatedThumbnails = thumbnails
-    .concat(currentThumbnails)
+    .concat(current)
     .filter((v) => v != "");
 
   const content = await Content.findOneAndUpdate(

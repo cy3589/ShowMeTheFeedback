@@ -9,6 +9,9 @@ const passportStart = require("./passport");
 const { sign, refresh } = require("./utils/jwt");
 // routes
 const apiRouter = require("./routes");
+const morgan = require("morgan");
+
+
 
 const port = 5000;
 
@@ -33,6 +36,7 @@ mongoose
 app.use(passport.initialize());
 
 app.use("/uploads", express.static("uploads"));
+app.use(morgan("combined"));
 
 app.get(
   "/auth/google",

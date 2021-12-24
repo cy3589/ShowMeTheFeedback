@@ -1,6 +1,7 @@
 const { Router } = require("express");
 const asyncHandler = require("../../../utils/asyncHandler");
 const upload = require("../../../utils/multer");
+const fs = require("fs");
 const {
   getProjectList,
   getProject,
@@ -9,6 +10,12 @@ const {
   deleteProject,
 } = require("./project.controller");
 
+try {
+  fs.accessSync("uploads");
+} catch (error) {
+  console.log("uploads폴더가 없으므로 생성합니다");
+  fs.mkdirSync("uploads");
+}
 const router = Router();
 
 // 프로젝트 목록

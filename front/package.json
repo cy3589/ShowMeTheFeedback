@@ -4,8 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "start": "pm2 start app.js --name FRONTEND_SERVER",
+    "monit": "pm2 monit",
+    "kill": "pm2 kill",
+    "list": "pm2 list",
+    "stop": "pm2 stop FRONTEND_SERVER",
+    "restart": "pm2 restart FRONTEND_SERVER",
+    "delete": "pm2 delete FRONTEND_SERVER"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +22,8 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "morgan": "^1.10.0",
+    "pm2": "^5.1.2"
   }
 }

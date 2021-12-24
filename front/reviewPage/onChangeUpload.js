@@ -31,14 +31,14 @@ export const onChangeUpload = async () => {
     if (i < stateObject.currentThumbnails.length) {
       targetElement.innerHTML += /* html */ `
       <div>
-        <img src=${v} alt="${v}" class="thumbnail-image current-image" />
+        <img src=${encodeURI(v)} alt="${encodeURI(v)}" class="thumbnail-image current-image" />
         <input type="button" class="thumbnail-delete" value="삭제하기" />
       </div>
       `;
     } else {
       targetElement.innerHTML += /* html */ `
       <div>
-        <img src=${v} alt="${v}" class="thumbnail-image additional-image" />
+        <img src=${encodeURI(v)} alt="${encodeURI(v)}" class="thumbnail-image additional-image" />
         <input type="button" class="thumbnail-delete" value="삭제하기" />
       </div>
       `;

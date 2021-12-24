@@ -48,6 +48,7 @@ export const addMember = (e) => {
   deleteButton.className = "delete-member";
   deleteButton.innerText = "-";
   deleteButton.addEventListener("click", (e) => {
+    e.preventDefault();
     const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
       e.target.parentNode
     );

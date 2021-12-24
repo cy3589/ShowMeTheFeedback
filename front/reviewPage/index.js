@@ -247,7 +247,6 @@ function commentCreate() {
       .then((result) => result.json())
       .then((result) => {
         if (result.message) {
-          alert(result.message);
           window.location.href = `/reviewPage/${id}`;
           return;
         }
@@ -259,9 +258,8 @@ function commentCreate() {
   });
 }
 
-document
-  .querySelector(".project-Delete-Button")
-  .addEventListener("click", (e) => {
+setTimeout(()=>{
+  document.querySelector(".project-delete-button").addEventListener("click",(e)=>{
     if (confirm("삭제하시겠습니까?")) {
       fetch(`${BACKEND_BASE_URL}/api/projects/${id}`, {
         method: "DELETE",
@@ -280,6 +278,9 @@ document
         });
     }
   });
+},300);
 
 mainArea();
 commentArea();
+
+

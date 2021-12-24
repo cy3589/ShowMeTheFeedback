@@ -89,7 +89,17 @@ document
     addEventListenerInput(inputMainFuncElement, "mainFunc", "main-func");
     addEventListenerInput(inputSkillsElement, "skills", "skills");
     addMemberElement.addEventListener("click", addMember);
-
+    const btnClick = () => {
+      if (
+        newStateObject.currentThumbnails.length +
+          newStateObject.additionalThumbnails.length >
+        2
+      ) {
+        alert("사진은 최대 3개까지만 가능합니다");
+        return;
+      }
+      document.querySelector(".upload-button-hidden").click();
+    };  
     inputMemberElements.forEach((memberElement, i) => {
       const memberNameElement = memberElement.querySelector(".member-name");
       const memberJobElement = memberElement.querySelector(".member-job");
@@ -107,7 +117,7 @@ document
         newStateObject.members[index].task = e.target.value;
         setIconTeamDiscribe();
       });
-
+    
       const {
         inputTeamNameElement,
         inputProjectNameElement,
@@ -136,6 +146,7 @@ document
       deleteButton.className = "delete-member";
       deleteButton.innerText = "-";
       deleteButton.addEventListener("click", (e) => {
+        e.preventDefault();
         const index = Array.from(
           e.target.parentNode.parentNode.children
         ).indexOf(e.target.parentNode);
@@ -144,8 +155,6 @@ document
         setIconTeamDiscribe();
       });
       if (i !== 0) memberElement.appendChild(deleteButton);
-      // inputMemberElements.forEach((memberElement, i) => {
-      // });
 
       setIcon(newStateObject["teamName"], "team-name");
       setIcon(newStateObject["projectName"], "project-name");
@@ -153,26 +162,14 @@ document
       setIcon(newStateObject["skills"], "skills");
       setIconTeamDiscribe();
 
-      const btnClick = () => {
-        if (
-          newStateObject.currentThumbnails.length +
-            newStateObject.additionalThumbnails.length >
-          2
-        ) {
-          alert("사진은 최대 3개까지만 가능합니다");
-          return;
-        }
-        document.querySelector(".upload-button-hidden").click();
-      };
+
 
       const targetElement = document.querySelector(".image-preview");
       targetElement.innerHTML = "";
       newStateObject.currentThumbnails.forEach((v, i) => {
         targetElement.innerHTML += /* html */ `
       <div>
-        <img src=${encodeURI(v)} alt="${encodeURI(
-          v
-        )}" class="thumbnail-image current-image" />
+        <img src=${encodeURI(v)} alt="${encodeURI(v)}" class="thumbnail-image current-image" />
         <input type="button" class="thumbnail-delete" value="삭제하기" />
       </div>
       `;
@@ -183,9 +180,7 @@ document
       newStateObject.additionalThumbnails.forEach((v, i) => {
         targetElement.innerHTML += /* html */ `
       <div>
-        <img src=${encodeURI(v)} alt="${encodeURI(
-          v
-        )}" class="thumbnail-image" />
+        <img src=${encodeURI(v)} alt="${encodeURI(v)}" class="thumbnail-image" />
         <input type="button" class="thumbnail-delete" value="삭제하기" />
       </div>
       `;
@@ -219,6 +214,7 @@ document
         })
       );
     });
+
     document
       .querySelector(".create-project-form")
       .addEventListener("submit", (e) => {
@@ -241,7 +237,7 @@ document
         formData.append("projectName", projectName);
         formData.append("mainFunc", mainFunc);
         formData.append("skills", skills);
-        formData.append("currentThumbnails", currentThumbnails);
+        formData.append("currentThumbnails",JSON.stringify(currentThumbnails));
         formData.append("member", JSON.stringify(members));
         for (let i = 0; i < additionalThumbnails.length; i++) {
           formData.append("additionalThumbnails", additionalThumbnails[i]);

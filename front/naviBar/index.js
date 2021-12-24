@@ -22,8 +22,6 @@ globalThis.addEventListener("load", async () => {
 
   const logOutBtn = document.querySelector(".naviBar__logOut");
 
-  console.log(logOutBtn);
-
   logOutBtn.addEventListener("click", (e) => {
     e.preventDefault();
 

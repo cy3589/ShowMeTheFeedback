@@ -1,5 +1,4 @@
 const { Schema } = require("mongoose");
-const ProjectSchema = require("./project");
 
 const UserSchema = new Schema({
   nickname: {
@@ -25,6 +24,10 @@ const UserSchema = new Schema({
   },
   token: {
     type: String,
+  },
+  google: {
+    type: Boolean,
+    default: false,
   },
 });
 

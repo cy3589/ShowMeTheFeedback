@@ -1,4 +1,4 @@
-const { sign, verify, refreshVerify } = require("./jwt");
+const { sign, verify, refreshVerify } = require("../../../utils/jwt");
 const jwt = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
@@ -30,6 +30,9 @@ module.exports = async (req, res) => {
           },
         });
       }
+    } else if (accessResult.message != "jwt expired") {
+      res.status(400);
+      throw new Error("Access token이 올바르지 않습니다");
     } else {
       res.status(400);
       throw new Error("Access token이 만료되지 않았습니다.");

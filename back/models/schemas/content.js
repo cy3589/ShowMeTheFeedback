@@ -1,18 +1,22 @@
-const { Schema } = require('mongoose');
+const { Schema } = require("mongoose");
 
 const ContentSchema = new Schema({
   projectId: {
     type: String,
     required: true,
   },
-  members: {
-    type: Array,
-  },
-  description: {
+  teamName: {
     type: String,
     required: true,
   },
-  stack: {
+  members: {
+    type: Array,
+  },
+  mainFunc: {
+    type: String,
+    required: true,
+  },
+  skills: {
     type: Array,
     required: true,
   },

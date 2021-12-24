@@ -6,10 +6,8 @@
 
 ### 기술 스택
 
-<div align="center">
 <img alt="Javascript" src ="https://badges.aleen42.com/src/javascript.svg"/>
 <img alt="Node" src ="https://badges.aleen42.com/src/node.svg"/>
-</div>
 
 
 

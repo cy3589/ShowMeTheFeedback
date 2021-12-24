@@ -1,4 +1,5 @@
 export const editProjectForm = /* html */ `
+    <button class="edit-cancel-button">취소</button>
     <div class="container">
     <form
       class="create-project-form"

@@ -4,7 +4,7 @@ export const id = pathArr[pathArr.length - 1];
 import { getTokenFromCookies } from "../auth/token.js";
 const BACKEND_BASE_URL =
   "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
-
+const now = new Date();
 // const postCommentOption = {
 //   method: "post",
 //   headers: {
@@ -50,10 +50,13 @@ function mainArea() {
       // stateProjectSave(stateObject);
       // mainContentInfo(stateObject);
       // mainContentImage(stateObject.gotThumbnails);
+      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
       console.log(data);
+      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
       stateProjectSave(data);
       mainContentInfo(data);
       mainContentImage(data.thumbnails);
+      mainContentStar(data.averageRating);
     });
 }
 
@@ -78,11 +81,13 @@ function commentArea() {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log("**************************");
+      console.log(data);
+      console.log("**************************");
       console.log(data.comments);
-      stateCommentSave(data.comments);
-      mainContentStar(data.comments);
+      // stateCommentSave(data.comments);
       mainContentEval(data.comments);
-      commentList(stateComment);
+      commentList(data.comments);
       commentCreate();
     });
 }
@@ -100,36 +105,53 @@ function stateProjectSave(data) {
   }
 }
 
-function stateCommentSave(data) {
-  for (let i = 0; i < data.length; i++) {
-    stateComment.push(data[i]);
-  }
-}
+// function stateCommentSave(data) {
+//   for (let i = 0; i < data.length; i++) {
+//     stateComment.push(data[i]);
+//   }
+// }
 
 //날짜 출력하기
-function dateFormat(dateObject) {
+const getProjectDateFormat = (dateObject) => {
   let Year = dateObject.getFullYear();
   let Month = dateObject.getMonth() + 1;
   let Date = dateObject.getDate();
-  let Hour = dateObject.getHours();
-  let Minutes = dateObject.getMinutes();
-  let Seconds = dateObject.getSeconds();
-
-  let result =
-    Year +
-    "." +
-    Month +
-    "." +
-    Date +
-    " " +
-    Hour +
-    ":" +
-    Minutes +
-    ":" +
-    Seconds;
-
+  // let Hour = dateObject.getHours();
+  // let Minutes = dateObject.getMinutes();
+  // let Seconds = dateObject.getSeconds();
+  let result = Year + "." + Month + "." + Date;
   return result;
-}
+};
+
+// const toStringAndFillZero = (STR)=> STR.toString().padStart(2,"0");
+const getAgoStringComment = (dateObject) => {
+  const dateDiff = now - dateObject;
+  let AgoMinute = Math.round(dateDiff / (1000 * 60));
+  if (AgoMinute === 0) return `방금 전`;
+  if (AgoMinute < 60) return `${AgoMinute}분 전`;
+  let AgoTime = parseInt(AgoMinute / 60, 10);
+  AgoMinute -= AgoTime * 60;
+  if (AgoTime < 24) return `${Math.round(AgoTime + AgoMinute / 60)}시간 전`;
+
+  console.log();
+  console.log(now);
+  console.log(dateObject);
+  let Year = dateObject.getFullYear();
+  let Month = dateObject.getMonth() + 1;
+  let Date = dateObject.getDate();
+  // let Hour = toStringAndFillZero(dateObject.getHours());
+  // let Minutes = toStringAndFillZero(dateObject.getMinutes());
+  // let Seconds = toStringAndFillZero(dateObject.getSeconds());
+  let result = Year + "." + Month + "." + Date;
+  //  +
+  // " " +
+  // Hour +
+  // ":" +
+  // Minutes +
+  // ":" +
+  // Seconds;
+  return result;
+};
 
 //이미지 및 버튼 이벤트
 function mainContentImage(data) {
@@ -189,7 +211,7 @@ function mainContentInfo(data) {
 
   projectTitle.innerText = data.projectName;
   projectTeamName.innerText = data.teamName;
-  projectDate.innerText = data.date;
+  projectDate.innerText = getProjectDateFormat(new Date(data.createdAt));
   projectMainFunc.innerText = data.mainFunc;
   projectSkills.innerHTML = data.skills;
   for (let i = 0; i < data.members.length; i++) {
@@ -198,16 +220,10 @@ function mainContentInfo(data) {
 }
 
 //상세 페이지 본문 별점
-function mainContentStar(data) {
+function mainContentStar(avg) {
   let scoreStarMask = document.getElementsByClassName("scoreStarMask")[0];
-  let sum = 0;
-  for (let i = 0; i < data.length; i++) {
-    sum = sum + data[i].rating;
-  }
 
-  let avg = sum / data.length;
-
-  scoreStarMask.style.width = `${avg * 20}%`;
+  scoreStarMask.style.width = `${Number(avg) * 20}%`;
 }
 
 //상세 페이지 본문 평가한 사람의 수
@@ -219,37 +235,33 @@ function mainContentEval(data) {
 //댓글 목록
 function commentList(data) {
   let node_list = [];
-  console.log("@@@@@@@@");
-  console.log(data);
-  console.log("@@@@@@@@");
   for (let i = 0; i < data.length; i++) {
     let commentTemplate = document.getElementsByClassName("commentTemplate")[0];
+    console.log("1341241324132441243124312413r1424312r1234r2rd123r32");
     let node = document.importNode(commentTemplate.content, true);
 
     node.querySelector(".commentAuthor").innerText = data[i].author;
-    node.querySelector(".commentDate").innerText = data[i].commentDate;
+    node.querySelector(".commentDate").innerText = getAgoStringComment(
+      new Date(data[i].createdAt)
+    );
     node.querySelector(".commentContent").style.width = "400px";
     node.querySelector(".commentContent").style.height = "100px";
     node.querySelector(".commentContent").innerText = data[i].content;
 
     node_list.push(node.querySelector(".commentContent"));
-    node_list[i].classList.add("forShort");
     if (data[i].content.length <= 100) {
       node.querySelector(".commentMoreContent").style.display = "none";
     } else {
       node.querySelector(".commentContent").style.overflow = "hidden";
-
       node
         .querySelector(".commentMoreContent")
         .addEventListener("click", (e) => {
           e.preventDefault();
           if (e.target.innerText === "전체 내용 보기") {
             node_list[i].style.height = "auto";
-            node_list[i].classList.remove("forShort");
             e.target.innerText = "간략히 보기";
           } else {
             node_list[i].style.height = "100px";
-            node_list[i].classList.add("forShort");
             e.target.innerText = "전체 내용 보기";
           }
         });
@@ -349,6 +361,28 @@ function commentCreate() {
     // commentList(stateComment);
   });
 }
+
+document
+  .querySelector(".project-Delete-Button")
+  .addEventListener("click", (e) => {
+    if (confirm("삭제하시겠습니까?")) {
+      fetch(`${BACKEND_BASE_URL}/api/projects/${id}`, {
+        method: "DELETE",
+        headers: {
+          access: getTokenFromCookies("accessToken"),
+        },
+      })
+        .then((result) => result.json())
+        .then((result) => {
+          if (result.message) {
+            alert(result.message);
+            window.location.href = "/Projects";
+          } else {
+            alert(result.error);
+          }
+        });
+    }
+  });
 
 mainArea();
 // imageArea();

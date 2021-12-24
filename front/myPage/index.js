@@ -47,22 +47,16 @@ globalThis.addEventListener("load", async () => {
     }
 
     if (userValues.data.nickname !== myPageInputs["nickName"].value) {
-      const nickChangeRes = updateUserNickName(myPageInputs["nickName"].value);
-      console.log(nickChangeRes);
+      updateUserNickName(myPageInputs["nickName"].value);
     }
 
     if (
       myPageInputs["password"].value === myPageInputs["passwordConfirm"].value
     ) {
-      console.log({
-        password: myPageInputs["password"].value,
-        passwordConfirm: myPageInputs["passwordConfirm"].value,
-      });
-      const pwChangeRes = updateUserPassword(
+      updateUserPassword(
         myPageInputs["password"].value,
         myPageInputs["passwordConfirm"].value
       );
-      console.log(pwChangeRes);
     }
   });
 });

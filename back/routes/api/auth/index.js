@@ -9,19 +9,6 @@ const {
 
 const router = Router();
 
-// router.get(
-//   "/google",
-//   passport.authenticate("google", {
-//     scope: ["email", "profile"],
-//   })
-// );
-
-// router.get(
-//   "/google/secrets",
-//   passport.authenticate("google", { session: false }),
-//   asyncHandler(googleLogin)
-// );
-
 router.post("/login", asyncHandler(login));
 router.post("/register", asyncHandler(register));
 router.post("/register/email", asyncHandler(emailRegister));

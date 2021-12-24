@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const { User, Project } = require("../../../models");
+const { passwordValidation } = require("../../../utils/validation");
 
 exports.getMyProjects = async (req, res) => {
   const { email } = req;
@@ -38,7 +39,7 @@ exports.resetPassword = async (req, res) => {
 
   const { email } = req;
 
-  const passwordValidation = passwordValidation(password);
+  passwordValidation(password);
 
   if (password !== confirmPassword) {
     res.status(400).json({

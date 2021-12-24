@@ -1,11 +1,10 @@
-export const editProjectForm = `
-    <button class="edit-cancel-button">취소</button>
+export const editProjectForm = /* html */ `
+    
     <div class="container">
     <form
       class="create-project-form"
-      style="display: flex; flex-direction: column"
     >
-      <div class="team-name" style="display: flex">
+      <div class="team-name">
         <div class="check-icon"></div>
         <input
           type="text"
@@ -14,7 +13,7 @@ export const editProjectForm = `
           placeholder="팀명"
         />
       </div>
-      <div class="project-name" style="display: flex">
+      <div class="project-name">
         <div class="check-icon"></div>
         <input
           type="text"
@@ -35,9 +34,9 @@ export const editProjectForm = `
         />
         <input type="button" class="upload-button" value="이미지 업로드 하기" />
         <br />
-        <div class="image-preview" style="display: flex"></div>
+        <div class="image-preview"></div>
       </div>
-      <div class="main-func" style="display: flex">
+      <div class="main-func">
         <div class="check-icon"></div>
         <label for="main-func">주요기능</label>
         <input
@@ -48,7 +47,7 @@ export const editProjectForm = `
         />
       </div>
 
-      <div class="skills" style="display: flex">
+      <div class="skills" >
         <div class="check-icon"></div>
         <label for="skills">사용한 기술 스택</label>
         <input
@@ -56,11 +55,10 @@ export const editProjectForm = `
           name="skills"
           class="skills"
           placeholder="#을 기준으로 작성해주세요! (ex-#JAVA #REACT #EXPRESS)"
-          style="width: 100%"
         />
       </div>
 
-      <div class="team-discribe" style="display: flex">
+      <div class="team-discribe">
         <div class="check-icon"></div>
         <label for="team-discribe">팀 소개</label>
         <a href="#" class="add-member">+</a>
@@ -68,12 +66,13 @@ export const editProjectForm = `
       </div>
 
       <input type="submit" value="수정하기" />
+      <input class="edit-cancel-button" type="submit" value="취소하기" />
     </form>
     </div>
 `;
 
-export const getMemberElement = (member) => `
-         <div class="member" style="display: flex">
+export const getMemberElement = (member) => /* html */ `
+         <div class="member">
             <input
               type="text"
               class="member-name"

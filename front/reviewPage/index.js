@@ -137,6 +137,9 @@ function mainContentInfo(data) {
   for (let i = 0; i < data.members.length; i++) {
     projectMembersAndJobs.innerHTML += `<div class = "project-Container_MembersAndJobs_list${i}">${data.members[i].name}(${data.members[i].job}) : ${data.members[i].task}</div>`;
   }
+  if (!data.isAuthorized) {
+    document.querySelector(".header__top").classList.add("invisible");
+  }
 }
 
 //상세 페이지 본문 별점

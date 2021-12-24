@@ -108,7 +108,7 @@ article .header__bottom .project-Date {
 .main_img_frame img {
   width: 760px;
   height: 400px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .scoreContainer {

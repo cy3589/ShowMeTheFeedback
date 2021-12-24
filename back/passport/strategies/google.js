@@ -6,7 +6,8 @@ module.exports = new GoogleStrategy(
   {
     clientID: process.env.GOOGLE_SECRET_ID,
     clientSecret: process.env.GOOGLE_SECRET_PASSWORD,
-    callbackURL: "http://localhost:5000/auth/google/secrets",
+    callbackURL:
+      "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/auth/google/secrets",
   },
   async function (accessToken, refreshToken, profile, cb) {
     const email = profile._json.email;

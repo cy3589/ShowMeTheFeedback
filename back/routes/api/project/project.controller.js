@@ -173,7 +173,7 @@ exports.deleteProject = async (req, res) => {
     throw new Error("삭제 권한이 없습니다.");
   }
 
-  await Project.deleteOne({ projectId });
+  await Project.findOneAndDelete({ projectId });
 
   checkUser.projects = checkUser.projects.filter((v) => v != projectId);
   checkUser.save();

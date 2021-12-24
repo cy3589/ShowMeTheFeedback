@@ -36,7 +36,7 @@ mongoose
 app.use(passport.initialize());
 
 app.use("/uploads", express.static("uploads"));
-app.use(morgan("combined"));
+// app.use(morgan("combined"));
 
 app.get(
   "/auth/google",
@@ -52,8 +52,8 @@ app.get(
     const accessToken = sign(req.user.userEmail);
     const refreshToken = refresh();
 
-    res.cookie("accessToken", JSON.stringify(accessToken));
-    res.cookie("refreshToken", JSON.stringify(refreshToken));
+    res.cookie("accessToken", accessToken);
+    res.cookie("refreshToken", refreshToken);
 
     res.redirect(
       "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:80/Projects"

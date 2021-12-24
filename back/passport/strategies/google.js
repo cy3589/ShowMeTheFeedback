@@ -22,7 +22,7 @@ module.exports = new GoogleStrategy(
     if (!user) {
       await User.create({
         email,
-        nickname: name,
+        nickname: generateRandomPassword(),
         password: generateRandomPassword(),
         google: true,
       });

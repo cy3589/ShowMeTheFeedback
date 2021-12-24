@@ -8,6 +8,5 @@ export async function getIndexPageValue() {
 
   const data = await response.json();
   const status = response.status;
-  console.log(data, status);
   return { data, status };
 }

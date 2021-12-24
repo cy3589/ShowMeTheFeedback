@@ -15,6 +15,5 @@ export async function signUpCode(nickname, email) {
 
   const data = await response.json();
   const status = response.status;
-  console.log(data, status);
   return { data, status };
 }

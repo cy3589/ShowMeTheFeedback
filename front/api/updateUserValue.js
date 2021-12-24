@@ -4,7 +4,6 @@ const baseURL =
   "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
 
 export async function updateUserNickName(changeNickname) {
-  console.log("changeNickname", changeNickname);
   const response = await fetch(`${baseURL}/api/users/reset-nickname`, {
     method: "POST",
     headers: {
@@ -18,7 +17,6 @@ export async function updateUserNickName(changeNickname) {
 
   const data = await response.json();
   const status = response.status;
-  console.log(data, status);
   return { data, status };
 }
 
@@ -37,6 +35,5 @@ export async function updateUserPassword(password, confirmPassword) {
 
   const data = await response.json();
   const status = response.status;
-  console.log(data, status);
   return { data, status };
 }

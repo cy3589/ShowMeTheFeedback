@@ -1,0 +1,395 @@
+:root {
+  --reviewPageOutside: #f0f1f3;
+  --reviewPageInside: white;
+  --starRating: #ddd;
+  --title-bg-color: #ff6b6b;
+  --border-color: #bbbbbb;
+}
+
+body {
+  background-color: var(--reviewPageOutside);
+  margin: 0px;
+  padding: 0px;
+  padding: 4rem 0;
+}
+
+main {
+  max-width: 1200px;
+  padding: 2rem 0;
+  background-color: white;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  border-radius: 4px;
+}
+
+article {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+article header {
+  margin-bottom: 4rem;
+}
+
+article .header__top {
+  text-align: right;
+}
+
+article .header__top button {
+  background: none;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+article .header__top button i {
+  font-size: 1rem;
+  color: #666;
+}
+
+article .header__top button:last-child {
+  padding-right: 0;
+}
+
+article .header__bottom .top {
+  display: flex;
+  justify-content: space-between;
+}
+
+article .header__bottom .right {
+  text-align: right;
+}
+
+article .header__bottom .project-Title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+article .header__bottom .project-Author {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+article .header__bottom .project-Date {
+  font-size: 14px;
+  text-align: right;
+  color: #666;
+}
+
+.main_img_frame {
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.main_img_frame button {
+  background-color: var(--reviewPageOutside);
+  border: none;
+  cursor: pointer;
+  font-size: 2rem;
+  color: #adb5bd;
+  transition: all .4s;
+}
+
+.main_img_frame button:hover {
+  color: #495057;
+}
+
+.main_img_frame button:first-child {
+  padding-left: 6px;
+  padding-right: 0;
+}
+
+.main_img_frame button:last-child {
+  padding-right: 6px;
+  padding-left: 0;
+}
+
+.main_img_frame img {
+  width: 760px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.scoreContainer {
+  padding: 1rem 0;
+  background-color: var(--reviewPageOutside);
+  text-align: center;
+}
+
+.desc-container {
+  margin-bottom: 2rem;
+}
+
+.desc-container .title {
+  background-color: var(--title-bg-color);
+  padding-left: 2rem;
+  font-size: 1.4rem;
+}
+
+.desc-container .title span {
+  display: inline-block;
+  background-color: #fff;
+  padding: 0 1rem;
+}
+
+.feedback-container .my-comment-wrapper {
+  margin-bottom: 4rem;
+}
+
+.feedback-container .title {
+  font-size: 1.4rem;
+  background-color: var(--title-bg-color);
+  padding-left: 2rem;
+}
+
+.feedback-container .title span {
+  display: inline-block;
+  background-color: #fff;
+  padding: 0 1rem;
+}
+
+.feedback-container .inputTagForm .top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.feedback-container .inputTagForm .writeCommentContent {
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 100px;
+  border-color: var(--border-color);
+  padding: 1rem;
+  resize: none;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.feedback-container .inputTagForm .bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.feedback-container .inputTagForm .bottom .left {
+  display: flex;
+  align-items: center;
+}
+
+.feedback-container .inputTagForm .bottom .text {
+  margin-right: 1rem;
+}
+
+.feedback-container .inputTagForm .commentRegBtn {
+  background-color: var(--title-bg-color);
+  border: none;
+  color: #fff;
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.project-Container {
+  padding-left: 1rem;
+  font-size: 1.2rem;
+}
+
+.project-Container .detail {
+  font-size: 1rem;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.other-comments-wrapper > .top {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.other-comments-wrapper .line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--border-color);
+}
+
+.other-comments-wrapper .title {
+  font-size: 1rem;
+  color: #aaa;
+  background-color: #fff;
+  text-align: center;
+  padding: 0;
+  flex: 1;
+  font-weight: 400;
+}
+
+.scoreContainer .top {
+  margin-bottom: 1rem;
+}
+
+.scoreStar {
+  position: relative;
+  font-size: 2rem;
+  color: var(--starRating);
+}
+
+.scoreStar .scoreStarMask {
+  width: 0;
+  position: absolute;
+  left: 0;
+  color: yellowgreen;
+  overflow: hidden;
+}
+
+.commentRegStar {
+  position: relative;
+  font-size: 2rem;
+  color: var(--starRating);
+}
+
+.commentRegStar .commentRegStarMask {
+  width: 0;
+  position: absolute;
+  left: 0;
+  color: yellowgreen;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.commentRegStar .commentRegStarDrag {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* .main_img_frame {
+  margin: 30px auto;
+}
+
+article .main_img_frame #main_img {
+  display: block;
+  margin: 30px auto;
+  width: 900px;
+  height: 600px;
+}
+
+article #container {
+  display: flex;
+}
+
+article #container button {
+  margin: auto auto;
+  height: 150px;
+}
+
+article #img_list {
+  margin: 30px auto;
+  display: flex;
+  width: 70%;
+}
+
+article #img_list img {
+  width: 200px;
+  height: 150px;
+  margin: 30px auto;
+}
+
+article .main_text {
+  width: 70%;
+  margin: 100px auto;
+}
+
+article .comment {
+  width: 70%;
+  margin: 100px auto;
+}
+
+article .comment input {
+  display: block;
+  margin: 50px auto;
+  width: 800px;
+  height: 80px;
+} */
+
+.star {
+  position: relative;
+  font-size: 2rem;
+  color: #ddd;
+}
+
+.star input {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.invisible {
+  display: none;
+}
+.thumbnail-image {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+/* commentTamplate */
+.commentsList .comment {
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.commentsList .comment .commentAuthor {
+  font-weight: bold;
+}
+
+.commentsList .comment .top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.commentsList .comment .commentStar {
+  bottom: 1px;
+}
+
+.commentsList .comment .commentContent {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  width: 100% !important;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 5; /* 라인수 */
+
+  word-wrap: break-word;
+}
+
+.forShort {
+  -webkit-box-orient: vertical;
+}
+
+.commentsList .comment .commentDate {
+  color: #aaa;
+  font-size: 14px;
+}
+
+.commentsList .comment .bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.commentsList .comment .bottom .commentMoreContent {
+  color: #666;
+}
+
+.commentsList .comment .bottom .left {
+  display: flex;
+}

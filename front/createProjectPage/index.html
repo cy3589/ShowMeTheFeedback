@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="naviBar"></div>
+
+    <div class="create-page__main-content">
+      <fieldset class="create-page__container">
+        <legend class="create-page-head">프로젝트 등록</legend>
+
+        <div class="project-value__alert">
+          <div class="check-icon">!</div>
+          : 필수입력
+        </div>
+
+        <form class="create-project-form">
+          <div class="project-team-value__header">프로젝트 팀 정보</div>
+          <div class="team-name">
+            <div class="check-icon">!</div>
+            <input
+              type="text"
+              name="team-name"
+              class="team-name"
+              placeholder="팀명"
+            />
+          </div>
+          <div class="project-name">
+            <div class="check-icon">!</div>
+            <input
+              type="text"
+              name="project-name"
+              class="project-name"
+              placeholder="프로젝트 명"
+            />
+          </div>
+
+          <div class="project-thumbnail__header">프로젝트 섬네일 이미지</div>
+          <div class="thumbnail">
+            <div class="project-thumbnail__input-value">
+              <input
+                class="thumbnail__file-name"
+                value="섬네일사진이름.jpg(js메서드로 연동)"
+              />
+              <input type="button" class="upload-button" value="UPLOAD" />
+            </div>
+            <input
+              type="file"
+              class="upload-button-hidden"
+              name="image"
+              hidden
+              multiple
+              accept="image/*"
+            />
+            <br />
+            <div class="image-preview"></div>
+          </div>
+
+          <div class="main-func">
+            <label for="main-func">주요기능</label>
+            <div class="main-func__container">
+              <div class="check-icon">!</div>
+              <textarea
+                type="text"
+                name="main-func"
+                class="main-func"
+                placeholder="여러분의 작품을 설명해주세요!"
+                cols="80"
+                rows="5"
+              ></textarea>
+            </div>
+          </div>
+
+          <div class="skills">
+            <label for="skills">사용한 기술 스택</label>
+            <div class="skills__container">
+              <div class="check-icon">!</div>
+              <input
+                type="text"
+                name="skills"
+                class="skills"
+                placeholder="#을 기준으로 작성해주세요! (ex-#JAVA #REACT #EXPRESS)"
+              />
+            </div>
+          </div>
+
+          <div class="team-discribe">
+            <div class="check-icon"></div>
+            <label for="team-discribe">참여 팀원 & 담당 업무</label>
+            <div class="members">
+              <div class="member">
+                <input
+                  type="text"
+                  class="member-name"
+                  name="member-name"
+                  placeholder="이름"
+                />
+                <input
+                  type="text"
+                  class="member-job"
+                  name="member-job"
+                  placeholder="담당업무"
+                />
+                <input
+                  type="text"
+                  class="member-task"
+                  name="member-task"
+                  placeholder="업무내용"
+                />
+                <button href="#" class="add-member">+</button>
+              </div>
+            </div>
+          </div>
+
+          <input type="submit" class="project__submit" value="등록하기" ></input>
+        </form>
+      </fieldset>
+    </div>
+  </body>
+  <script type="module" src="createProject.js"></script>
+  <script type="module" src="../naviBar/index.js"></script>
+</html>

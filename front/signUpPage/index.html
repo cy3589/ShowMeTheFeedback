@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../index.css" />
+    <title>Show Me The Feedback</title>
+  </head>
+  <body>
+    <div class="signUpContainer">
+      <h1 class="signUpHeader">계정을 생성하세요.</h1>
+
+      <form class="createUserValueForm">
+        <input type="text" class="nickNameInput" placeholder="닉네임" />
+        <input type="email" class="emailInput" placeholder="이메일" />
+        <input
+          type="text"
+          class="signUpCodeInput"
+          placeholder="인증코드 입력"
+          disabled
+        />
+        <button type="submit" class="getSignUpCodeButton">인증코드발송</button>
+      </form>
+
+      <form class="signUpPasswordForm">
+        <input type="password" class="passwordInput" placeholder="비밀번호" />
+        <input
+          type="password"
+          class="passwordConfirmInput"
+          placeholder="비밀번호 확인"
+        />
+        <button type="submit" class="signUpButton">회원가입</button>
+      </form>
+
+      <div class="alreadySignUp">
+        이미 계정이 있으신가요?
+        <a href="../loginPage/index.html" class="goToLogin">로그인하기</a>
+      </div>
+    </div>
+  </body>
+  <script src="./index.js" type="module"></script>
+</html>

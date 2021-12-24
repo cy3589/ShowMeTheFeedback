@@ -1,0 +1,665 @@
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+
+* {
+  box-sizing: border-box;
+  font-family: "Spoqa Han Sans Neo", "Nanum Gothic", sans-serif;
+}
+
+:root {
+  --link-font: #f38181;
+  --button-bg: #ff6b6b;
+  --page-bg: #f0f1f3;
+  --border: #bbbbbb;
+  --naviBar-bg: #ffffff;
+  --addButton-bg: #2c98f0;
+  --indexpage-bg: #fe9fa2;
+
+  --contents-bg: #ffffff;
+  --contents-legend: #ff6b6b;
+  --contents-alert-icon: #f44336;
+  --contents-text-gray: #bbbbbb;
+
+  --contents-legend-text: 24px;
+  --contents-header-text: 20px;
+
+  --contents-text-small: 9px;
+  --contents-text: 18px;
+  --contents-text-big: 36px;
+  --contents-button-text: 14px;
+}
+
+::placeholder {
+  color: #000000;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--page-bg);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--contents-text);
+}
+input:focus {
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+/* Navibar */
+.naviBar {
+  min-height: 70px;
+  background-color: var(--naviBar-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5vw;
+}
+
+.naviBar__left {
+  display: flex;
+  align-items: center;
+}
+
+.naviBar__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: var(--contents-header-text);
+  margin-right: 1rem;
+}
+.naviBar__elements-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.naviBar__elements-container > * {
+  padding: 1rem;
+  font-size: var(--contents-text);
+  color: black;
+}
+
+.naviBar__auth a {
+  font-size: var(--contents-text);
+  padding: 1rem;
+}
+
+/* IndexPage */
+
+.index-page {
+  height: 100vh;
+  background-image: linear-gradient(
+    120deg,
+    #ff9a9e 0%,
+    #fad0c4 99%,
+    #fad0c4 100%
+  );
+}
+
+.index-page__container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 300px;
+  color: white;
+}
+
+.index-page__container > * {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: bold;
+}
+
+.index-page__container > * :nth-child(1) {
+  font-size: 30px;
+}
+.index-page__container > * :nth-child(2) {
+  margin-top: 20px;
+  font-size: 50px;
+}
+
+@media screen and (max-width: 720px) {
+  .index-page__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+  }
+
+  .index-page__container > * {
+    margin-bottom: 100px;
+  }
+}
+
+/* ProjectCreatePage */
+.create-page__main-content {
+  max-width: 1200px;
+  margin: 4rem auto;
+  background: var(--contents-bg);
+  padding: 50px 50px 50px 50px;
+}
+
+.create-page__container {
+  border: none;
+  border-top: 30px var(--contents-legend) solid;
+}
+.create-page-head {
+  font-size: var(--contents-legend-text);
+  font-weight: bold;
+  width: auto;
+  padding: 0 30px 0 30px;
+  margin-left: 30px;
+}
+
+.project-value__alert {
+  display: flex;
+  justify-content: flex-end;
+  font-size: var(--contents-text);
+  color: var(--contents-text-gray);
+}
+
+.project-team-value__header {
+  margin-left: 30px;
+  font-size: var(--contents-header-text);
+}
+
+.check-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--contents-alert-icon);
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin-right: 5px;
+}
+.check-true {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgb(135, 228, 109);
+  display: flex;
+  justify-content: center;
+  color: black;
+  margin-right: 5px;
+}
+
+.create-project-form {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr auto auto auto auto 1fr;
+  grid-gap: 30px;
+  grid-template-areas:
+    "project-team-value__header"
+    "team-name"
+    "project-name"
+    "project-thumbnail__header"
+    "thumbnail"
+    "main-func"
+    "skills"
+    "team-discribe"
+    "submit";
+}
+
+.project-team-value__header {
+  grid-area: project-team-value__header;
+}
+.team-name {
+  grid-area: team-name;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.team-name input {
+  width: 400px;
+}
+.project-name {
+  grid-area: project-name;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.project-name input {
+  width: 400px;
+}
+
+.project-thumbnail__header {
+  grid-area: project-thumbnail__header;
+  margin-left: 30px;
+  font-size: var(--contents-header-text);
+}
+.thumbnail {
+  grid-area: thumbnail;
+
+  display: grid;
+  grid-template-rows: 50px auto;
+  grid-template-areas:
+    "thumbnail__file-name__button"
+    "thumbnail__img-container";
+}
+.project-thumbnail__input-value {
+  margin-left: 30px;
+  grid-area: thumbnail__file-name__button;
+}
+.thumbnail__file-name {
+  width: 300px;
+  margin-right: 20px;
+}
+.upload-button {
+  width: 100px;
+  font-size: var(--contents-button-text);
+  line-height: 28px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.image-preview {
+  grid-area: thumbnail__img-container;
+
+  width: 450px;
+  display: grid;
+  grid-template-columns: repeat(3, 150px);
+}
+.image-preview div:nth-child(n) {
+  margin: 10px 10px 10px 10px;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.image-preview img {
+  width: 100px;
+  height: 100px;
+  border: 0.5px var(--border) solid;
+}
+.thumbnail-delete {
+  margin-top: 10px;
+  background: var(--button-bg);
+  width: 60px;
+  color: white;
+  font-size: var(--contents-text-small);
+}
+
+.main-func {
+  grid-area: main-func;
+}
+.main-func label {
+  margin-left: 30px;
+  font-size: var(--contents-header-text);
+}
+.main-func__container {
+  margin-top: 20px;
+  display: flex;
+}
+
+.skills {
+  grid-area: skills;
+}
+.skills label {
+  margin-left: 30px;
+  font-size: var(--contents-header-text);
+}
+.skills__container {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+.skills input {
+  min-width: 500px;
+}
+
+.team-discribe {
+  grid-area: team-discribe;
+
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 18px auto;
+  grid-row-gap: 20px;
+  grid-template-areas:
+    "team-describe__check-icon team-describe__header"
+    "team-describe__members team-describe__members";
+}
+.team-discribe .check-icon {
+  grid-area: team-describe__check-icon;
+  margin-top: 4px;
+}
+.team-discribe label {
+  grid-area: team-describe__header;
+  margin-left: 12px;
+  font-size: var(--contents-header-text);
+}
+.team-discribe .members {
+  grid-area: team-describe__members;
+  margin-left: 30px;
+}
+
+.team-discribe .members > * :nth-child(-n + 2) {
+  width: 100px;
+  margin-right: 20px;
+}
+.team-discribe .members > * :nth-child(3) {
+  width: 250px;
+}
+
+.member {
+  display: grid;
+  grid-template-columns: 120px 120px 270px 50px;
+  margin-bottom: 20px;
+}
+
+.add-member {
+  border: none;
+  width: 40px;
+  height: 40px;
+  background-color: var(--addButton-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+  font-size: var(--contents-header-text);
+}
+.delete-member {
+  border: none;
+  width: 40px;
+  height: 40px;
+  background-color: var(--contents-legend);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: white;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+  font-size: var(--contents-header-text);
+}
+
+.project__submit {
+  grid-area: submit;
+  cursor: pointer;
+  width: 120px;
+  height: 46px;
+  margin-left: auto;
+  border-radius: 5px;
+  background-color: var(--button-bg);
+  color: white;
+}
+
+/* MyPage */
+
+.my-page__main-content {
+  max-width: 1000px;
+  margin: 4rem auto;
+  background: var(--contents-bg);
+  padding: 50px 50px 50px 50px;
+  min-width: 800px;
+}
+
+.my-page__main-content header {
+  font-weight: bold;
+  font-size: var(--contents-header-text);
+  margin-bottom: 30px;
+}
+
+.my-page__main-content label {
+  font-size: var(--contents-header-text);
+  margin-left: 20px;
+
+  display: inline-block;
+  width: 200px;
+}
+
+.my-page__main-content input {
+  border: 1px var(--border) solid;
+  border-radius: 5px;
+  padding-left: 1rem;
+  display: inline-block;
+  width: 300px;
+  height: 50px;
+  margin-bottom: 30px;
+}
+.my-page__email-input input {
+  background-color: var(--border);
+}
+.my-page__submit-button {
+  margin-left: calc(100% - 120px);
+
+  background-color: var(--button-bg);
+  font-size: var(--contents-text);
+  color: white;
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+}
+
+/* SignUpPage */
+
+.signUpContainer {
+  margin: 100px auto 0 auto;
+  max-width: 400px;
+  max-height: 400px;
+}
+
+.signUpHeader {
+  color: #f38181;
+  font-size: 26px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.createUserValueForm {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: repeat(60px, 3);
+  grid-template-areas:
+    "nameInput nameInput"
+    "emailInput emailInput"
+    "signUpCodeInput getSignUpCodeButton";
+}
+
+.createUserValueForm > * {
+  margin: 8px 0 8px 0;
+  height: 54px;
+  padding-left: 1rem;
+  border: none;
+  font-size: 18px;
+  color: #000000;
+}
+
+.nickNameInput {
+  grid-area: nameInput;
+}
+.createUserValueForm .emailInput {
+  grid-area: emailInput;
+}
+.signUpCodeInput {
+  grid-area: signUpCodeInput;
+  margin: 0.5rem 1rem 0.5rem 0;
+  background-color: var(--border);
+}
+.getSignUpCodeButton {
+  grid-area: getSignUpCodeButton;
+  padding: 0.5rem 0 0.5rem 0;
+  background-color: white;
+}
+
+.signUpPasswordForm {
+  display: grid;
+  grid-template-rows: 70px 70px 30px 70px;
+  grid-template-areas:
+    "passwordInput"
+    "passwordConfirmInput"
+    "none"
+    "signUpButton";
+}
+
+.signUpPasswordForm > * {
+  margin: 8px 0 8px 0;
+  height: 54px;
+  padding-left: 1rem;
+  border: none;
+  background: white;
+  font-size: 18px;
+}
+
+.signUpPasswordForm .passwordInput {
+  grid-area: passwordInput;
+}
+
+.passwordConfirmInput {
+  grid-area: passwordConfirmInput;
+}
+
+.signUpButton {
+  grid-area: signUpButton;
+  padding: 10px 0 10px 0;
+  background: var(--button-bg);
+  color: white;
+}
+
+.alreadySignUp {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.goToLogin {
+  margin-left: 10px;
+  text-decoration: underline;
+  color: #f38181;
+}
+
+@media (max-width: 768px) {
+  .naviBar__logo {
+    font-size: 20px;
+  }
+  .naviBar__auth a {
+    font-size: 1rem;
+    padding: 0.5rem;
+  }
+}
+
+/* CreateProjectButton */
+
+.create-project__button {
+  border: none;
+  width: 80px;
+  height: 80px;
+  background-color: var(--addButton-bg);
+  border-radius: 50%;
+  color: white;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+  font-size: 50px;
+
+  position: fixed;
+  top: 85%;
+  left: 85%;
+}
+.show-project {
+  padding: 4rem 0;
+}
+
+/* edit project */
+.edit-project .container {
+  max-width: 1200px;
+  margin: 4rem auto;
+  background-color: #fff;
+  padding: 4rem;
+}
+
+.edit-project .upload-button {
+  width: 150px;
+  border: none;
+}
+
+.edit-project .main-func,
+.edit-project .skills,
+.edit-project .team-discribe {
+  align-items: center;
+}
+
+.edit-project .main-func label,
+.edit-project .skills label,
+.edit-project .team-discribe label {
+  margin-left: 6px;
+  margin-right: 20px;
+}
+
+.edit-project .team-discribe label,
+.edit-project .team-discribe .check-icon,
+.edit-project .add-member {
+  align-self: flex-start;
+}
+
+.edit-project .skills input {
+  width: initial !important;
+}
+
+.edit-project input[type="submit"] {
+  cursor: pointer;
+  width: 100px;
+  height: 40px;
+  background-color: var(--button-bg);
+  color: #fff;
+  align-self: flex-end;
+  margin-left: 20px;
+  border-radius: 4px;
+}
+
+.edit-project .thumbnail-delete {
+  width: 80px;
+  height: 35px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+/* CreateProjectButton */
+
+.create-project__button {
+  border: none;
+  width: 80px;
+  height: 80px;
+  background-color: var(--addButton-bg);
+  border-radius: 50%;
+  color: white;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
+  font-size: 50px;
+
+  position: fixed;
+  top: 85%;
+  left: 85%;
+}
+
+/* hamburger */
+.fa-bars {
+  display: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .naviBar__elements-container,
+  .naviBar__logOut {
+    display: none;
+  }
+  .fa-bars {
+    display: block;
+  }
+}

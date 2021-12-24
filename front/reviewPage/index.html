@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link href="index.css" rel="stylesheet" />
+    <link href="../index.css" rel="stylesheet" />
+    <title></title>
+  </head>
+  <body>
+    <div class="naviBar"></div>
+
+    <div class="show-project">
+      <main>
+        <article>
+          <header>
+            <div class="header__top">
+              <button class="project-Modify-Button">
+                <i class="fas fa-pencil-alt"></i>
+                수정
+              </button>
+              <button class="project-Delete-Button">
+                <i class="fas fa-trash-alt"></i>
+                삭제
+              </button>
+            </div>
+            <div class="header__bottom">
+              <div class="top">
+                <div class="project-Title">title</div>
+                <div class="project-Author">author</div>
+              </div>
+              <div class="project-Date">등록일: 2021년 12월 25일 토요일</div>
+            </div>
+          </header>
+          <div class="main_img_frame">
+            <button class="prev_img_btn">
+              <i class="fas fa-caret-left"></i>
+            </button>
+            <img src="http://via.placeholder.com/760x400" class="main_img" />
+            <button class="next_img_btn">
+              <i class="fas fa-caret-right"></i>
+            </button>
+          </div>
+          <div class="scoreContainer">
+            <div class="top">
+              <div>총 평점</div>
+              <span class="scoreStar">
+                ★★★★★
+                <span class="scoreStarMask">★★★★★</span>
+              </span>
+            </div>
+            <div class="bottom">
+              <div>총 평가자 수</div>
+              <div class="mainContentEval"></div>
+            </div>
+          </div>
+          <div class="desc-container">
+            <h3 class="title">
+              <span>프로젝트 설명</span>
+            </h3>
+            <div class="project-Container">
+              <div>주요 기능</div>
+              <div class="detail project-Container_mainFunc">aaa</div>
+              <div>사용한 기술 스택</div>
+              <div class="detail project-Container_skills"></div>
+              <div>참여 팀원 & 담당 업무</div>
+              <div class="detail project-Container_MembersAndJobs"></div>
+            </div>
+          </div>
+          <div class="feedback-container">
+            <div class="my-comment-wrapper">
+              <h3 class="title">
+                <span>평가 댓글</span>
+              </h3>
+              <div class="inputTagForm">
+                <div class="top">
+                  <div>평가 남기기</div>
+                </div>
+                <textarea class="writeCommentContent"></textarea>
+                <div class="bottom">
+                  <div class="left">
+                    <div class="text">평점</div>
+                    <div>
+                      <span class="commentRegStar">
+                        ★★★★★
+                        <span class="commentRegStarMask">★★★★★</span>
+                        <input
+                          type="range"
+                          class="commentRegStarDrag"
+                          step="2"
+                          min="2"
+                          max="10"
+                        />
+                      </span>
+                    </div>
+                  </div>
+                  <button class="commentRegBtn">등록</button>
+                </div>
+              </div>
+            </div>
+            <div class="other-comments-wrapper">
+              <div class="top">
+                <span class="line"></span>
+                <h2 class="title">다른 사람의 평가</h2>
+                <span class="line"></span>
+              </div>
+              <div class="commentsList"></div>
+            </div>
+          </div>
+        </article>
+      </main>
+
+      <template class="commentTemplate">
+        <div class="comment">
+          <div class="top">
+            <div class="commentAuthor"></div>
+            <div class="commentDate"></div>
+          </div>
+          <div class="commentContent"></div>
+          <div class="bottom">
+            <div class="left">
+              <div>평점:&nbsp;</div>
+              <span class="commentStar">
+                ★★★★★
+                <span class="commentStarMask">★★★★★</span>
+              </span>
+            </div>
+            <a class="commentMoreContent" href="">전체 내용 보기</a>
+          </div>
+        </div>
+      </template>
+    </div>
+    <div class="edit-project"></div>
+  </body>
+  <script type="module" src="index.js"></script>
+  <script type="module" src="editProject.js"></script>
+  <script type="module" src="../naviBar/index.js"></script>
+</html>

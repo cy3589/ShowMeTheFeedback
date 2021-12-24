@@ -821,3 +821,29 @@ fieldset {
 }
 
 /* UpdateContentsBtn */
+
+.container .create-project-form {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr auto auto auto auto 1fr;
+  grid-gap: 30px;
+  grid-template-areas:
+    "team-name"
+    "project-name"
+    "project-thumbnail__header"
+    "thumbnail"
+    "main-func"
+    "skills"
+    "team-discribe"
+    "buttons";
+}
+
+.container .update__buttons {
+  grid-area: buttons;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.update__buttons .update {
+  background-color: var(--addButton-bg);
+}

@@ -61,12 +61,13 @@ export const editProjectForm = /* html */ `
       <div class="team-discribe">
         <div class="check-icon"></div>
         <label for="team-discribe">팀 소개</label>
-        <a href="#" class="add-member">+</a>
-        <div class="members">
+        <div class="members"></div>
       </div>
-
-      <input type="submit" value="수정하기" />
-      <input class="edit-cancel-button" type="submit" value="취소하기" />
+        
+      <div class="update__buttons">
+        <input type="submit" value="수정하기" style="background-color: var(--addButton-bg)" />
+        <input class="edit-cancel-button" type="submit" value="취소하기" />
+      </div>
     </form>
     </div>
 `;
@@ -94,5 +95,6 @@ export const getMemberElement = (member) => /* html */ `
               value = ${member.task}
               placeholder="업무내용"
             />
+            <a href="#" class="add-member">+</a>
           </div>
 `;

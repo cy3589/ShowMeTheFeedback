@@ -1,9 +1,17 @@
 import { getUserValue } from "../api/getUserValue.js";
+import { logOut } from "../auth/logOut.js";
 
 export async function authorizedNaviBar() {
   const authorizedTopNaviBar = document.getElementsByClassName("naviBar")[0];
 
   const { data, status } = await getUserValue();
+
+  if (data.nickname === undefined) {
+    alert("로그아웃 되었습니다.");
+    logOut();
+    history.pushState({ data: null }, null, "../loginPage");
+    location.reload();
+  }
 
   authorizedTopNaviBar.innerHTML = `
         <div class="naviBar__left">

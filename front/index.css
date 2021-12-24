@@ -170,6 +170,7 @@ textarea {
 }
 
 .project-value__alert {
+  margin-top: 10px;
   display: flex;
   justify-content: flex-end;
   font-size: var(--contents-text);
@@ -188,6 +189,7 @@ textarea {
   background: var(--contents-alert-icon);
   display: flex;
   justify-content: center;
+  align-items: center;
   color: white;
   margin-right: 5px;
 }

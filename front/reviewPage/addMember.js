@@ -1,6 +1,7 @@
 import { newStateObject as stateObject } from "./editProject.js";
 import { setIconTeamDiscribe } from "./setIcon.js";
-export const addMember = () => {
+export const addMember = (e) => {
+  e.preventDefault();
   stateObject.members.push({ name: "", job: "", task: "" });
   const targetElement = document.querySelector(".members");
 

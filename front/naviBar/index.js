@@ -6,8 +6,17 @@ import { logOut } from "../auth/logOut.js";
 
 globalThis.addEventListener("load", async () => {
   const refreshToken = getTokenFromCookies("refreshToken");
+
   const isAuthed = refreshToken !== undefined ? true : false;
-  isAuthed ? await authorizedNaviBar() : unauthorizedNaviBar();
+  if (!isAuthed) {
+    if (globalThis.location.pathname === "/indexPage/") {
+      unauthorizedNaviBar();
+      return;
+    }
+    history.pushState({ data: null }, null, "../loginPage");
+    location.reload();
+  }
+  await authorizedNaviBar();
 
   const accessToken = getTokenFromCookies("accessToken");
   const accExpired = accessToken === undefined ? true : false;
@@ -18,6 +27,10 @@ globalThis.addEventListener("load", async () => {
         saveToken(key, data[key]);
       }
     }
+
+    alert("다시 로그인 해주세요.");
+    history.pushState({ data: null }, null, "../loginPage");
+    location.reload();
   }
 
   const logOutBtn = document.querySelector(".naviBar__logOut");

@@ -18,15 +18,9 @@ export async function fetchInstance(path, params, method) {
     },
     body: JSON.stringify(params.body),
   };
-  // if (params.body !== undefined) {
-  //   config.body = SON.stringify(params.body);
-  // }
-  //
 
-  console.log(config);
   const response = await fetch(`${baseURL}${path}`, config);
   const data = await response.json();
   const status = response.status;
-  console.log(data, status);
   return { data, status };
 }

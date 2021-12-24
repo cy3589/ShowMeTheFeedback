@@ -17,6 +17,5 @@ export async function signUp(nickname, email, password, authCode) {
 
   const data = await response.json();
   const status = response.status;
-  console.log(data, status);
   return { data, status };
 }

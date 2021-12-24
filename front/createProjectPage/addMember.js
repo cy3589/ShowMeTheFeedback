@@ -5,10 +5,6 @@ export const addMember = () => {
   const memberLastIndex = stateObject.member.length - 1;
   const targetElement = document.querySelector(".members");
 
-  // 항목별 체크아이콘은 난잡해보임
-  // const checkIconDiv = document.createElement("div");
-  // checkIconDiv.className = "check-icon";
-
   const wrapperDiv = document.createElement("div");
   wrapperDiv.className = "member";
   const inputMemberName = document.createElement("input");
@@ -52,12 +48,10 @@ export const addMember = () => {
     setIconTeamDiscribe();
   });
 
-  // wrapperDiv.appendChild(checkIconDiv);
   wrapperDiv.appendChild(inputMemberName);
   wrapperDiv.appendChild(inputMemberJob);
   wrapperDiv.appendChild(inputMemberTask);
   wrapperDiv.appendChild(deleteButton);
-  //innerHTML로 처리하면 form 입력 데이터가 초기화되서 element를 구현
   targetElement.appendChild(wrapperDiv);
   setIconTeamDiscribe();
 };

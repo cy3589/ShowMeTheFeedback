@@ -3,7 +3,7 @@ import { onChangeFunc } from "./createProject.js";
 import { setIcon, setIconTeamDiscribe } from "./setIcon.js";
 
 export const onChangeTeamName = () => {
-  const elementId = "team-name"; // className도 동일하게 html에서 셋팅
+  const elementId = "team-name";
   const stateId = "teamName";
   const state = onChangeFunc(elementId, stateId);
   setIcon(state, elementId);

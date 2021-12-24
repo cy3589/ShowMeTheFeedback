@@ -25,7 +25,6 @@ getSignUpCodeButton.addEventListener("click", async (e) => {
     nickNameValue.value,
     emailValue.value
   );
-  console.log(data, status);
   alert("인증코드가 발송되었습니다.");
   getSignUpCodeButton.innerText = "인증코드 재발송";
   signUpCodeInput.disabled = false;
@@ -53,12 +52,10 @@ submitBtn.addEventListener("click", async (e) => {
   );
 
   if (status === 201) {
-    console.log(data, status);
     alert("가입 완료되었습니다.");
     history.pushState({ data: data }, null, "../loginPage");
     location.reload();
     return;
   }
-  console.log(data, status);
   alert("다시 시도해주세요");
 });

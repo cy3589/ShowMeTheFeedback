@@ -88,7 +88,7 @@ article .header__bottom .project-Date {
   cursor: pointer;
   font-size: 2rem;
   color: #adb5bd;
-  transition: all .4s;
+  transition: all 0.4s;
 }
 
 .main_img_frame button:hover {
@@ -108,7 +108,7 @@ article .header__bottom .project-Date {
 .main_img_frame img {
   width: 760px;
   height: 400px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .scoreContainer {
@@ -265,55 +265,6 @@ article .header__bottom .project-Date {
   opacity: 0;
   cursor: pointer;
 }
-
-/* .main_img_frame {
-  margin: 30px auto;
-}
-
-article .main_img_frame #main_img {
-  display: block;
-  margin: 30px auto;
-  width: 900px;
-  height: 600px;
-}
-
-article #container {
-  display: flex;
-}
-
-article #container button {
-  margin: auto auto;
-  height: 150px;
-}
-
-article #img_list {
-  margin: 30px auto;
-  display: flex;
-  width: 70%;
-}
-
-article #img_list img {
-  width: 200px;
-  height: 150px;
-  margin: 30px auto;
-}
-
-article .main_text {
-  width: 70%;
-  margin: 100px auto;
-}
-
-article .comment {
-  width: 70%;
-  margin: 100px auto;
-}
-
-article .comment input {
-  display: block;
-  margin: 50px auto;
-  width: 800px;
-  height: 80px;
-} */
 
 .star {
   position: relative;

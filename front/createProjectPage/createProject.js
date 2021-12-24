@@ -16,12 +16,6 @@ export const onChangeFunc = (elementId, stateName) => {
   stateObject[stateName] = nowValue;
   return stateObject[stateName];
 };
-// export const onChangeTeamDiscribe = () => {
-//   const elementId = "team-discribe";
-//   const stateId = "teamDiscribe";
-//   const state = onChangeFunc(elementId, stateId);
-//   setIcon(state, elementId);
-// };
 
 const btnClick = () => {
   if (stateObject.thumbnails.length > 2) {
@@ -30,17 +24,6 @@ const btnClick = () => {
   }
   document.querySelector(".upload-button-hidden").click();
 };
-// window.submitFunc = submitFunc;
-// window.onChangeTeamName = onChangeTeamName;
-// window.onChangeProjectName = onChangeProjectName;
-// window.onChangeUpload = onChangeUpload;
-// window.btnClick = btnClick;
-// window.onChangeMainFunc = onChangeMainFunc;
-// window.onChangeSkills = onChangeSkills;
-// window.initOnChangeMemberName = initOnChangeMemberName;
-// window.initOnChangeMemberJob = initOnChangeMemberJob;
-// window.initOnChangeMemberTask = initOnChangeMemberTask;
-// window.addMember = addMember;
 document
   .querySelector(".create-project-form")
   .addEventListener("submit", (e) => {

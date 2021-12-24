@@ -13,6 +13,5 @@ export async function getUserValue() {
 
   const data = await response.json();
   const status = response.status;
-  console.log(data, status);
   return { data, status };
 }

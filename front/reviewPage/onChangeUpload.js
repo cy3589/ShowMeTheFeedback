@@ -28,16 +28,6 @@ export const onChangeUpload = async () => {
   }
   targetElement.innerHTML = "";
   stateObject.previewThumbnails.forEach((v, i) => {
-    console.log(i);
-    console.log(
-      "stateObject.currentThumbnails.length: ",
-      stateObject.currentThumbnails.length
-    );
-    console.log(
-      "stateObject.additionalThumbnails.length: ",
-      stateObject.additionalThumbnails.length
-    );
-    // 2,1,3
     if (i < stateObject.currentThumbnails.length) {
       targetElement.innerHTML += /* html */ `
       <div>
@@ -59,24 +49,12 @@ export const onChangeUpload = async () => {
       const index = Array.from(e.target.parentNode.parentNode.children).indexOf(
         e.target.parentNode
       );
-      console.log("@@@@@@");
-      // console.log(Array.from(document.querySelectorAll(".additional-image")));
-      console.log(
-        Array.from(document.querySelectorAll(".current-image")).indexOf(
-          e.target.parentNode.children[0]
-        )
-      );
-      console.log("@@@@@@");
       const additionalImageIndex = Array.from(
         document.querySelectorAll(".additional-image")
       ).indexOf(e.target.parentNode.children[0]);
       const currentImageIndex = Array.from(
         document.querySelectorAll(".current-image")
       ).indexOf(e.target.parentNode.children[0]);
-      // console.log(e.target.parentNode.parentNode);
-      console.log(e.target.parentNode.children[0]);
-      console.log("additionalImageIndex: ", additionalImageIndex);
-      console.log("currentImageIndex: ", currentImageIndex);
       if (additionalImageIndex !== -1) {
         stateObject.additionalThumbnails.splice(additionalImageIndex, 1);
       }

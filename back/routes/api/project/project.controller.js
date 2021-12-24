@@ -18,13 +18,17 @@ exports.getProjectList = async (req, res) => {
 };
 
 exports.getProject = async (req, res) => {
+  const { email } = req;
   const { projectId } = req.params;
+
   const project = await Project.findOne({ projectId })
     .populate("author")
     .populate("contents")
     .populate({
       path: "comments.comment",
     });
+
+  let isAuthorized = email == project.author.email ? true : false;
 
   const result = {
     projectId,
@@ -37,6 +41,7 @@ exports.getProject = async (req, res) => {
     averageRating: project.averageRating,
     thumbnails: project.thumbnails,
     createdAt: project.createdAt,
+    isAuthorized,
   };
 
   res.status(200).json(result);
@@ -52,7 +57,7 @@ exports.createProject = async (req, res) => {
     (v) =>
       `http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/uploads/${v.filename}`
   );
-  const author = await User.findOne({ email }); // 사용자 확인
+  const author = await User.findOne({ email });
   const project = await Project.create({
     author,
     projectName,
@@ -84,8 +89,6 @@ exports.createProject = async (req, res) => {
       },
     }
   );
-
-  // TODO: 이미지 저장 imgbb 사용 여부
 
   res.status(201).json({
     message: "프로젝트를 생성했습니다.",

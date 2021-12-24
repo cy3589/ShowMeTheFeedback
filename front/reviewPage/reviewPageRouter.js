@@ -23,10 +23,4 @@ router.get("/:filename", (req, res, next) => {
   res.sendFile(path.join(__dirname, "/index.html"));
 });
 
-// router.get("/", (req, res, next) => {
-//   res.json({ message: "projectID가 없습니다" });
-//   // res.send("projectID가 없습니다");
-//   return;
-// });
-
 module.exports = router;

@@ -770,3 +770,49 @@ fieldset {
   color: var(--link-font);
   padding-left: 5px;
 }
+
+/* FindPasswordPage */
+
+.findPasswordContainer {
+  margin: 200px auto 40px auto;
+  max-width: 400px;
+  text-align: center;
+}
+
+.findPasswordHeader {
+  font-size: 26px;
+  font-weight: bold;
+  color: var(--link-font);
+  margin-bottom: 40px;
+}
+
+.findPasswordForm {
+  display: grid;
+
+  grid-template-rows: repeat(2, 60px);
+  grid-gap: 16px;
+  grid-template-areas:
+    "emailInput"
+    "submitValue";
+}
+
+.emailInput {
+  grid-area: emailInput;
+  border: none;
+  padding: 20px;
+}
+.submitValue {
+  grid-area: submitValue;
+  background-color: var(--button-bg);
+  color: white;
+  font-size: 18px;
+  border: none;
+}
+
+.loginLink {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  color: var(--link-font);
+  text-decoration: underline;
+}

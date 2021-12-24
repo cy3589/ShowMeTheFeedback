@@ -18,13 +18,17 @@ exports.getProjectList = async (req, res) => {
 };
 
 exports.getProject = async (req, res) => {
+  const { email } = req;
   const { projectId } = req.params;
+
   const project = await Project.findOne({ projectId })
     .populate("author")
     .populate("contents")
     .populate({
       path: "comments.comment",
     });
+
+  let isAuthorized = email == project.author ? true : false;
 
   const result = {
     projectId,
@@ -37,6 +41,7 @@ exports.getProject = async (req, res) => {
     averageRating: project.averageRating,
     thumbnails: project.thumbnails,
     createdAt: project.createdAt,
+    isAuthorized,
   };
 
   res.status(200).json(result);

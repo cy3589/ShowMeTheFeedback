@@ -6,15 +6,51 @@ import { onChangeUpload } from "./onChangeUpload.js";
 import { getTokenFromCookies } from "../auth/token.js";
 import { id as projectId } from "./index.js";
 export let newStateObject;
-
+// export let newStateObject = JSON.parse(JSON.stringify(prevStateObject));
 const FETCH_URL_UPDATE_PORT =
   "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000/api/projects";
 const showProjectElementsWrapper = document.querySelector(".show-project");
 const editProjectElementsWrapper = document.querySelector(".edit-project");
+const getInputElementsFromEditForm = () => {
+  const inputTeamNameElement = document
+    .querySelector(".team-name")
+    .querySelector(".team-name");
+  const inputProjectNameElement = document
+    .querySelector(".project-name")
+    .querySelector(".project-name");
+  const inputMainFuncElement = document
+    .querySelector(".main-func")
+    .querySelector(".main-func");
+  const inputSkillsElement = document
+    .querySelector(".skills")
+    .querySelector(".skills");
+  const inputMemberElements = document.querySelectorAll(".member");
+  const addMemberElement = document.querySelector(".add-member");
 
+  return {
+    inputTeamNameElement,
+    inputProjectNameElement,
+    inputMainFuncElement,
+    inputSkillsElement,
+    inputMemberElements,
+    addMemberElement,
+  };
+};
+const addEventListenerInput = (element, targetStateName, elementId) => {
+  element.addEventListener("input", (e) => {
+    newStateObject[targetStateName] = e.target.value;
+    setIcon(newStateObject[targetStateName], elementId);
+  });
+};
+// document.querySelector(".상태확인버튼").addEventListener("click", () => {
+//   console.log("prevStateObject: ", prevStateObject);
+//   console.log("newStateObject: ", newStateObject);
+//   // console.log(document.querySelector(".upload-button-hidden").files);
+//   // document.querySelector(".upload-button-hidden").click();
+// });
 document
   .querySelector(".project-Modify-Button")
-  .addEventListener("click", () => {
+  .addEventListener("click", (e) => {
     newStateObject = JSON.parse(JSON.stringify(prevStateObject));
     newStateObject.additionalThumbnails = []; // 추가 file
     newStateObject.currentThumbnails = [...newStateObject.thumbnails]; // url들
@@ -40,7 +76,7 @@ document
 
     document
       .querySelector(".edit-cancel-button")
-      .addEventListener("click", () => {
+      .addEventListener("click", (e) => {
         if (confirm("지금 취소하시면 변경 내역이 모두 삭제됩니다")) {
           editProjectElementsWrapper.innerHTML = "";
           showProjectElementsWrapper.classList.remove("invisible");
@@ -148,7 +184,7 @@ document
       const targetElement = document.querySelector(".image-preview");
       targetElement.innerHTML = "";
       newStateObject.currentThumbnails.forEach((v, i) => {
-        targetElement.innerHTML += `
+        targetElement.innerHTML += /* html */ `
       <div>
         <img src=${encodeURI(v)} alt="${encodeURI(
           v
@@ -161,7 +197,7 @@ document
           .addEventListener("change", onChangeUpload);
       });
       newStateObject.additionalThumbnails.forEach((v, i) => {
-        targetElement.innerHTML += `
+        targetElement.innerHTML += /* html */ `
       <div>
         <img src=${encodeURI(v)} alt="${encodeURI(
           v
@@ -182,12 +218,24 @@ document
           const index = Array.from(
             e.target.parentNode.parentNode.children
           ).indexOf(e.target.parentNode);
+          // console.log("@@@@@@");
+          // // console.log(Array.from(document.querySelectorAll(".additional-image")));
+          // console.log(
+          //   Array.from(document.querySelectorAll(".current-image")).indexOf(
+          //     e.target.parentNode.children[0]
+          //   )
+          // );
+          // console.log("@@@@@@");
           const additionalImageIndex = Array.from(
             document.querySelectorAll(".additional-image")
           ).indexOf(e.target.parentNode.children[0]);
           const currentImageIndex = Array.from(
             document.querySelectorAll(".current-image")
           ).indexOf(e.target.parentNode.children[0]);
+          // console.log(e.target.parentNode.parentNode);
+          // console.log(e.target.parentNode.children[0]);
+          // console.log("additionalImageIndex: ", additionalImageIndex);
+          // console.log("currentImageIndex: ", currentImageIndex);
           if (additionalImageIndex !== -1) {
             newStateObject.additionalThumbnails.splice(additionalImageIndex, 1);
           }
@@ -216,6 +264,9 @@ document
             currentThumbnails,
             additionalThumbnails,
           } = newStateObject;
+          console.log(newStateObject);
+          console.log("currentThumbnails:", currentThumbnails);
+          console.log("member:", members);
           formData.append("teamName", teamName);
           formData.append("projectName", projectName);
           formData.append("mainFunc", mainFunc);
@@ -233,45 +284,37 @@ document
             body: formData,
           };
           fetch(`${FETCH_URL_UPDATE_PORT}/${projectId}`, UpdataProjectOptions)
-            .then((result) => result.json())
+            .then((result) =>{
+              if(result.status === 201){
+                alert("수정 성공");
+                window.location.href = `/reviewPage/${projectId}`;
+              }else
+                return result.json();
+            })
             .then((result) => {
-              console.log(result);
-              if (result.error) console.log(result.error);
-              if (result.message) console.log(result.message);
-              // 성공 시 동작 작성 필요
+              if (result.error){
+                alert(result.error);
+                return;
+              };
             });
         });
     });
-    const addEventListenerInput = (element, targetStateName, elementId) => {
-      element.addEventListener("input", (e) => {
-        newStateObject[targetStateName] = e.target.value;
-        setIcon(newStateObject[targetStateName], elementId);
-      });
-    };
-  });
 
-const getInputElementsFromEditForm = () => {
-  const inputTeamNameElement = document
-    .querySelector(".team-name")
-    .querySelector(".team-name");
-  const inputProjectNameElement = document
-    .querySelector(".project-name")
-    .querySelector(".project-name");
-  const inputMainFuncElement = document
-    .querySelector(".main-func")
-    .querySelector(".main-func");
-  const inputSkillsElement = document
-    .querySelector(".skills")
-    .querySelector(".skills");
-  const inputMemberElements = document.querySelectorAll(".member");
-  const addMemberElement = document.querySelector(".add-member");
+  }); // })이슈 임시조치 (11시51분)
 
-  return {
-    inputTeamNameElement,
-    inputProjectNameElement,
-    inputMainFuncElement,
-    inputSkillsElement,
-    inputMemberElements,
-    addMemberElement,
-  };
-};
+// document.querySelector(".수정취소하기버튼").addEventListener("click", (e) => {
+//   // if (confirm("지금 취소하면 수정하신 내역이 모두 사라집니다!")) {
+//   showProjectElementsWrapper.classList.remove("invisible");
+//   newStateObject = JSON.parse(JSON.stringify(prevStateObject));
+//   editProjectElementsWrapper.innerHTML = "";
+//   return;
+//   // }
+// });
+
+
+
+//임의기능버튼
+// document.querySelector(".임의기능버튼").addEventListener("click", (e) => {
+//   console.log(window.location.pathname);
+// });
+//

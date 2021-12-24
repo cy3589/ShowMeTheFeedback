@@ -98,7 +98,7 @@ textarea {
   font-size: var(--contents-text);
   padding: 1rem;
 }
-.naviBar__nickName {
+.naviBar_gitm_nickName {
   color: var(--link-font);
 }
 

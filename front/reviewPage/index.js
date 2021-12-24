@@ -111,8 +111,9 @@ function mainContentImage(data) {
   let prev_img_btn = document.getElementsByClassName("prev_img_btn")[0];
   let next_img_btn = document.getElementsByClassName("next_img_btn")[0];
 
-  if(data.length === 0){
-    main_img.src = "https://s3-alpha-sig.figma.com/img/b3fd/2d1d/de486d511bc4ffd77c7b74c5fcec860a?Expires=1640563200&Signature=Z51KL7qTLBT1rpd7tmydxvmrHZjzyqq4~gkPw28Pywih7yu~DPu2iJTwD1S1GRUFnTpin3SBEl7b0zxoDIWuZu6s4iB-~sE5aJ4T~lQtWM9tMr2MsL8B-ZFHYMCBl35Tkqr7re2sGr68aK9DsQzhNCP7u5XGVsf~AbghtRgtMyF91ZanxzgOAEtvRcIXBCix9~bsiGdDv2LJ8pmFkMl-rWhE2prGSR61kwx8lx15D2YEPW7el8zjt8Fd7soMKus5WkTO~wCgZ6l-8kDVEzKDrq891Hcy28bNdkxvDDAMx1dR5xzsU3GHn8FSQKj3i0uGG0GOJ48NUvnH~CsN2SzhNA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+  if (data.length === 0) {
+    main_img.src =
+      "https://s3-alpha-sig.figma.com/img/b3fd/2d1d/de486d511bc4ffd77c7b74c5fcec860a?Expires=1640563200&Signature=Z51KL7qTLBT1rpd7tmydxvmrHZjzyqq4~gkPw28Pywih7yu~DPu2iJTwD1S1GRUFnTpin3SBEl7b0zxoDIWuZu6s4iB-~sE5aJ4T~lQtWM9tMr2MsL8B-ZFHYMCBl35Tkqr7re2sGr68aK9DsQzhNCP7u5XGVsf~AbghtRgtMyF91ZanxzgOAEtvRcIXBCix9~bsiGdDv2LJ8pmFkMl-rWhE2prGSR61kwx8lx15D2YEPW7el8zjt8Fd7soMKus5WkTO~wCgZ6l-8kDVEzKDrq891Hcy28bNdkxvDDAMx1dR5xzsU3GHn8FSQKj3i0uGG0GOJ48NUvnH~CsN2SzhNA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA";
     return;
   }
   main_img.src = data[0];
@@ -151,10 +152,13 @@ function mainContentImage(data) {
 }
 
 //상세 페이지 작성자, 제목, 날짜
-function mainContentInfo(data) {
-  if(data.author === document.querySelector(".naviBar__nickName").innerText){
-    document.querySelector(".header__top").classList.add("invisible");
-  }
+async function mainContentInfo(data) {
+  // if (
+  //   data.author ===
+  //   (await document.querySelector(".naviBar__nickName").innerText)
+  // ) {
+  //   document.querySelector(".header__top").classList.add("invisible");
+  // }
   let projectTitle = document.getElementsByClassName("project-Title")[0];
   let projectTeamName = document.getElementsByClassName("project-Author")[0];
   let projectDate = document.getElementsByClassName("project-Date")[0];
@@ -285,13 +289,13 @@ function commentCreate() {
       postCommentOptions
     )
       .then((result) => result.json())
-      .then((result)=>{
-        if(result.message){
+      .then((result) => {
+        if (result.message) {
           alert(result.message);
           window.location.href = `/reviewPage/${id}`;
           return;
         }
-        if(result.error){
+        if (result.error) {
           alert(result.error);
           return;
         }
@@ -330,7 +334,7 @@ function commentCreate() {
     // commentList(stateComment);
   });
 }
-  
+
 document
   .querySelector(".project-Delete-Button")
   .addEventListener("click", (e) => {

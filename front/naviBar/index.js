@@ -3,10 +3,11 @@ import { authorizedNaviBar } from "./authorizedNavibar.js";
 import { unauthorizedNaviBar } from "./unauthorizedNavibar.js";
 import { refreshToken as ref } from "../api/refreshToken.js";
 import { logOut } from "../auth/logOut.js";
+
 globalThis.addEventListener("load", async () => {
   const refreshToken = getTokenFromCookies("refreshToken");
   const isAuthed = refreshToken !== undefined ? true : false;
-  isAuthed ? authorizedNaviBar() : unauthorizedNaviBar();
+  isAuthed ? await authorizedNaviBar() : unauthorizedNaviBar();
 
   const accessToken = getTokenFromCookies("accessToken");
   const accExpired = accessToken === undefined ? true : false;
@@ -20,6 +21,8 @@ globalThis.addEventListener("load", async () => {
   }
 
   const logOutBtn = document.querySelector(".naviBar__logOut");
+
+  console.log(logOutBtn);
 
   logOutBtn.addEventListener("click", (e) => {
     e.preventDefault();

@@ -173,9 +173,6 @@ document
         <input type="button" class="thumbnail-delete" value="삭제하기" />
       </div>
       `;
-        document
-          .querySelector(".upload-button-hidden")
-          .addEventListener("change", onChangeUpload);
       });
       newStateObject.additionalThumbnails.forEach((v, i) => {
         targetElement.innerHTML += /* html */ `
@@ -184,13 +181,13 @@ document
         <input type="button" class="thumbnail-delete" value="삭제하기" />
       </div>
       `;
-        document
-          .querySelector(".upload-button-hidden")
-          .addEventListener("change", onChangeUpload);
       });
       document
-        .querySelector(".upload-button")
-        .addEventListener("click", btnClick);
+      .querySelector(".upload-button")
+      .addEventListener("click", btnClick);
+      document
+      .querySelector(".upload-button-hidden")
+      .addEventListener("change", onChangeUpload);
 
       document.querySelectorAll(".thumbnail-delete").forEach((v) =>
         v.addEventListener("click", (e) => {

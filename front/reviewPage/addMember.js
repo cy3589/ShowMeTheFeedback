@@ -2,7 +2,6 @@ import { newStateObject as stateObject } from "./editProject.js";
 import { setIconTeamDiscribe } from "./setIcon.js";
 export const addMember = () => {
   stateObject.members.push({ name: "", job: "", task: "" });
-  const memberLastIndex = stateObject.members.length - 1;
   const targetElement = document.querySelector(".members");
 
   const wrapperDiv = document.createElement("div");
@@ -60,7 +59,6 @@ export const addMember = () => {
   wrapperDiv.appendChild(inputMemberJob);
   wrapperDiv.appendChild(inputMemberTask);
   wrapperDiv.appendChild(deleteButton);
-  //innerHTML로 처리하면 form 입력 데이터가 초기화되서 element를 구현
   targetElement.appendChild(wrapperDiv);
   setIconTeamDiscribe();
 };

@@ -1,5 +1,9 @@
-export function authorizedNaviBar() {
+import { getUserValue } from "../api/getUserValue.js";
+
+export async function authorizedNaviBar() {
   const authorizedTopNaviBar = document.getElementsByClassName("naviBar")[0];
+
+  const { data, status } = await getUserValue();
 
   authorizedTopNaviBar.innerHTML = `
         <div class="naviBar__left">
@@ -13,6 +17,8 @@ export function authorizedNaviBar() {
             </div>
         </div>
         <div class="naviBar__auth">
+            <a class="naviBar__nickName" href="../myPage">${data.nickname}</a>
+            <i class="fas fa-bars"></i>
             <a class="naviBar__logOut" href="../indexPage">로그아웃</a>
             <i class="fas fa-bars"></i>
         </div>

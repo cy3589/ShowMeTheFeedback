@@ -5,34 +5,6 @@ import { getTokenFromCookies } from "../auth/token.js";
 const BACKEND_BASE_URL =
   "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
 const now = new Date();
-// const postCommentOption = {
-//   method: "post",
-//   headers: {
-//     accessToken: getToken("accessToken"),
-//   },
-// };
-
-// document
-//   .querySelector(".커멘트전송버튼클래스")
-//   .addEventListener("click", (e) => {
-//     const comment = {
-//       content: e.target.value,
-//       rating: e.target.parentNode.querySelector(".star").value,
-//     };
-//     postCommentFunction(id, comment);
-//   });
-// const postCommentFunction = async (id, comment) => {
-//   let projectData;
-//   await fetch(`getProejct_API_BASE_URL/${id}`, {
-//     ...postCommentOption,
-//     body: comment,
-//   })
-//     .then((result) => result.json())
-//     .then((result) => {
-//       projectData = result;
-//     });
-//   render(projectData);
-// };
 
 //작성자 관련
 function mainArea() {
@@ -44,32 +16,13 @@ function mainArea() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       setStateObject(JSON.parse(JSON.stringify(data)));
-      // console.log(stateObject);
-      // stateProjectSave(stateObject);
-      // mainContentInfo(stateObject);
-      // mainContentImage(stateObject.gotThumbnails);
-      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-      console.log(data);
-      console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
       stateProjectSave(data);
       mainContentInfo(data);
       mainContentImage(data.thumbnails);
       mainContentStar(data.averageRating);
     });
 }
-
-//상세페이지 이미지 관련
-// function imageArea() {
-//   fetch("https://jsonplaceholder.typicode.com/photos")
-//     .then((res) => res.json())
-//     .then((data) => {
-//       console.log(data);
-//       mainContentImage(data);
-//       commentCreate();
-//     });
-// }
 
 // 댓글 조회 관련
 function commentArea() {
@@ -81,11 +34,6 @@ function commentArea() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log("**************************");
-      console.log(data);
-      console.log("**************************");
-      console.log(data.comments);
-      // stateCommentSave(data.comments);
       mainContentEval(data.comments);
       commentList(data.comments);
       commentCreate();
@@ -97,7 +45,6 @@ function commentArea() {
 //상태 저장
 
 let stateProject = [];
-let stateComment = [];
 
 function stateProjectSave(data) {
   for (let i = 0; i < data.length; i++) {
@@ -105,25 +52,15 @@ function stateProjectSave(data) {
   }
 }
 
-// function stateCommentSave(data) {
-//   for (let i = 0; i < data.length; i++) {
-//     stateComment.push(data[i]);
-//   }
-// }
-
 //날짜 출력하기
 const getProjectDateFormat = (dateObject) => {
   let Year = dateObject.getFullYear();
   let Month = dateObject.getMonth() + 1;
   let Date = dateObject.getDate();
-  // let Hour = dateObject.getHours();
-  // let Minutes = dateObject.getMinutes();
-  // let Seconds = dateObject.getSeconds();
   let result = Year + "." + Month + "." + Date;
   return result;
 };
 
-// const toStringAndFillZero = (STR)=> STR.toString().padStart(2,"0");
 const getAgoStringComment = (dateObject) => {
   const dateDiff = now - dateObject;
   let AgoMinute = Math.round(dateDiff / (1000 * 60));
@@ -139,9 +76,6 @@ const getAgoStringComment = (dateObject) => {
   let Year = dateObject.getFullYear();
   let Month = dateObject.getMonth() + 1;
   let Date = dateObject.getDate();
-  // let Hour = toStringAndFillZero(dateObject.getHours());
-  // let Minutes = toStringAndFillZero(dateObject.getMinutes());
-  // let Seconds = toStringAndFillZero(dateObject.getSeconds());
   let result = Year + "." + Month + "." + Date;
   //  +
   // " " +
@@ -326,7 +260,9 @@ function commentCreate() {
       postCommentOptions
     )
       .then((result) => result.json())
-      .then(console.log);
+      .then((res) => {
+        location.reload();
+      });
 
     // await fetch("http://localhost:8080/commentPost", options)
     //   .then((result) => result.json())

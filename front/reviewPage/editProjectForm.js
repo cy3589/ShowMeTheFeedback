@@ -1,4 +1,4 @@
-export const editProjectForm = /* html */ `
+export const editProjectForm = `
     <button class="edit-cancel-button">취소</button>
     <div class="container">
     <form
@@ -72,7 +72,7 @@ export const editProjectForm = /* html */ `
     </div>
 `;
 
-export const getMemberElement = (member) => /* html */ `
+export const getMemberElement = (member) => `
          <div class="member" style="display: flex">
             <input
               type="text"

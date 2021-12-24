@@ -1,15 +1,13 @@
 :root {
   --link-font: #f38181;
   --button-bg: #ff6b6b;
-  --page-bg: #e5e5e5;
+  --page-bg: #f8f9fa;
   --border: #bbbbbb;
 }
 
 * {
-  /* transition: 0.25s ease-in-out; */
   margin: 0;
   padding: 0;
-  background-color: var(--page-bg);
 }
 
 /* a태그 색상 변경 안되도록 처리 */
@@ -29,42 +27,52 @@ a:hover {
 /* javascript로 렌더하는 element의 className */
 
 .render {
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 10px;
-  column-gap: 1rem;
+  display: flex;
   justify-content: center;
-  padding: 1rem;
-  padding-top: calc(50px + 1rem);
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 4rem 0 5vw;
 }
 
 .card {
+  position: relative;
+  bottom: 0;
+  width: 320px;
+  height: 380px;
   background-color: #ffffff;
-  border: 1px solid var(--border);
   border-radius: 2px;
   overflow: hidden;
+  border-radius: 4px;
+  transition: all 0.4s;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
-.thumbnail {
+
+.card:hover {
+  bottom: 8px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.card .thumbnail {
+  display: block;
   height: 300px;
+  border-bottom: 1px solid #ddd;
 }
+
 .thumbnail > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* border-radius: 2px; */
 }
 
 /* 전체 card > (썸네일, 컨텐츠) */
 /* 컨텐츠 flex > 아바타, (제목,별점), 날짜 */
 .contents {
-  display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
-  background-color: #fff;
-}
-.avatar {
-  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
   padding: 10px;
+  column-gap: 10px;
 }
+
 .avatar-image {
   background-color: #ccc;
   width: 30px;
@@ -87,35 +95,32 @@ a:hover {
   border-radius: 50%;
 }
 .createdAt {
-  background-color: #fff;
-  text-align: right;
-  display: inline-block;
   white-space: nowrap;
-  font-size: small;
-  margin: 10px 10px 0 0;
+  font-size: 14px;
+  color: #666;
 }
-.title-rating {
-  background-color: #fff;
-}
+
 .rating {
-  background-color: #fff;
   margin-bottom: 3px;
 }
-.title {
-  min-width: 100px;
-  background-color: #fff;
-  margin-top: 10px;
-  font-size: medium;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+
+.title-rating {
+  flex: 1;
+  justify-self: flex-start;
 }
+
+.title {
+  width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 #header {
   width: 100%;
   position: fixed;
   left: 0px;
-  background: #efefef;
+  /* background: #efefef; */
   padding: 10px 10px 10px 50px;
   font-size: 30px;
   line-height: 30px;
@@ -140,32 +145,8 @@ header {
   position: fixed;
   display: flex;
   left: 0px;
-  background: #efefef;
   padding: 10px 10px 10px 50px;
   font-size: 30px;
   line-height: 30px;
   z-index: 0;
-}
-
-/* 데스크탑 화면 */
-@media screen and (min-width: 769px) {
-  .thumbnail {
-    max-height: 30vh;
-    overflow: hidden;
-  }
-  .thumbnail > img {
-    object-fit: cover;
-  }
-  .render {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    row-gap: 10px;
-    column-gap: 1rem;
-    justify-content: center;
-    padding: 1rem;
-    padding-top: calc(50px + 1rem);
-  }
-  .title {
-    min-height: 42.667px;
-  }
 }

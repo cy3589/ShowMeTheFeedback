@@ -14,7 +14,6 @@ function mainArea() {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       setStateObject(JSON.parse(JSON.stringify(data)));
       stateProjectSave(data);
       mainContentInfo(data);
@@ -152,7 +151,7 @@ function mainContentImage(data) {
 }
 
 //상세 페이지 작성자, 제목, 날짜
-async function mainContentInfo(data) {
+function mainContentInfo(data) {
   // if (
   //   data.author ===
   //   (await document.querySelector(".naviBar__nickName").innerText)
@@ -179,6 +178,9 @@ async function mainContentInfo(data) {
   projectSkills.innerHTML = data.skills;
   for (let i = 0; i < data.members.length; i++) {
     projectMembersAndJobs.innerHTML += `<div class = "project-Container_MembersAndJobs_list${i}">${data.members[i].name}(${data.members[i].job}) : ${data.members[i].task}</div>`;
+  }
+  if (!data.isAuthorized) {
+    document.querySelector(".header__top").classList.add("invisible");
   }
 }
 

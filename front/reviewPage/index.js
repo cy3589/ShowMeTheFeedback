@@ -5,8 +5,6 @@ import { getTokenFromCookies } from "../auth/token.js";
 const BACKEND_BASE_URL =
   "http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com:5000";
 const now = new Date();
-
-//작성자 관련
 function mainArea() {
   fetch(`${BACKEND_BASE_URL}/api/projects/${id}`, {
     method: "GET",
@@ -16,6 +14,7 @@ function mainArea() {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       setStateObject(JSON.parse(JSON.stringify(data)));
       stateProjectSave(data);
       mainContentInfo(data);
@@ -24,7 +23,6 @@ function mainArea() {
     });
 }
 
-// 댓글 조회 관련
 function commentArea() {
   fetch(`${BACKEND_BASE_URL}/api/comments/${id}`, {
     headers: {
@@ -34,6 +32,11 @@ function commentArea() {
   })
     .then((res) => res.json())
     .then((data) => {
+      console.log("**************************");
+      console.log(data);
+      console.log("**************************");
+      console.log(data.comments);
+      // stateCommentSave(data.comments);
       mainContentEval(data.comments);
       commentList(data.comments);
       commentCreate();
@@ -45,6 +48,7 @@ function commentArea() {
 //상태 저장
 
 let stateProject = [];
+let stateComment = [];
 
 function stateProjectSave(data) {
   for (let i = 0; i < data.length; i++) {
@@ -52,15 +56,25 @@ function stateProjectSave(data) {
   }
 }
 
+// function stateCommentSave(data) {
+//   for (let i = 0; i < data.length; i++) {
+//     stateComment.push(data[i]);
+//   }
+// }
+
 //날짜 출력하기
 const getProjectDateFormat = (dateObject) => {
   let Year = dateObject.getFullYear();
   let Month = dateObject.getMonth() + 1;
   let Date = dateObject.getDate();
+  // let Hour = dateObject.getHours();
+  // let Minutes = dateObject.getMinutes();
+  // let Seconds = dateObject.getSeconds();
   let result = Year + "." + Month + "." + Date;
   return result;
 };
 
+// const toStringAndFillZero = (STR)=> STR.toString().padStart(2,"0");
 const getAgoStringComment = (dateObject) => {
   const dateDiff = now - dateObject;
   let AgoMinute = Math.round(dateDiff / (1000 * 60));
@@ -76,6 +90,9 @@ const getAgoStringComment = (dateObject) => {
   let Year = dateObject.getFullYear();
   let Month = dateObject.getMonth() + 1;
   let Date = dateObject.getDate();
+  // let Hour = toStringAndFillZero(dateObject.getHours());
+  // let Minutes = toStringAndFillZero(dateObject.getMinutes());
+  // let Seconds = toStringAndFillZero(dateObject.getSeconds());
   let result = Year + "." + Month + "." + Date;
   //  +
   // " " +
@@ -93,6 +110,11 @@ function mainContentImage(data) {
   let main_img = document.getElementsByClassName("main_img")[0];
   let prev_img_btn = document.getElementsByClassName("prev_img_btn")[0];
   let next_img_btn = document.getElementsByClassName("next_img_btn")[0];
+
+  if(data.length === 0){
+    main_img.src = "https://s3-alpha-sig.figma.com/img/b3fd/2d1d/de486d511bc4ffd77c7b74c5fcec860a?Expires=1640563200&Signature=Z51KL7qTLBT1rpd7tmydxvmrHZjzyqq4~gkPw28Pywih7yu~DPu2iJTwD1S1GRUFnTpin3SBEl7b0zxoDIWuZu6s4iB-~sE5aJ4T~lQtWM9tMr2MsL8B-ZFHYMCBl35Tkqr7re2sGr68aK9DsQzhNCP7u5XGVsf~AbghtRgtMyF91ZanxzgOAEtvRcIXBCix9~bsiGdDv2LJ8pmFkMl-rWhE2prGSR61kwx8lx15D2YEPW7el8zjt8Fd7soMKus5WkTO~wCgZ6l-8kDVEzKDrq891Hcy28bNdkxvDDAMx1dR5xzsU3GHn8FSQKj3i0uGG0GOJ48NUvnH~CsN2SzhNA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+    return;
+  }
   main_img.src = data[0];
 
   prev_img_btn.disabled = true;
@@ -130,6 +152,9 @@ function mainContentImage(data) {
 
 //상세 페이지 작성자, 제목, 날짜
 function mainContentInfo(data) {
+  if(data.author === document.querySelector(".naviBar__nickName").innerText){
+    document.querySelector(".header__top").classList.add("invisible");
+  }
   let projectTitle = document.getElementsByClassName("project-Title")[0];
   let projectTeamName = document.getElementsByClassName("project-Author")[0];
   let projectDate = document.getElementsByClassName("project-Date")[0];
@@ -260,8 +285,16 @@ function commentCreate() {
       postCommentOptions
     )
       .then((result) => result.json())
-      .then((res) => {
-        location.reload();
+      .then((result)=>{
+        if(result.message){
+          alert(result.message);
+          window.location.href = `/reviewPage/${id}`;
+          return;
+        }
+        if(result.error){
+          alert(result.error);
+          return;
+        }
       });
 
     // await fetch("http://localhost:8080/commentPost", options)
@@ -297,7 +330,7 @@ function commentCreate() {
     // commentList(stateComment);
   });
 }
-
+  
 document
   .querySelector(".project-Delete-Button")
   .addEventListener("click", (e) => {

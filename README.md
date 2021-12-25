@@ -9,8 +9,6 @@
 <img alt="Javascript" src ="https://badges.aleen42.com/src/javascript.svg"/>
 <img alt="Node" src ="https://badges.aleen42.com/src/node.svg"/>
 
-
-
 ### 기획 의도
 
 - 프로젝트를 발표하는 것뿐만 아니라 같은 기간 동안 프로젝트를 수행한 레이서들과 서로 피드백을 주고받는다면 더 의미있을 것 같다는 생각에 시작하게 되었습니다.
@@ -29,28 +27,33 @@
 
 ## 3. 프로젝트 기능 설명
 
-### 랜딩 페이지
-<img src="https://user-images.githubusercontent.com/42693257/147340708-ddd6be75-12a2-44aa-a0ad-cf3a50a3ca10.png" width="640" />
+### 주요 기능
+
+&nbsp;&nbsp;&nbsp;&nbsp;**1. 개인 또는 팀 프로젝트 등록**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 피드백 받고 싶은 프로젝트를 등록할 수 있다.
+
+&nbsp;&nbsp;&nbsp;&nbsp;**2. 피드백 등록**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 피드백하고 싶은 프로젝트에 피드백을 남길 수 있다.
 
 <br>
 
-### 로그인 페이지
-<img src="https://user-images.githubusercontent.com/42693257/147341211-876674d1-ab3e-4e13-a0e8-a49fcae8dd02.png" width="640" />
+### 서브 기능
+
+&nbsp;&nbsp;&nbsp;&nbsp;**1. 구글 로그인**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**2. 닉네임, 비밀번호 변경**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**3. 회원가입시 인증코드 입력**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**4. 비밀번호 찾기**<br>
 
 <br>
 
-### 회원가입 페이지
-<img src="https://user-images.githubusercontent.com/42693257/147341246-e598a636-fb0c-4d59-9951-2d5ce87892ed.png" width="640" />
+### 프로젝트만의 차별점, 기대효과
 
-<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**1. 차별점**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 피드백을 주고 받을 수 있다.
 
-### 비밀번호 찾기 페이지
 
-<img src="https://user-images.githubusercontent.com/42693257/147341276-37b742a8-b50e-432c-a277-d7ed7e61e930.png" width="640" />
-
-## 4. 프로젝트 구성도
-  - [와이어프레임](https://www.figma.com/file/RsrR4lqBTeJffvdjxjxz0x/Untitled?node-id=0%3A1)
-  - [스토리보드](https://docs.google.com/presentation/d/1aQozEXC97JmxbhB_Wlod6TEpsymIrKUz5DPSdLTBixo/edit#slide=id.p)
+&nbsp;&nbsp;&nbsp;&nbsp;**2. 기대효과**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 피드백을 통한 성장
 
 <br>
 

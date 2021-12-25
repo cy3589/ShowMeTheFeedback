@@ -57,6 +57,13 @@
 
 <br>
 
+## 4. 프로젝트 구성도
+
+[와이어프레임](https://www.figma.com/file/RsrR4lqBTeJffvdjxjxz0x/Show-Me-The-Feedback?node-id=0%3A1)<br>
+[스토리보드](https://docs.google.com/presentation/d/1aQozEXC97JmxbhB_Wlod6TEpsymIrKUz5DPSdLTBixo/edit#slide=id.p)
+
+<br>
+
 ## 5. 프로젝트 팀원 역할 분담
 | 이름 | 역할 | 담당 부분 |
 | ------ | ------ | ---- |

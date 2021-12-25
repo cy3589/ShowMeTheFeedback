@@ -5,7 +5,7 @@ export const editProjectForm = /* html */ `
       class="create-project-form"
     >
       <div class="team-name">
-        <div class="check-icon"></div>
+        <span class="check-icon"></span>
         <input
           type="text"
           name="team-name"
@@ -36,8 +36,8 @@ export const editProjectForm = /* html */ `
         <br />
         <div class="image-preview"></div>
       </div>
-      <div class="main-func">
-        <div class="check-icon"></div>
+      <div class="main-func flex">
+        <span class="check-icon"></span>
         <label for="main-func">주요기능</label>
         <input
           type="text"
@@ -47,7 +47,7 @@ export const editProjectForm = /* html */ `
         />
       </div>
 
-      <div class="skills" >
+      <div class="skills flex">
         <div class="check-icon"></div>
         <label for="skills">사용한 기술 스택</label>
         <input

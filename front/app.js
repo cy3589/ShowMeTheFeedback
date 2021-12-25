@@ -7,7 +7,7 @@ const morgan = require("morgan");
 const port = 80;
 
 const app = express();
-// app.use(morgan("combined"));
+app.use(morgan("combined"));
 app.use("/", express.static("indexPage"));
 app.use("/reviewPage", reviewPageRouter);
 app.use("/Projects", projectsRouter);

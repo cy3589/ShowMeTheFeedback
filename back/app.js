@@ -36,7 +36,7 @@ mongoose
 app.use(passport.initialize());
 
 app.use("/uploads", express.static("uploads"));
-// app.use(morgan("combined"));
+app.use(morgan("combined"));
 
 app.get(
   "/auth/google",

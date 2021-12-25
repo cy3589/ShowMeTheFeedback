@@ -16,12 +16,12 @@
         <legend class="create-page-head">프로젝트 등록</legend>
 
         <div class="project-value__alert">
-          <div class="check-icon">!</div>
+          <span class="check-icon">!</span>
           : 필수입력
         </div>
 
         <form class="create-project-form">
-          <div class="project-team-value__header">프로젝트 팀 정보</div>
+          <div class="project-team-value__header">1. 프로젝트 팀 정보</div>
           <div class="team-name">
             <div class="check-icon">!</div>
             <input
@@ -40,8 +40,7 @@
               placeholder="프로젝트 명"
             />
           </div>
-
-          <div class="project-thumbnail__header">프로젝트 섬네일 이미지</div>
+          <div class="project-thumbnail__header">2. 프로젝트 섬네일 이미지</div>
           <div class="thumbnail">
             <div class="project-thumbnail__input-value">
               <input
@@ -63,7 +62,7 @@
           </div>
 
           <div class="main-func">
-            <label for="main-func">주요기능</label>
+            <label for="main-func">3. 주요 기능</label>
             <div class="main-func__container">
               <div class="check-icon">!</div>
               <textarea
@@ -78,21 +77,21 @@
           </div>
 
           <div class="skills">
-            <label for="skills">사용한 기술 스택</label>
+            <label for="skills">4. 사용한 기술 스택</label>
             <div class="skills__container">
               <div class="check-icon">!</div>
               <input
                 type="text"
                 name="skills"
                 class="skills"
-                placeholder="#을 기준으로 작성해주세요! (ex-#JAVA #REACT #EXPRESS)"
+                placeholder="#을 기준으로 작성해주세요! ex) #Vanilla JS #Node.js"
               />
             </div>
           </div>
 
           <div class="team-discribe">
+            <label for="team-discribe">5. 참여 팀원 & 역할</label>
             <div class="check-icon"></div>
-            <label for="team-discribe">참여 팀원 & 담당 업무</label>
             <div class="members">
               <div class="member">
                 <input
@@ -105,13 +104,13 @@
                   type="text"
                   class="member-job"
                   name="member-job"
-                  placeholder="담당업무"
+                  placeholder="역할"
                 />
                 <input
                   type="text"
                   class="member-task"
                   name="member-task"
-                  placeholder="업무내용"
+                  placeholder="담당 부분"
                 />
                 <button href="#" class="add-member">+</button>
               </div>

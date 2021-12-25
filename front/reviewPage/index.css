@@ -14,8 +14,8 @@ body {
 }
 
 main {
-  max-width: 1200px;
-  padding: 2rem 0;
+  max-width: 1000px;
+  padding: 4rem;
   background-color: white;
   margin: 0 auto;
   margin-bottom: 3rem;
@@ -115,16 +115,18 @@ article .header__bottom .project-Date {
   padding: 1rem 0;
   background-color: var(--reviewPageOutside);
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .desc-container {
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .desc-container .title {
   background-color: var(--title-bg-color);
   padding-left: 2rem;
   font-size: 1.4rem;
+  margin-bottom: 1rem;
 }
 
 .desc-container .title span {
@@ -141,6 +143,7 @@ article .header__bottom .project-Date {
   font-size: 1.4rem;
   background-color: var(--title-bg-color);
   padding-left: 2rem;
+  margin-bottom: 1rem;
 }
 
 .feedback-container .title span {
@@ -152,7 +155,7 @@ article .header__bottom .project-Date {
 .feedback-container .inputTagForm .top {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 6px;
 }
 
 .feedback-container .inputTagForm .writeCommentContent {
@@ -160,12 +163,17 @@ article .header__bottom .project-Date {
   width: 100%;
   max-height: 100px;
   border-color: var(--border-color);
-  padding: 1rem;
+  padding: 10px;
   resize: none;
   font-size: 1rem;
   font-family: inherit;
+  outline: none;
 }
 
+.feedback-container .inputTagForm .writeCommentContent:focus {
+  border-color: var(--button-bg);
+}
+ 
 .feedback-container .inputTagForm .bottom {
   display: flex;
   justify-content: space-between;
@@ -191,15 +199,24 @@ article .header__bottom .project-Date {
   border-radius: 4px;
 }
 
-.project-Container {
-  padding-left: 1rem;
-  font-size: 1.2rem;
+.show-project h1,
+.show-project h2,
+.show-project h3 {
+    margin: 0;
+}
+
+.project-Container .wrapper {
+  margin-bottom: 2rem;
+}
+
+.project-Container h3 {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 8px;
 }
 
 .project-Container .detail {
   font-size: 1rem;
-  padding-left: 2rem;
-  margin-bottom: 1rem;
 }
 
 .other-comments-wrapper > .top {

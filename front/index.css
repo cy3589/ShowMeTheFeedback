@@ -173,13 +173,14 @@ textarea {
   margin-top: 10px;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   font-size: var(--contents-text);
   color: var(--contents-text-gray);
 }
 
 .project-team-value__header {
-  margin-left: 30px;
   font-size: var(--contents-header-text);
+  margin-bottom: 10px !important;
 }
 
 .check-icon {
@@ -204,20 +205,12 @@ textarea {
   margin-right: 5px;
 }
 
-.create-project-form {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr auto auto auto auto 1fr;
-  grid-gap: 30px;
-  grid-template-areas:
-    "project-team-value__header"
-    "team-name"
-    "project-name"
-    "project-thumbnail__header"
-    "thumbnail"
-    "main-func"
-    "skills"
-    "team-discribe"
-    "submit";
+.create-project-form > div{
+  margin-bottom: 1rem;
+}
+
+.create-project-form .flex {
+  display: flex;
 }
 
 .project-team-value__header {
@@ -233,7 +226,6 @@ textarea {
   width: 400px;
 }
 .project-name {
-  grid-area: project-name;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -243,9 +235,8 @@ textarea {
 }
 
 .project-thumbnail__header {
-  grid-area: project-thumbnail__header;
-  margin-left: 30px;
   font-size: var(--contents-header-text);
+  margin-top: 5rem;
 }
 .thumbnail {
   grid-area: thumbnail;
@@ -256,20 +247,20 @@ textarea {
     "thumbnail__file-name__button"
     "thumbnail__img-container";
 }
-.project-thumbnail__input-value {
-  margin-left: 30px;
-  grid-area: thumbnail__file-name__button;
-}
+
+
 .thumbnail__file-name {
   width: 300px;
   margin-right: 20px;
 }
 .upload-button {
   width: 100px;
+  height: 40px;
   font-size: var(--contents-button-text);
-  line-height: 28px;
-  border-radius: 5px;
+  border-radius: 4px;
+  border: none;
   cursor: pointer;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
 }
 .image-preview {
   grid-area: thumbnail__img-container;
@@ -291,34 +282,52 @@ textarea {
   border: 0.5px var(--border) solid;
 }
 .thumbnail-delete {
+  width: 70px;
+  height: 30px;
+  font-size: 14px;
   margin-top: 10px;
   background: var(--button-bg);
-  width: 60px;
   color: white;
-  font-size: var(--contents-text-small);
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.main-func {
-  grid-area: main-func;
+div.main-func {
+  margin-top: 3rem;
 }
+
+.main-func textarea {
+  outline: none;
+}
+
+.main-func textarea:focus {
+  border-color: var(--button-bg);
+}
+
 .main-func label {
-  margin-left: 30px;
   font-size: var(--contents-header-text);
 }
+.main-func input {
+  min-width: 500px;
+}
+.main-func textarea {
+  padding: 10px;
+  font-size: 1rem;
+}
 .main-func__container {
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
 }
 
-.skills {
-  grid-area: skills;
+div.skills {
+  margin-top: 5rem;
 }
+
 .skills label {
-  margin-left: 30px;
   font-size: var(--contents-header-text);
 }
 .skills__container {
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
 }
@@ -327,6 +336,7 @@ textarea {
 }
 
 .team-discribe {
+  margin-top: 4rem;
   grid-area: team-discribe;
 
   display: grid;
@@ -343,7 +353,7 @@ textarea {
 }
 .team-discribe label {
   grid-area: team-describe__header;
-  margin-left: 12px;
+  margin-left: 8px;
   font-size: var(--contents-header-text);
 }
 .team-discribe .members {
@@ -393,7 +403,8 @@ textarea {
 }
 
 .project__submit {
-  grid-area: submit;
+  display: flex;
+  justify-content: center;
   cursor: pointer;
   width: 120px;
   height: 46px;
@@ -401,6 +412,7 @@ textarea {
   border-radius: 5px;
   background-color: var(--button-bg);
   color: white;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
 }
 
 /* MyPage */
@@ -410,7 +422,6 @@ textarea {
   margin: 4rem auto;
   background: var(--contents-bg);
   padding: 50px 50px 50px 50px;
-  min-width: 800px;
 }
 
 .my-page__main-content header {
@@ -441,7 +452,6 @@ textarea {
 }
 .my-page__submit-button {
   margin-left: calc(100% - 120px);
-
   background-color: var(--button-bg);
   font-size: var(--contents-text);
   color: white;
@@ -449,6 +459,7 @@ textarea {
   height: 40px;
   border: none;
   border-radius: 5px;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
 }
 
 /* SignUpPage */
@@ -563,9 +574,12 @@ textarea {
 /* CreateProjectButton */
 
 .create-project__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: none;
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background-color: var(--addButton-bg);
   border-radius: 50%;
   color: white;
@@ -573,8 +587,8 @@ textarea {
   font-size: 50px;
 
   position: fixed;
-  top: 85%;
-  left: 85%;
+  right: 40px;
+  bottom: 40px;
 }
 .show-project {
   padding: 4rem 0;
@@ -594,6 +608,11 @@ textarea {
 }
 
 .edit-project .main-func,
+.edit-project .skills {
+  margin-top: 0;
+}
+
+.edit-project .main-func,
 .edit-project .skills,
 .edit-project .team-discribe {
   align-items: center;
@@ -602,8 +621,12 @@ textarea {
 .edit-project .main-func label,
 .edit-project .skills label,
 .edit-project .team-discribe label {
-  margin-left: 6px;
+  margin-left: 0;
   margin-right: 20px;
+}
+
+.edit-project .team-discribe label {
+  margin-left: 6px;
 }
 
 .edit-project .team-discribe label,
@@ -633,23 +656,6 @@ textarea {
   cursor: pointer;
   font-size: 14px;
   border-radius: 4px;
-}
-
-/* CreateProjectButton */
-
-.create-project__button {
-  border: none;
-  width: 80px;
-  height: 80px;
-  background-color: var(--addButton-bg);
-  border-radius: 50%;
-  color: white;
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.4));
-  font-size: 50px;
-
-  position: fixed;
-  top: 85%;
-  left: 85%;
 }
 
 /* LoginPage */
@@ -811,22 +817,6 @@ fieldset {
 }
 
 /* UpdateContentsBtn */
-
-.container .create-project-form {
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr auto auto auto auto 1fr;
-  grid-gap: 30px;
-  grid-template-areas:
-    "team-name"
-    "project-name"
-    "project-thumbnail__header"
-    "thumbnail"
-    "main-func"
-    "skills"
-    "team-discribe"
-    "buttons";
-}
-
 .container .update__buttons {
   grid-area: buttons;
 
@@ -836,4 +826,78 @@ fieldset {
 
 .update__buttons .update {
   background-color: var(--addButton-bg);
+}
+
+/* mobile */
+.burger {
+  display: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.mobile-nav {
+  display: none;
+}
+
+.naviBar.open .mobile-nav {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--addButton-bg);
+  z-index: 9999;
+}
+
+.naviBar.open .burger-close {
+  position: absolute;
+  top: 20px;
+  right: 34px;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.naviBar.open .naviBar__elements-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.naviBar.open .naviBar__elements-container a {
+  font-size: 30px;
+  color: #fff;
+}
+
+body.open {
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .naviBar__left .naviBar__elements-container {
+    display: none;
+  }
+  .naviBar__auth .naviBar__nickName,
+  .naviBar__auth .naviBar__logOut {
+    display: none;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  .create-project__button {
+    width: 40px;
+    height: 40px;
+    right: 20px;
+    bottom: 20px;
+    font-size: 30px;
+  }
+
+  .my-page__main-content div label {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
 }

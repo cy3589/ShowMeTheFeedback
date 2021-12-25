@@ -27,15 +27,40 @@ export async function authorizedNaviBar() {
         <div class="naviBar__auth">
             <a class="naviBar__nickName" href="../myPage">${data.nickname}</a>
             <a class="naviBar__logOut" href="../indexPage">로그아웃</a>
-            <i class="fas fa-bars"></i>
+            <i class="burger fas fa-bars"></i>
+        </div>
+        <div class="mobile-nav">
+          <i class="burger-close fas fa-close"></i>
+          <div class="naviBar__elements-container">
+              <a class="naviBar--home-link" href="../Projects">홈</a>
+              <a class="naviBar--my-projects-link" href="../Projects/my-projects">마이 프로젝트</a>
+              <a class="naviBar--my-page-link" href="../myPage">마이 페이지</a>
+          </div>
         </div>
   `;
 
-  const bars = document.querySelector(".fa-bars");
+  const burger = document.querySelector(".burger");
+  const burgerClose = document.querySelector(".burger-close");
   const naviBar = document.querySelector(".naviBar");
-  bars.addEventListener("click", () => {
-    naviBar.classList.toggle("open");
+  const container = document.querySelectorAll('.naviBar__elements-container');
+  const aaa = document.querySelectorAll('.naviBar--home-link')
+  burger.addEventListener("click", () => {
+    naviBar.classList.add("open");
+    document.body.classList.add("open");
   });
+
+  burgerClose.addEventListener('click', () => {
+    naviBar.classList.remove('open');
+    document.body.classList.remove("open");
+  });
+
+  container[1].addEventListener('click', (e) => {
+    const linkClassList = ['naviBar--home-link', 'naviBar--my-projects-link', 'naviBar--my-page-link']
+    if (linkClassList.includes(e.target.className)) {
+      naviBar.classList.remove('open');
+      document.body.classList.remove("open");
+    }
+  })
 }
 
 export default { authorizedNaviBar };

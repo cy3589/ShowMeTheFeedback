@@ -8,8 +8,11 @@
 
 ### 기술 스택
 
+<img alt="HTML" src ="https://raw.githubusercontent.com/dinomoon/badges/0b7a52662d010c70776e7bfd7534091dfaa23547/html.svg"/>
+<img alt="CSS" src ="https://raw.githubusercontent.com/dinomoon/badges/0b7a52662d010c70776e7bfd7534091dfaa23547/css.svg"/>
 <img alt="Javascript" src ="https://badges.aleen42.com/src/javascript.svg"/>
 <img alt="Node" src ="https://badges.aleen42.com/src/node.svg"/>
+<img alt="Node" src ="https://raw.githubusercontent.com/dinomoon/badges/d97f61584b4689abe78de69d99b309fe73bd7774/mongodb.svg"/>
 
 ### 기획 의도
 

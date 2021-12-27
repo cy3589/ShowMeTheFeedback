@@ -1,4 +1,4 @@
-# Show Me The Feedback
+# [Show Me The Feedback](http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com/Projects/)
 
 등록된 모든 프로젝트를 구경하고 피드백할 수 있고 개인 또는 팀 프로젝트를 등록하고 피드백도 받을 수 있는 프로젝트
 
@@ -35,10 +35,10 @@
 ### 주요 기능
 
 &nbsp;&nbsp;&nbsp;&nbsp;**1. 개인 또는 팀 프로젝트 등록**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 피드백 받고 싶은 프로젝트를 등록할 수 있다.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 피드백 받고 싶은 개인 또는 팀 프로젝트를 등록할 수 있다.
 
-&nbsp;&nbsp;&nbsp;&nbsp;**2. 피드백 등록**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 피드백하고 싶은 프로젝트에 피드백을 남길 수 있다.
+&nbsp;&nbsp;&nbsp;&nbsp;**2. 피드백 주기 또는 받기**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 피드백 주고 싶은 프로젝트에 피드백을 주거나 사용자가 등록한 프로젝트의 피드백을 받을 수 있다.
 
 <br>
 
@@ -58,7 +58,9 @@
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;**2. 기대효과**<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 피드백을 통한 성장
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 다른 사람들의 피드백을 통해 다음 프로젝트를 만들 때 더 도움이 된다.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - 다른 사람들의 프로젝트를 보면서 동기부여를 받을 수 있다.
+
 
 <br>
 

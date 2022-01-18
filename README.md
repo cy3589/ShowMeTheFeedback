@@ -1,7 +1,6 @@
 # Show Me The Feedback
 
 등록된 모든 프로젝트를 구경하고 피드백할 수 있고 개인 또는 팀 프로젝트를 등록하고 피드백도 받을 수 있는 프로젝트<br>
-[프로젝트 링크](http://elice-kdt-sw-1st-vm05.koreacentral.cloudapp.azure.com)
 
 <br>
 
